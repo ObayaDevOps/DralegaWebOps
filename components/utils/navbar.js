@@ -295,18 +295,18 @@ const NAV_ITEMS = [
   {
     label: 'About',
     children: [
-      // {
-      //   label: 'About Me',
-      //   subLabel: 'Professional Experience',
-      //   href: '/about/about-me',
-      // },
+      {
+        label: 'About Me',
+        subLabel: 'Professional Experience',
+        href: 'https://obaya-portfolio.vercel.app/about',
+      },
       // {
       //   label: 'FAQs',
       //   subLabel: 'Frequently Asked Questions',
       //   href: '/about/faqs',
       // },
       {
-        label: 'Obaya Dralega LinkedIn',
+        label: 'LinkedIn',
         subLabel: '',
         href:"https://www.linkedin.com/in/obaya-dralega/",
       },
