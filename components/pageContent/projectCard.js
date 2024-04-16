@@ -47,6 +47,12 @@ export default function blogPostWithImage() {
   const ref6 = useRef(null)
   const isInView6 = useInView(ref6)
 
+  const ref7 = useRef(null)
+  const isInView7 = useInView(ref7)
+
+  const ref8 = useRef(null)
+  const isInView8 = useInView(ref8)
+
   return (
     
     <Box p={4}>
@@ -82,7 +88,130 @@ export default function blogPostWithImage() {
       <VStack padding={{md:15}} spacing={12}>
 
       <ScaleFade initialScale={scaleFactor}
-    in={isInView6}>
+        in={isInView8}>
+
+      <Box
+        maxW={{base: '80vw', md: '60vw'}}
+        w={'full'}
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        bg={useColorModeValue('white', 'gray.900')}
+        boxShadow={'2xl'}
+        rounded={'md'}
+        p={10}
+        overflow={'hidden'}
+        ref={ref8}
+        >
+
+        <Box  maxW={{md:'75vw'}} bg={'gray.100'} mt={-6} mx={-6} mb={6} pos={'relative'} >
+        <NextLink href='https://www.yujo.ug'>
+            <Image
+                        // w="full"
+                        //Screenshot_from_2023-11-02_11-25-13_ufpos1
+
+
+
+
+                        rounded="lg"
+                        shadow="2xl"
+                        src={getCloudinaryImage('yujo_screenshot_w1rgq2')} 
+                        alt="Yujo Webpage screenshot"
+                        width={3675/3}
+                        height={2001/3} 
+                        placeholder="blur"
+                        blurDataURL={getCloudinaryImageBlur('yujo_screenshot_w1rgq2')}
+            />  
+            </NextLink>
+
+        </Box>
+        <Stack>
+          <Text
+            color={'blue.500'}
+            textTransform={'uppercase'}
+            fontWeight={800}
+            fontSize={'sm'}
+            pt={7}
+            // pb={5}
+            letterSpacing={1.1}>
+            FullStack, Branding Design
+          </Text>
+          <NextLink href='https://www.yujo.ug'>
+            <Heading
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              color={useColorModeValue('gray.700', 'white')}
+              fontSize={'2xl'}
+              fontFamily={'body'}>
+              Yujo Izakaya: Japanese Resturant
+            </Heading>
+          </NextLink>
+
+          <Text color={useColorModeValue('gray.500', 'white')}>
+            An upmarket Japanese Kitchen and Cocktail Bar, requested a clean, minimal and elegant design that minimised clicks and hosted their menus. 
+          </Text>
+        </Stack>
+      </Box>
+      </ScaleFade>  
+
+      <ScaleFade initialScale={scaleFactor}
+        in={isInView7}>
+
+      <Box
+        maxW={{base: '80vw', md: '60vw'}}
+        w={'full'}
+        // eslint-disable-next-line react-hooks/rules-of-hooks
+        bg={useColorModeValue('white', 'gray.900')}
+        boxShadow={'2xl'}
+        rounded={'md'}
+        p={10}
+        overflow={'hidden'}
+        ref={ref7}
+        >
+
+        <Box  maxW={{md:'75vw'}} bg={'gray.100'} mt={-6} mx={-6} mb={6} pos={'relative'} >
+        <NextLink href='https://www.nekosero.ug/'>
+            <Image
+                        rounded="lg"
+                        shadow="2xl"
+                        src={getCloudinaryImage('nekosero_screenshot_yu7dll')} 
+                        alt="Nekosero Webpage screenshot"
+                        width={3675/3}
+                        height={2001/3} 
+                        placeholder="blur"
+                        blurDataURL={getCloudinaryImageBlur('nekosero_screenshot_yu7dll')}
+            />  
+            </NextLink>
+
+        </Box>
+        <Stack>
+          <Text
+            color={'blue.500'}
+            textTransform={'uppercase'}
+            fontWeight={800}
+            fontSize={'sm'}
+            pt={7}
+            // pb={5}
+            letterSpacing={1.1}>
+            FullStack, Branding Design
+          </Text>
+          <NextLink href='https://www.nekosero.ug'>
+            <Heading
+              // eslint-disable-next-line react-hooks/rules-of-hooks
+              color={useColorModeValue('gray.700', 'white')}
+              fontSize={'2xl'}
+              fontFamily={'body'}>
+              Nekosero
+            </Heading>
+          </NextLink>
+
+          <Text color={useColorModeValue('gray.500', 'white')}>
+          A creative Shopping, Dining, Brewing, Fashion, and Contemporary Arts Space 
+          </Text>
+        </Stack>
+      </Box>
+      </ScaleFade> 
+
+
+      <ScaleFade initialScale={scaleFactor}
+        in={isInView6}>
 
       <Box
         maxW={{base: '80vw', md: '60vw'}}

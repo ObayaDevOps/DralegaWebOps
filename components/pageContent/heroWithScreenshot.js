@@ -36,7 +36,7 @@ export default function App(){
           color="gray.900"
           _dark={{ color: "gray.100" }}
         >
-          Optimized Websites for {" "}
+          Brand Design for {" "}
           <Text
             display={{ base: "block", lg: "inline" }}
             w="full"

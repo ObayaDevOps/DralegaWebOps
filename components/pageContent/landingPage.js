@@ -48,8 +48,8 @@ export default function CallToActionWithAnnotation() {
       />
 
       <HeroWithScreenshot/>
-      <FourFeature />
       <ProjectCards />
+      <FourFeature />
       <CallToActionBanner />
 
       </Box>
