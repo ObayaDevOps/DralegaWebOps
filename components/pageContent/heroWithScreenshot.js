@@ -36,7 +36,7 @@ export default function App(){
           color="gray.900"
           _dark={{ color: "gray.100" }}
         >
-          Brand Design for {" "}
+          Web Design for {" "}
           <Text
             display={{ base: "block", lg: "inline" }}
             w="full"
@@ -48,19 +48,21 @@ export default function App(){
           </Text>{" "}
            
         </chakra.h1>
-        <chakra.p
+        {/* <chakra.p
           px={{ base: 0, lg: 24 }}
           mb={6}
           fontSize={{ base: "lg", md: "xl" }}
           color="gray.700"
           textAlign="left"
           _dark={{ color: "gray.100" }}
-        >
+        > */}
+          <Text color={useColorModeValue('gray.700', 'gray.200')}  mb={6} fontWeight={200} fontSize={'xl'}>
+
           We craft profitable websites for SMEs and Start-Ups aiming to unleash business potential.
 	        With both Design and Performance perfectly balanced,
           we aim to Fuel Business Growth through Professional Website Development.
-
-        </chakra.p>
+          </Text>
+        {/* </chakra.p> */}
         <Stack
           direction={{ base: "column", sm: "row" }}
           mb={{ base: 4, md: 8 }}
@@ -131,12 +133,12 @@ export default function App(){
                     // w="full"
                     rounded="lg"
                     shadow="2xl"
-                    src={getCloudinaryImage('afropoceneScreenshot_qwd27h.jpg')} 
-                    alt="Hellonext feedback boards software screenshot"
+                    src={getCloudinaryImage('afropocene_main')} 
+                    alt="Afropocene Screenshot"
                     // width={3675/2.5}
                     // height= {2001/2.5}
                     placeholder="blur"
-                    blurDataURL={getCloudinaryImageBlur('afropoceneScreenshot_qwd27h.jpg')}
+                    blurDataURL={getCloudinaryImageBlur('afropocene_main')}
                     ref={ref}
 
         />  

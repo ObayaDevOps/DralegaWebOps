@@ -98,7 +98,7 @@ export default function WithSubnavigation() {
                     width={115}
                     height={115}
                     placeholder="blur"
-                    blurDataURL={getCloudinaryImageBlur('Med-Optics_ly2gge.jpg')}
+                    blurDataURL={getCloudinaryImageBlur('Black_And_White_Modern_Vintage_Retro_Brand_Logo_b4pr7b.jpg')}
                 />
               
           </Link>

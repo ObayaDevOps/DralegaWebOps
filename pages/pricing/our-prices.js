@@ -176,8 +176,8 @@ export default function App(){
                       <Feature>4-Page Website: Landing Page, About Us, Products and Services, Contact Us </Feature>
                       <Feature>Sanity CMS - Update your website yourself</Feature>
                       <Feature>Market Leading SEO and Visitor Analytics</Feature>
-                      <Feature>Free Web Hosting !</Feature>
-                      <Feature>Mobile Friendly Design - Optimised for Ugandan Internet</Feature>
+                      {/* <Feature>Free Web Hosting !</Feature> */}
+                      <Feature>Mobile Friendly Design - Optimised for Low-to-Mid Internet Speeds</Feature>
                       <Feature>Built with Next.Js</Feature>
                     </Stack>
                     {/* <Link
@@ -363,7 +363,8 @@ export default function App(){
                   >
                     <Stack mb={5} spacing={4}>
                     <Feature>6-Page Mobile-Friendly Website</Feature>
-                      <Feature>MedusaJS: Open-Source Building blocks for digital commerce</Feature>
+                      <Feature>Custom Front-ends</Feature>
+                      <Feature>Custom Payment Gateways like Stripe, Pesapal, DPO</Feature>
                       <Feature>Shopify: The global commerce platform</Feature>
                       <Feature>Sanity CMS: Update Website Content Yourself</Feature>
                       <Feature>Bookings Calendar</Feature>
@@ -445,7 +446,7 @@ export default function App(){
                       color="gray.500"
                       _dark={{ color: "gray.200" }}
                     >
-                      Need a web3 or Cryptocurrency project built? Setting up IoT ? Integrate with your existing custom solution into modern web practices ?
+                      Need a web3 or Cryptocurrency project built? Setting up IoT ? Integrate with your existing custom solution into modern web practices ? Greenfield project ?
                     </chakra.p>
                   </Box>
                   <Flex
