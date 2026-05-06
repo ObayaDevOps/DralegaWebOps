@@ -20,8 +20,8 @@ import {
   Text
 } from '@chakra-ui/react';
 import React from 'react';
-import { BsGithub, BsLinkedin, BsPerson, BsTwitter, BsWhatsapp, BsPhone, BsFacebook, BsInstagram } from 'react-icons/bs';
-import { MdEmail, MdOutlineEmail, MdPhone } from 'react-icons/md';
+import { ExternalLinkIcon, LinkIcon, InfoOutlineIcon, ChatIcon, StarIcon } from '@chakra-ui/icons';
+import { EmailIcon, PhoneIcon } from '@chakra-ui/icons';
 import Head from 'next/head'
 import { useState } from 'react'
 
@@ -159,7 +159,7 @@ export default function ContactFormWithSocialButtons() {
                     variant="ghost"
                     size="lg"
                     fontSize="3xl"
-                    icon={<MdEmail />}
+                    icon={<EmailIcon />}
                     _hover={{
                       bg: 'blue.500',
                       color: useColorModeValue('white', 'gray.700'),
@@ -178,7 +178,7 @@ export default function ContactFormWithSocialButtons() {
                     variant="ghost"
                     size="lg"
                     fontSize="3xl"
-                    icon={<MdPhone />}
+                    icon={<PhoneIcon />}
                     _hover={{
                       bg: 'blue.500',
                       color: useColorModeValue('white', 'gray.700'),
@@ -197,7 +197,7 @@ export default function ContactFormWithSocialButtons() {
                     variant="ghost"
                     size="lg"
                     fontSize="3xl"
-                    icon={<BsWhatsapp />}
+                    icon={<ChatIcon />}
                     _hover={{
                       bg: 'blue.500',
                       color: useColorModeValue('white', 'gray.700'),
@@ -213,7 +213,7 @@ export default function ContactFormWithSocialButtons() {
                     aria-label="linkedin"
                     variant="ghost"
                     size="lg"
-                    icon={<BsLinkedin size="28px" />}
+                    icon={<LinkIcon />}
                     _hover={{
                       bg: 'blue.500',
                       color: useColorModeValue('white', 'gray.700'),
@@ -236,7 +236,7 @@ export default function ContactFormWithSocialButtons() {
   
                       <InputGroup>
                         <InputLeftElement>
-                          <BsPerson />
+                          <InfoOutlineIcon />
                         </InputLeftElement>
                         <Input id="name" type="text" name="name" placeholder="Your Name" />
                       </InputGroup>
@@ -247,7 +247,7 @@ export default function ContactFormWithSocialButtons() {
   
                       <InputGroup>
                         <InputLeftElement>
-                          <MdOutlineEmail />
+                          <EmailIcon />
                         </InputLeftElement>
                         <Input
                           id="email"

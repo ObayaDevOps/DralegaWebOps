@@ -20,14 +20,12 @@ import {
 
   } from '@chakra-ui/react';
   import { ReactNode } from 'react';
-  import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from 'react-icons/fa';
-  import { BiMailSend } from 'react-icons/bi';
+  import { ExternalLinkIcon } from '@chakra-ui/icons';
   import NextLink from 'next/link'
 
 
 
   import NextImage from 'next/image'
-  import { MdEmail, MdOutlineEmail, MdPhone } from 'react-icons/md';
 
   import { useState } from 'react'
 
@@ -147,7 +145,7 @@ import {
               </Text>
               <Stack direction={'row'} spacing={6}>
                 <SocialButton label={'LinkedIn'} href={'https://www.linkedin.com/in/obaya-dralega/'}>
-                  <FaLinkedin />
+                  <ExternalLinkIcon />
                 </SocialButton>
               </Stack>
             </Stack>

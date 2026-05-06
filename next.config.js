@@ -10,6 +10,7 @@ module.exports = {
   images: {
     domains: ['res.cloudinary.com'],
   },
+  transpilePackages: ['react-icons'],
 };
 
 

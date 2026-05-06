@@ -11,11 +11,7 @@ import {
   UnorderedList,
   ListItem
 } from '@chakra-ui/react';
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from 'react-icons/io5';
+import { SettingsIcon, InfoIcon, SearchIcon } from '@chakra-ui/icons';
 import { ReactElement } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';
@@ -137,47 +133,47 @@ export default function SplitWithImage() {
             >
             <Feature
               icon={
-                <Icon as={IoAnalyticsSharp} color={'yellow.500'} w={5} h={5} />
+                <Icon as={SettingsIcon} color={'yellow.500'} w={5} h={5} />
               }
               iconBg={useColorModeValue('yellow.100', 'yellow.900')}
               text={'Registered with the Optical Council UK '}
             />
             {/* <Feature
-              icon={<Icon as={IoLogoBitcoin} color={'green.500'} w={5} h={5} />}
+              icon={<Icon as={InfoIcon} color={'green.500'} w={5} h={5} />}
               iconBg={useColorModeValue('green.100', 'green.900')}
               text={'Member of the Association of Optometrists, UK'}
             />
             <Feature
               icon={
-                <Icon as={IoSearchSharp} color={'purple.500'} w={5} h={5} />
+                <Icon as={SearchIcon} color={'purple.500'} w={5} h={5} />
               }
               iconBg={useColorModeValue('purple.100', 'purple.900')}
               text={'Chairman of the Legislation Committee of Optometrist Association of Uganda,'}
             />
             <Feature
               icon={
-                <Icon as={IoSearchSharp} color={'purple.500'} w={5} h={5} />
+                <Icon as={SearchIcon} color={'purple.500'} w={5} h={5} />
               }
               iconBg={useColorModeValue('purple.100', 'purple.900')}
               text={'Former President of African Council of Optometry,Governing Board'}
             />
             <Feature
               icon={
-                <Icon as={IoSearchSharp} color={'purple.500'} w={5} h={5} />
+                <Icon as={SearchIcon} color={'purple.500'} w={5} h={5} />
               }
               iconBg={useColorModeValue('purple.100', 'purple.900')}
               text={'Member of World Council of Optometry'}
             />
             <Feature
               icon={
-                <Icon as={IoSearchSharp} color={'purple.500'} w={5} h={5} />
+                <Icon as={SearchIcon} color={'purple.500'} w={5} h={5} />
               }
               iconBg={useColorModeValue('purple.100', 'purple.900')}
               text={'Head of Department for Allied Health Department & Coordinator for the Optometry Program, Makerere University'}
             />
             <Feature
               icon={
-                <Icon as={IoSearchSharp} color={'purple.500'} w={5} h={5} />
+                <Icon as={SearchIcon} color={'purple.500'} w={5} h={5} />
               }
               iconBg={useColorModeValue('purple.100', 'purple.900')}
               text={'Accredited member of the Ultra Lase Eye-Care Co-management scheme: for pre and post laser operation screening, UK.'}

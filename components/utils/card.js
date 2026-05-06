@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, Flex, Icon, Image, chakra } from "@chakra-ui/react";
 
-import { MdEmail, MdHeadset, MdLocationOn } from "react-icons/md";
+import { EmailIcon, InfoOutlineIcon } from "@chakra-ui/icons";
 import { BsFillBriefcaseFill } from "react-icons/bs";
 
 export default function Card(props){
@@ -31,7 +31,7 @@ export default function Card(props){
         />
 
         <Flex alignItems="center" px={6} py={3} bg="gray.900">
-          <Icon as={MdLocationOn} h={6} w={6} color="white" />
+          <Icon as={InfoOutlineIcon} h={6} w={6} color="white" />
 
           <chakra.h1 mx={3} color="white" fontWeight="bold" fontSize="lg">
             {props.topPanel}
@@ -71,7 +71,7 @@ export default function Card(props){
             color="gray.700"
             _dark={{ color: "gray.200" }}
           >
-            <Icon as={MdLocationOn} h={6} w={6} mr={2} />
+            <Icon as={InfoOutlineIcon} h={6} w={6} mr={2} />
 
             <chakra.h1 px={2} fontSize="sm">
               California
@@ -83,7 +83,7 @@ export default function Card(props){
             color="gray.700"
             _dark={{ color: "gray.200" }}
           >
-            <Icon as={MdEmail} h={6} w={6} mr={2} />
+            <Icon as={EmailIcon} h={6} w={6} mr={2} />
 
             <chakra.h1 px={2} fontSize="sm">
               patterson@example.com

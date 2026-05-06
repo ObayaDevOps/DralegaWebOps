@@ -33,7 +33,6 @@ import { getCloudinaryImage, getCloudinaryImageBlur } from '../../components/uti
 
 
 import NextLink from 'next/link'
-import { MdNightlight } from 'react-icons/md';
 import Script from 'next/script'
 
 //Dynamic Routing for NavBars: https://nextjs.org/learn/basics/dynamic-routes/implement-getstaticpaths
@@ -51,7 +50,6 @@ function DarkToggleButton() {
   )
 }
 
-import { FaBeer } from 'react-icons/fa';
 import theme from './theme';
 
 

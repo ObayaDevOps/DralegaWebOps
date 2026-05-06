@@ -17,14 +17,7 @@ import {
   InputLeftElement,
   Textarea,
 } from '@chakra-ui/react';
-import {
-  MdPhone,
-  MdEmail,
-  MdLocationOn,
-  MdFacebook,
-  MdOutlineEmail,
-} from 'react-icons/md';
-import { BsGithub, BsDiscord, BsPerson } from 'react-icons/bs';
+import { EmailIcon, PhoneIcon, InfoOutlineIcon, ExternalLinkIcon, ChatIcon } from '@chakra-ui/icons';
 import Head from 'next/head';
 
 export default function contact() {
@@ -61,7 +54,7 @@ export default function contact() {
                         variant="ghost"
                         color="green.200"
                         _hover={{ border: '2px solid #1C6FEB' }}
-                        leftIcon={<MdPhone color="green.900" size="20px" />}>
+                        leftIcon={<PhoneIcon />}>
                         +256-00000000
                       </Button>
                       <Button
@@ -71,7 +64,7 @@ export default function contact() {
                         variant="ghost"
                         color="#DCE2FF"
                         _hover={{ border: '2px solid #1C6FEB' }}
-                        leftIcon={<MdEmail color="#1970F1" size="20px" />}>
+                        leftIcon={<EmailIcon />}>
                         hello-medoptics@abc.com
                       </Button>
                       <Button
@@ -81,7 +74,7 @@ export default function contact() {
                         variant="ghost"
                         color="#DCE2FF"
                         _hover={{ border: '2px solid #1C6FEB' }}
-                        leftIcon={<MdLocationOn color="#1970F1" size="20px" />}>
+                        leftIcon={<InfoOutlineIcon />}>
                         Kampala, Uganda
                       </Button>
                     </VStack>
@@ -97,7 +90,7 @@ export default function contact() {
                       size="lg"
                       isRound={true}
                       _hover={{ bg: '#0D74FF' }}
-                      icon={<MdFacebook size="28px" />}
+                      icon={<ExternalLinkIcon />}
                     />
                     <IconButton
                       aria-label="github"
@@ -105,7 +98,7 @@ export default function contact() {
                       size="lg"
                       isRound={true}
                       _hover={{ bg: '#0D74FF' }}
-                      icon={<BsGithub size="28px" />}
+                      icon={<ExternalLinkIcon />}
                     />
                     <IconButton
                       aria-label="discord"
@@ -113,7 +106,7 @@ export default function contact() {
                       size="lg"
                       isRound={true}
                       _hover={{ bg: '#0D74FF' }}
-                      icon={<BsDiscord size="28px" />}
+                      icon={<ChatIcon />}
                     />
                   </HStack>
                 </Box>
@@ -127,7 +120,7 @@ export default function contact() {
                         <InputGroup borderColor="#E0E1E7">
                           <InputLeftElement
                             pointerEvents="none"
-                            children={<BsPerson color="gray.800" />}
+                            children={<InfoOutlineIcon color="gray.800" />}
                           />
                           <Input type="text" size="md" />
                         </InputGroup>
@@ -137,7 +130,7 @@ export default function contact() {
                         <InputGroup borderColor="#E0E1E7">
                           <InputLeftElement
                             pointerEvents="none"
-                            children={<MdOutlineEmail color="gray.800" />}
+                            children={<EmailIcon color="gray.800" />}
                           />
                           <Input type="text" size="md" />
                         </InputGroup>

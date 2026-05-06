@@ -22,11 +22,7 @@ import {
 } from '@chakra-ui/react';
 
 
-import {
-  IoAnalyticsSharp,
-  IoLogoBitcoin,
-  IoSearchSharp,
-} from 'react-icons/io5';
+import { SettingsIcon, InfoIcon, SearchIcon } from '@chakra-ui/icons';
 import { ReactElement } from 'react';
 import Head from 'next/head';
 import Image from 'next/image';

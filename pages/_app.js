@@ -8,17 +8,15 @@ import { Analytics } from '@vercel/analytics/react';
 
 
 function MyApp({ Component, pageProps }) {
-  return (   
+  const noLayout = Component.noLayout;
+  return (
     <ChakraProvider theme={theme}>
-
-      <WithSubnavigation />
+      {!noLayout && <WithSubnavigation />}
       <Component {...pageProps} />
-      <FooterLargeWithNewsletterAdvanced />
+      {!noLayout && <FooterLargeWithNewsletterAdvanced />}
       <Analytics />
-
-
     </ChakraProvider>
-    )
+  );
 }
 
 export default MyApp
