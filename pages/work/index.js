@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import TFSShell, { useReveal, TFSMobileShell } from '../../components/pageContent/shared/TFSShell';
-import { PALETTE, FONTS, PROJECTS } from '../../components/pageContent/home/data';
+import PageLayout from '../../components/layout/PageLayout';
+import { PALETTE, FONTS } from '../../data/tokens';
+import { PROJECTS } from '../../data/projects';
+import SectionLabel from '../../components/primitives/SectionLabel';
 
 const p = PALETTE;
 
@@ -88,23 +90,16 @@ function WorkCard({ proj, idx }) {
 }
 
 export default function WorkIndex() {
-  useReveal();
-
   return (
     <>
       <Head>
         <title>Work — twofivesix studio</title>
         <meta name="description" content="Selected projects from twofivesix — bespoke websites built for Uganda's most ambitious businesses." />
       </Head>
-      <div className="tfs-desktop-only">
-        <TFSShell>
+      <PageLayout desktop={<>
           <section style={{ padding: '80px 32px 40px' }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24, marginBottom: 64 }}>
-              <div style={{
-                gridColumn: 'span 2',
-                fontFamily: '"JetBrains Mono", monospace',
-                fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, paddingTop: 12,
-              }} data-reveal>/WORK — INDEX</div>
+              <SectionLabel>/WORK — INDEX</SectionLabel>
               <div style={{ gridColumn: '4 / span 8' }} data-reveal data-reveal-delay="80">
                 <h1 style={{
                   fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
@@ -135,13 +130,9 @@ export default function WorkIndex() {
               ))}
             </div>
           </section>
-        </TFSShell>
-      </div>
-
-      <div className="tfs-mobile-only">
-        <TFSMobileShell>
+      </>} mobile={<>
           <section style={{ padding: '48px 20px 36px' }}>
-            <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/WORK — INDEX</div>
+            <SectionLabel variant="mobile">/WORK — INDEX</SectionLabel>
             <h1 data-mreveal data-mreveal-delay="60" style={{
               fontFamily: FONTS.serif, fontWeight: 400,
               fontSize: 'clamp(36px, 11vw, 52px)', lineHeight: 0.96,
@@ -208,8 +199,7 @@ export default function WorkIndex() {
               );
             })}
           </section>
-        </TFSMobileShell>
-      </div>
+      </>} />
     </>
   );
 }

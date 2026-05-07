@@ -1,6 +1,7 @@
 import Head from 'next/head';
-import TFSShell, { useReveal, TFSMobileShell } from '../../components/pageContent/shared/TFSShell';
-import { PALETTE, FONTS } from '../../components/pageContent/home/data';
+import PageLayout from '../../components/layout/PageLayout';
+import { PALETTE, FONTS } from '../../data/tokens';
+import SectionLabel from '../../components/primitives/SectionLabel';
 
 const p = PALETTE;
 
@@ -80,19 +81,17 @@ const POSTS = [
 ];
 
 export default function Journal() {
-  useReveal();
-
   return (
     <>
       <Head>
         <title>Journal — twofivesix studio</title>
         <meta name="description" content="Notes from twofivesix — on payments, engineering, design, and building for Uganda's internet." />
       </Head>
-      <div className="tfs-desktop-only"><TFSShell>
+      <PageLayout desktop={<>
         {/* Header */}
         <section style={{ padding: '80px 32px 64px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-            <div style={{ gridColumn: 'span 2', fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, paddingTop: 12 }} data-reveal>/JOURNAL</div>
+            <SectionLabel>/JOURNAL</SectionLabel>
             <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
               <h1 style={{
                 fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
@@ -207,12 +206,9 @@ export default function Journal() {
             </a>
           ))}
         </section>
-      </TFSShell></div>
-
-      <div className="tfs-mobile-only">
-        <TFSMobileShell>
+      </>} mobile={<>
           <section style={{ padding: '48px 20px 36px' }}>
-            <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/JOURNAL</div>
+            <SectionLabel variant="mobile">/JOURNAL</SectionLabel>
             <h1 data-mreveal data-mreveal-delay="60" style={{
               fontFamily: FONTS.serif, fontWeight: 400,
               fontSize: 'clamp(36px, 11vw, 52px)', lineHeight: 0.96,
@@ -264,8 +260,7 @@ export default function Journal() {
               </a>
             ))}
           </section>
-        </TFSMobileShell>
-      </div>
+      </>} />
     </>
   );
 }

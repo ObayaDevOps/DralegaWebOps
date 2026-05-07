@@ -1,6 +1,8 @@
 import Head from 'next/head';
-import TFSShell, { useReveal, TFSMobileShell } from '../../components/pageContent/shared/TFSShell';
-import { PALETTE, FONTS } from '../../components/pageContent/home/data';
+import PageLayout from '../../components/layout/PageLayout';
+import { PALETTE, FONTS } from '../../data/tokens';
+import SectionLabel from '../../components/primitives/SectionLabel';
+import Button from '../../components/primitives/Button';
 
 const p = PALETTE;
 
@@ -17,23 +19,17 @@ const CLIENTS = [
 ];
 
 export default function About() {
-  useReveal();
-
   return (
     <>
       <Head>
         <title>About — twofivesix studio</title>
         <meta name="description" content="twofivesix is a one-person studio in Kampala run by Obaya Dralega — a former bank engineer and founding member of Afropocene StudioLab." />
       </Head>
-      <div className="tfs-desktop-only"><TFSShell>
+      <PageLayout desktop={<>
         {/* Intro */}
         <section style={{ padding: '80px 32px 0' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24, marginBottom: 80 }}>
-            <div style={{
-              gridColumn: 'span 2',
-              fontFamily: '"JetBrains Mono", monospace',
-              fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, paddingTop: 12,
-            }} data-reveal>/ABOUT</div>
+            <SectionLabel>/ABOUT</SectionLabel>
 
             <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
               <h1 style={{
@@ -199,28 +195,15 @@ export default function About() {
                 <em style={{ color: p.accent2, fontStyle: 'italic' }}>worth remembering?</em>
               </h2>
               <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-                <a href="/contact" className="tfs-btn" style={{
-                  background: p.accent2, color: p.fg, padding: '14px 24px', borderRadius: 2,
-                  fontFamily: '"JetBrains Mono", monospace', fontSize: 12, letterSpacing: '0.08em',
-                  textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10,
-                  border: `1px solid ${p.accent2}`,
-                }}>START A PROJECT →</a>
-                <a href="/work" className="tfs-btn" style={{
-                  background: 'transparent', color: p.bg, padding: '14px 24px', borderRadius: 2,
-                  fontFamily: '"JetBrains Mono", monospace', fontSize: 12, letterSpacing: '0.08em',
-                  textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10,
-                  border: `1px solid ${p.bg}44`,
-                }}>SEE THE WORK →</a>
+                <Button href="/contact" bg={p.accent2} color={p.fg} border={p.accent2} padding="14px 24px">START A PROJECT →</Button>
+                <Button href="/work" color={p.bg} border={`${p.bg}44`} padding="14px 24px">SEE THE WORK →</Button>
               </div>
             </div>
           </div>
         </section>
-      </TFSShell></div>
-
-      <div className="tfs-mobile-only">
-        <TFSMobileShell>
+      </>} mobile={<>
           <section style={{ padding: '48px 20px 36px' }}>
-            <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/ABOUT</div>
+            <SectionLabel variant="mobile">/ABOUT</SectionLabel>
             <h1 data-mreveal data-mreveal-delay="60" style={{
               fontFamily: FONTS.serif, fontWeight: 400,
               fontSize: 'clamp(40px, 12vw, 56px)', lineHeight: 0.94,
@@ -322,8 +305,7 @@ export default function About() {
               </a>
             </div>
           </section>
-        </TFSMobileShell>
-      </div>
+      </>} />
     </>
   );
 }

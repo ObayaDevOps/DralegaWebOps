@@ -1,6 +1,8 @@
 import Head from 'next/head';
-import TFSShell, { useReveal } from '../components/pageContent/shared/TFSShell';
-import { PALETTE } from '../components/pageContent/home/data';
+import PageLayout from '../components/layout/PageLayout';
+import { PALETTE } from '../data/tokens';
+import SectionLabel from '../components/primitives/SectionLabel';
+import Button from '../components/primitives/Button';
 
 const p = PALETTE;
 
@@ -64,19 +66,17 @@ const SERVICES = [
 ];
 
 export default function Services() {
-  useReveal();
-
   return (
     <>
       <Head>
         <title>Services — twofivesix studio</title>
         <meta name="description" content="Bespoke design, Next.js engineering, payment integration, WhatsApp API, SEO/GEO, and Sanity CMS — for Uganda's most ambitious businesses." />
       </Head>
-      <TFSShell>
+      <PageLayout desktop={<>
         {/* Header */}
         <section style={{ padding: '80px 32px 64px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-            <div style={{ gridColumn: 'span 2', fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, paddingTop: 12 }} data-reveal>/SERVICES</div>
+            <SectionLabel>/SERVICES</SectionLabel>
             <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
               <h1 style={{
                 fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
@@ -158,22 +158,13 @@ export default function Services() {
                 <em style={{ color: p.accent2, fontStyle: 'italic' }}>your competitors can&rsquo;t copy?</em>
               </h2>
               <div style={{ display: 'flex', gap: 12, justifyContent: 'center' }}>
-                <a href="/contact" className="tfs-btn" style={{
-                  background: p.accent2, color: p.fg, padding: '14px 24px', borderRadius: 2,
-                  fontFamily: '"JetBrains Mono", monospace', fontSize: 12, letterSpacing: '0.08em',
-                  textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10,
-                }}>START A PROJECT →</a>
-                <a href="/pricing" className="tfs-btn" style={{
-                  background: 'transparent', color: p.bg, padding: '14px 24px', borderRadius: 2,
-                  fontFamily: '"JetBrains Mono", monospace', fontSize: 12, letterSpacing: '0.08em',
-                  textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 10,
-                  border: `1px solid ${p.bg}44`,
-                }}>SEE PRICING →</a>
+                <Button href="/contact" bg={p.accent2} color={p.fg} padding="14px 24px">START A PROJECT →</Button>
+                <Button href="/pricing" color={p.bg} border={`${p.bg}44`} padding="14px 24px">SEE PRICING →</Button>
               </div>
             </div>
           </div>
         </section>
-      </TFSShell>
+      </>} />
     </>
   );
 }

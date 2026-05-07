@@ -1,7 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import TFSShell, { useReveal, TFSMobileShell } from '../../components/pageContent/shared/TFSShell';
-import { PALETTE, FONTS, PROJECTS } from '../../components/pageContent/home/data';
+import PageLayout from '../../components/layout/PageLayout';
+import { PALETTE, FONTS } from '../../data/tokens';
+import { PROJECTS } from '../../data/projects';
+import Button from '../../components/primitives/Button';
 
 const p = PALETTE;
 
@@ -34,7 +36,6 @@ function Section({ label, children }) {
 }
 
 export default function CaseStudy({ proj }) {
-  useReveal();
   const stripe = 'rgba(26,26,26,0.045)';
   const stripe2 = 'rgba(26,26,26,0.015)';
 
@@ -44,8 +45,7 @@ export default function CaseStudy({ proj }) {
         <title>{proj.title} — twofivesix studio</title>
         <meta name="description" content={proj.blurb} />
       </Head>
-      <div className="tfs-desktop-only">
-        <TFSShell>
+      <PageLayout desktop={<>
           <article>
             {/* Hero */}
             <section style={{ padding: '80px 32px 64px' }}>
@@ -211,21 +211,12 @@ export default function CaseStudy({ proj }) {
                   }}>← ALL WORK</a>
                 </Link>
                 <Link href="/work" passHref>
-                  <a className="tfs-btn" style={{
-                    background: p.accent, color: '#FAFAF7', padding: '14px 22px',
-                    borderRadius: 2, fontFamily: '"JetBrains Mono", monospace',
-                    fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none',
-                    display: 'inline-flex', alignItems: 'center', gap: 10,
-                  }}>NEXT PROJECT →</a>
+                  <Button bg={p.accent} color="#FAFAF7">NEXT PROJECT →</Button>
                 </Link>
               </div>
             </div>
           </article>
-        </TFSShell>
-      </div>
-
-      <div className="tfs-mobile-only">
-        <TFSMobileShell>
+      </>} mobile={<>
           <section style={{ padding: '48px 20px 36px' }}>
             <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>
               /{proj.n} · {proj.year}
@@ -365,8 +356,7 @@ export default function CaseStudy({ proj }) {
               }}>NEXT PROJECT →</a>
             </div>
           </div>
-        </TFSMobileShell>
-      </div>
+      </>} />
     </>
   );
 }
