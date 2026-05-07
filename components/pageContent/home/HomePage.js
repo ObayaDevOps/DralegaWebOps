@@ -171,7 +171,7 @@ function Marquee() {
 
 function Hero() {
   return (
-    <section style={{ padding: '0 32px', position: 'relative', minHeight: '95vh' }}>
+    <section style={{ padding: '0 32px', position: 'relative', minHeight: '85vh' }}>
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(12, 1fr)',
