@@ -17,26 +17,22 @@ export default function TFSNav() {
       backdropFilter: GLASS.blur.desktop,
       WebkitBackdropFilter: GLASS.blur.desktop,
     }}>
-      <Link href="/" passHref>
-        <a style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }}>
-          <PixelMark color={p.markColor} sessionKey="tfs-nav" />
-          <span style={{
-            fontFamily: FONTS.mono,
-            fontSize: 11, color: p.fgDim, letterSpacing: '0.08em',
-            paddingLeft: 14, marginLeft: 6,
-            borderLeft: `1px solid ${p.rule}`,
-          }}>{CONTACT.navLocation}</span>
-        </a>
+      <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 14, textDecoration: 'none' }}>
+        <PixelMark color={p.markColor} sessionKey="tfs-nav" />
+        <span style={{
+          fontFamily: FONTS.mono,
+          fontSize: 11, color: p.fgDim, letterSpacing: '0.08em',
+          paddingLeft: 14, marginLeft: 6,
+          borderLeft: `1px solid ${p.rule}`,
+        }}>{CONTACT.navLocation}</span>
       </Link>
       <nav style={{ display: 'flex', gap: 28 }}>
         {NAV_LINKS.map((l) => (
-          <Link key={l.href} href={l.href} passHref>
-            <a style={{
-              fontFamily: FONTS.mono,
-              fontSize: 12, letterSpacing: '0.08em',
-              color: p.fg, textDecoration: 'none',
-            }}>{l.label}</a>
-          </Link>
+          <Link key={l.href} href={l.href} style={{
+            fontFamily: FONTS.mono,
+            fontSize: 12, letterSpacing: '0.08em',
+            color: p.fg, textDecoration: 'none',
+          }}>{l.label}</Link>
         ))}
       </nav>
     </header>

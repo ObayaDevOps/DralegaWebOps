@@ -15,8 +15,8 @@ function WorkCard({ proj, idx }) {
   const ratio = proj.span === 'wide' ? '16 / 9' : proj.span === 'half' ? '4 / 3' : '3 / 4';
 
   return (
-    <Link href={`/work/${proj.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`} passHref>
-    <a
+    <Link
+      href={`/work/${proj.title.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`}
       className="tfs-tile"
       data-reveal
       data-reveal-delay={idx * 60}
@@ -84,7 +84,6 @@ function WorkCard({ proj, idx }) {
           {proj.tags.map((t) => <span key={t}>/{t}</span>)}
         </div>
       </div>
-    </a>
     </Link>
   );
 }

@@ -204,15 +204,11 @@ export default function CaseStudy({ proj }) {
             {/* Next project */}
             <div style={{ padding: '0 32px 80px' }}>
               <div style={{ borderTop: `1px solid ${p.rule}`, paddingTop: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Link href="/work" passHref>
-                  <a style={{
-                    fontFamily: '"JetBrains Mono", monospace', fontSize: 12, letterSpacing: '0.08em',
-                    color: p.fgDim, textDecoration: 'none',
-                  }}>← ALL WORK</a>
-                </Link>
-                <Link href="/work" passHref>
-                  <Button bg={p.accent} color="#FAFAF7">NEXT PROJECT →</Button>
-                </Link>
+                <Link href="/work" style={{
+                  fontFamily: '"JetBrains Mono", monospace', fontSize: 12, letterSpacing: '0.08em',
+                  color: p.fgDim, textDecoration: 'none',
+                }}>← ALL WORK</Link>
+                <Button as={Link} href="/work" bg={p.accent} color="#FAFAF7">NEXT PROJECT →</Button>
               </div>
             </div>
           </article>
@@ -345,15 +341,15 @@ export default function CaseStudy({ proj }) {
 
           <div style={{ padding: '24px 20px 64px', borderTop: `1px solid ${p.rule}` }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-              <a href="/work" style={{
+              <Link href="/work" style={{
                 fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em',
                 color: p.fgDim, textDecoration: 'none',
-              }}>← ALL WORK</a>
-              <a href="/work" style={{
+              }}>← ALL WORK</Link>
+              <Link href="/work" style={{
                 background: p.accent, color: '#FAFAF7', padding: '12px 18px',
                 borderRadius: 2, fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', textDecoration: 'none',
-              }}>NEXT PROJECT →</a>
+              }}>NEXT PROJECT →</Link>
             </div>
           </div>
       </>} />

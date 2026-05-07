@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import PageLayout from '../../components/layout/PageLayout';
 import { PALETTE, FONTS } from '../../data/tokens';
 import SectionLabel from '../../components/primitives/SectionLabel';
@@ -297,12 +298,12 @@ export default function About() {
               <em style={{ color: p.accent2, fontStyle: 'italic' }}>worth remembering?</em>
             </h2>
             <div style={{ display: 'grid', gap: 10 }}>
-              <a href="/contact" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 18px', borderRadius: 2, background: p.accent2, color: p.fg, fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none' }}>
+              <Link href="/contact" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 18px', borderRadius: 2, background: p.accent2, color: p.fg, fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none' }}>
                 <span>START A PROJECT</span><span aria-hidden>→</span>
-              </a>
-              <a href="/work" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 18px', borderRadius: 2, background: 'transparent', color: p.bg, border: `1px solid ${p.bg}44`, fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none' }}>
+              </Link>
+              <Link href="/work" style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 18px', borderRadius: 2, background: 'transparent', color: p.bg, border: `1px solid ${p.bg}44`, fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none' }}>
                 <span>SEE THE WORK</span><span aria-hidden>→</span>
-              </a>
+              </Link>
             </div>
           </section>
       </>} />
