@@ -8,15 +8,6 @@
 
 module.exports = {
   images: {
-    domains: ['res.cloudinary.com'],
   },
   transpilePackages: ['react-icons'],
 };
-
-
-// module.exports = {
-// 	images: {
-// 		domains: ['cdn.sanity.io'],
-// 		// loader: 'custom'
-// 	}
-// };

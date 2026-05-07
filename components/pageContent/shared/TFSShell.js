@@ -153,7 +153,7 @@ export default function TFSShell({ children }) {
   );
 }
 
-export function useMReveal() {
+function useMReveal() {
   useEffect(() => {
     const items = document.querySelectorAll('[data-mreveal]');
     if (!('IntersectionObserver' in window)) {
