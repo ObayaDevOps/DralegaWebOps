@@ -42,7 +42,7 @@ export default function PixelMark({ color = '#1E3A2F', sessionKey = 'tfs-bootv1'
   return (
     <span
       ref={ref}
-      aria-label="256"
+      aria-label="twofivesix"
       style={{
         fontFamily: '"Tiny5", monospace',
         fontWeight: 400,
@@ -53,9 +53,16 @@ export default function PixelMark({ color = '#1E3A2F', sessionKey = 'tfs-bootv1'
         lineHeight: 1,
       }}
     >
-      <span data-ch>2</span>
-      <span data-ch>5</span>
-      <span data-ch>6</span>
+      <span data-ch>t</span>
+      <span data-ch>w</span>
+      <span data-ch>o</span>
+      <span data-ch>f</span>
+      <span data-ch>i</span>
+      <span data-ch>v</span>
+      <span data-ch>e</span>
+      <span data-ch>s</span>
+      <span data-ch>i</span>
+      <span data-ch>x</span>
     </span>
   );
 }

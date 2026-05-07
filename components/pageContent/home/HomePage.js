@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import PixelMark from './PixelMark';
-import { PALETTE, PROJECTS, MARQUEE_ITEMS } from './data';
+import { FONTS, PALETTE, MOTION, REVEAL, PROJECTS, MARQUEE_ITEMS } from './data';
+import { TFSNav, TFSFooter } from '../shared/TFSShell';
 
 const p = PALETTE;
 
@@ -21,7 +21,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' }
+      { threshold: REVEAL.threshold.desktop, rootMargin: REVEAL.rootMargin.desktop }
     );
     items.forEach((it) => io.observe(it));
     return () => io.disconnect();
@@ -42,14 +42,14 @@ function ProjectVisual({ proj }) {
         background: `repeating-linear-gradient(135deg, ${stripe} 0 12px, ${stripe2} 12px 24px)`,
         border: `1px solid ${p.rule}`,
         overflow: 'hidden',
-        transition: 'transform 600ms cubic-bezier(0.16, 1, 0.3, 1), filter 600ms cubic-bezier(0.16, 1, 0.3, 1)',
+        transition: `transform 600ms ${MOTION.ease}, filter 600ms ${MOTION.ease}`,
       }}
     >
       <div style={{
         position: 'absolute', inset: 0,
         display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
         padding: '14px 16px',
-        fontFamily: '"JetBrains Mono", monospace',
+        fontFamily: FONTS.mono,
         fontSize: 11, color: p.fgDim, letterSpacing: '0.04em',
       }}>
         <span>/{proj.n}</span>
@@ -57,7 +57,7 @@ function ProjectVisual({ proj }) {
       </div>
       <div style={{
         position: 'absolute', top: 14, right: 16,
-        fontFamily: '"JetBrains Mono", monospace',
+        fontFamily: FONTS.mono,
         fontSize: 11, color: p.fgDim, letterSpacing: '0.04em',
       }}>
         {proj.year}
@@ -89,7 +89,7 @@ function ProjectTile({ proj, idx }) {
       }}>
         <div style={{ flex: '1 1 auto', minWidth: 0 }}>
           <div style={{
-            fontFamily: '"JetBrains Mono", monospace',
+            fontFamily: FONTS.mono,
             fontSize: 11, letterSpacing: '0.08em',
             color: p.fgDim, marginBottom: 6,
           }}>
@@ -98,7 +98,7 @@ function ProjectTile({ proj, idx }) {
           <h3
             className="tfs-tile-title"
             style={{
-              fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+              fontFamily: FONTS.serif,
               fontWeight: 400,
               fontSize: 'clamp(22px, 2.4vw, 32px)',
               lineHeight: 1.05,
@@ -109,14 +109,14 @@ function ProjectTile({ proj, idx }) {
               backgroundRepeat: 'no-repeat',
               backgroundPosition: '0 100%',
               backgroundSize: '0% 2px',
-              transition: 'background-size 600ms cubic-bezier(0.16, 1, 0.3, 1)',
+              transition: `background-size 600ms ${MOTION.ease}`,
               paddingBottom: 2,
             }}
           >
             {proj.title}
           </h3>
           <p style={{
-            fontFamily: '"Inter", system-ui, sans-serif',
+            fontFamily: FONTS.sans,
             fontSize: 14, lineHeight: 1.55,
             color: p.fgDim, margin: '8px 0 0',
             maxWidth: '52ch',
@@ -126,7 +126,7 @@ function ProjectTile({ proj, idx }) {
         </div>
         <div style={{
           display: 'flex', flexDirection: 'column', alignItems: 'flex-end', gap: 4,
-          fontFamily: '"JetBrains Mono", monospace',
+          fontFamily: FONTS.mono,
           fontSize: 10, letterSpacing: '0.08em',
           color: p.fgDim, textAlign: 'right',
           flex: '0 0 auto',
@@ -150,8 +150,8 @@ function Marquee() {
       <div style={{
         display: 'flex', gap: 36, whiteSpace: 'nowrap',
         width: 'max-content',
-        animation: 'tfs-marquee 38s linear infinite',
-        fontFamily: '"JetBrains Mono", monospace',
+        animation: `tfs-marquee ${MOTION.marquee.desktop} linear infinite`,
+        fontFamily: FONTS.mono,
         fontSize: 12, letterSpacing: '0.12em',
         color: p.fgDim,
       }}>
@@ -171,49 +171,7 @@ function Marquee() {
 
 function Hero() {
   return (
-    <section style={{ padding: '0 32px', position: 'relative' }}>
-      <header style={{
-        display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-        padding: '24px 0',
-        borderBottom: `1px solid ${p.rule}`,
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
-          <PixelMark color={p.markColor} sessionKey="tfs-boot-warm" />
-          <span style={{
-            fontFamily: '"Inter", system-ui, sans-serif',
-            fontSize: 13, color: p.fgDim, letterSpacing: '-0.005em',
-          }}>
-            twofivesix
-          </span>
-          <span style={{
-            fontFamily: '"JetBrains Mono", monospace',
-            fontSize: 11, color: p.fgDim, letterSpacing: '0.08em',
-            paddingLeft: 14, marginLeft: 6,
-            borderLeft: `1px solid ${p.rule}`,
-          }}>
-            STUDIO · KAMPALA, UG
-          </span>
-        </div>
-        <nav style={{
-          display: 'flex', gap: 28,
-          fontFamily: '"JetBrains Mono", monospace',
-          fontSize: 12, letterSpacing: '0.08em',
-        }}>
-          {[
-            { label: '/WORK', href: '/work' },
-            { label: '/ABOUT', href: '/about' },
-            { label: '/PRICING', href: '/pricing' },
-            { label: '/JOURNAL', href: '/journal' },
-            { label: '/CONTACT', href: '/contact' },
-          ].map((l) => (
-            <a key={l.href} href={l.href} style={{
-              color: p.fg, textDecoration: 'none',
-              transition: 'color 200ms',
-            }}>{l.label}</a>
-          ))}
-        </nav>
-      </header>
-
+    <section style={{ padding: '0 32px', position: 'relative', minHeight: '95vh' }}>
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(12, 1fr)',
@@ -223,7 +181,7 @@ function Hero() {
       }}>
         <div style={{
           gridColumn: 'span 2',
-          fontFamily: '"JetBrains Mono", monospace',
+          fontFamily: FONTS.mono,
           fontSize: 11, letterSpacing: '0.08em',
           color: p.fgDim, paddingTop: 8,
         }} data-reveal>
@@ -236,9 +194,9 @@ function Hero() {
 
         <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
           <h1 style={{
-            fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
-            fontWeight: 300,
-            fontSize: 'clamp(48px, 8vw, 132px)',
+            fontFamily: FONTS.serif,
+            fontWeight: 400,
+            fontSize: 'clamp(24px, 4vw, 66px)',
             lineHeight: 0.94,
             letterSpacing: '-0.025em',
             margin: 0,
@@ -249,7 +207,7 @@ function Hero() {
             <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent }}>ambitious</em> businesses.
           </h1>
           <p style={{
-            fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+            fontFamily: FONTS.serif,
             fontWeight: 300,
             fontStyle: 'italic',
             fontSize: 'clamp(18px, 1.6vw, 22px)',
@@ -266,7 +224,7 @@ function Hero() {
             <a href="#work" className="tfs-btn" style={{
               background: p.accent, color: '#FAFAF7',
               padding: '14px 22px', borderRadius: 2,
-              fontFamily: '"JetBrains Mono", monospace',
+              fontFamily: FONTS.mono,
               fontSize: 12, letterSpacing: '0.08em',
               textDecoration: 'none',
               display: 'inline-flex', alignItems: 'center', gap: 10,
@@ -277,7 +235,7 @@ function Hero() {
             <a href="#start" className="tfs-btn" style={{
               background: 'transparent', color: p.fg,
               padding: '14px 22px', borderRadius: 2,
-              fontFamily: '"JetBrains Mono", monospace',
+              fontFamily: FONTS.mono,
               fontSize: 12, letterSpacing: '0.08em',
               textDecoration: 'none',
               display: 'inline-flex', alignItems: 'center', gap: 10,
@@ -294,7 +252,7 @@ function Hero() {
             gridTemplateColumns: '12px 1fr',
             columnGap: 16, rowGap: 6,
             maxWidth: 720,
-            fontFamily: '"JetBrains Mono", monospace',
+            fontFamily: FONTS.mono,
             fontSize: 12, letterSpacing: '0.02em',
             color: p.fgDim, lineHeight: 1.55,
           }}>
@@ -307,7 +265,7 @@ function Hero() {
 
         <div style={{
           gridColumn: 'span 2',
-          fontFamily: '"JetBrains Mono", monospace',
+          fontFamily: FONTS.mono,
           fontSize: 11, letterSpacing: '0.06em',
           color: p.fgDim, paddingTop: 8, textAlign: 'right',
         }} data-reveal data-reveal-delay="160">
@@ -327,7 +285,9 @@ function Hero() {
         </div>
       </div>
 
-      <Marquee />
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+        <Marquee />
+      </div>
     </section>
   );
 }
@@ -341,13 +301,13 @@ function Work() {
       }}>
         <div style={{
           gridColumn: 'span 2',
-          fontFamily: '"JetBrains Mono", monospace',
+          fontFamily: FONTS.mono,
           fontSize: 11, letterSpacing: '0.08em',
           color: p.fgDim, paddingTop: 14,
         }} data-reveal>/SECTION 01 — WORK</div>
         <h2 style={{
           gridColumn: '4 / span 8',
-          fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+          fontFamily: FONTS.serif,
           fontWeight: 300,
           fontSize: 'clamp(36px, 5vw, 72px)',
           lineHeight: 1,
@@ -385,12 +345,12 @@ function Studio() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
         <div style={{ gridColumn: 'span 5' }} data-reveal>
           <div style={{
-            fontFamily: '"JetBrains Mono", monospace',
+            fontFamily: FONTS.mono,
             fontSize: 11, letterSpacing: '0.08em',
             color: p.fgDim, marginBottom: 24,
           }}>/SECTION 02 — STUDIO</div>
           <p style={{
-            fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+            fontFamily: FONTS.serif,
             fontWeight: 300,
             fontSize: 'clamp(24px, 2.6vw, 36px)',
             lineHeight: 1.2,
@@ -403,7 +363,7 @@ function Studio() {
           </p>
           <div style={{
             marginTop: 40, display: 'flex', gap: 24,
-            fontFamily: '"JetBrains Mono", monospace',
+            fontFamily: FONTS.mono,
             fontSize: 11, letterSpacing: '0.06em', color: p.fgDim,
           }}>
             <div>
@@ -437,12 +397,12 @@ function Studio() {
               }}
             >
               <div style={{
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: FONTS.mono,
                 fontSize: 12, letterSpacing: '0.1em',
                 color: p.accent,
               }}>/{c.l}</div>
               <div style={{
-                fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+                fontFamily: FONTS.serif,
                 fontWeight: 300,
                 fontSize: 'clamp(18px, 1.5vw, 22px)',
                 color: p.fg, lineHeight: 1.4,
@@ -470,7 +430,7 @@ function Start() {
     borderBottom: `1px solid #F4F1EC55`,
     color: '#F4F1EC',
     padding: '14px 0',
-    fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+    fontFamily: FONTS.serif,
     fontSize: 'clamp(20px, 2.2vw, 28px)',
     fontWeight: 300,
     outline: 'none',
@@ -487,13 +447,13 @@ function Start() {
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
         <div style={{
           gridColumn: 'span 2',
-          fontFamily: '"JetBrains Mono", monospace',
+          fontFamily: FONTS.mono,
           fontSize: 11, letterSpacing: '0.08em',
           color: `${p.bg}aa`,
         }} data-reveal>/SECTION 03 — START</div>
         <div style={{ gridColumn: 'span 10' }} data-reveal data-reveal-delay="80">
           <h2 style={{
-            fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+            fontFamily: FONTS.serif,
             fontWeight: 300,
             fontSize: 'clamp(48px, 7vw, 104px)',
             lineHeight: 0.96,
@@ -510,7 +470,7 @@ function Start() {
         <div style={{ gridColumn: '3 / span 8' }}>
           <div style={{
             display: 'flex', gap: 24, marginBottom: 32,
-            fontFamily: '"JetBrains Mono", monospace',
+            fontFamily: FONTS.mono,
             fontSize: 11, letterSpacing: '0.08em',
             color: `${p.bg}88`,
           }}>
@@ -528,7 +488,7 @@ function Start() {
           {stage === 0 && (
             <div>
               <label style={{
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', color: `${p.bg}aa`,
               }}>WHAT KIND OF PROJECT</label>
               <div style={{ marginTop: 20, display: 'flex', flexWrap: 'wrap', gap: 8 }}>
@@ -545,10 +505,10 @@ function Start() {
                         border: `1px solid ${on ? p.accent2 : p.bg + '44'}`,
                         background: on ? p.accent2 : 'transparent',
                         color: on ? p.fg : p.bg,
-                        fontFamily: '"JetBrains Mono", monospace',
+                        fontFamily: FONTS.mono,
                         fontSize: 12, letterSpacing: '0.06em',
                         cursor: 'pointer',
-                        transition: 'all 200ms cubic-bezier(0.16, 1, 0.3, 1)',
+                        transition: `all 200ms ${MOTION.ease}`,
                       }}>
                       {s}
                     </button>
@@ -561,7 +521,7 @@ function Start() {
           {stage === 1 && (
             <div>
               <label style={{
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', color: `${p.bg}aa`,
               }}>RANGE (USD)</label>
               <div style={{ marginTop: 20, display: 'flex', flexDirection: 'column', gap: 0 }}>
@@ -575,7 +535,7 @@ function Start() {
                         background: 'none', border: 'none',
                         borderBottom: `1px solid ${p.bg}22`,
                         color: on ? p.accent2 : p.bg,
-                        fontFamily: '"Fraunces", "Tiempos", Georgia, serif',
+                        fontFamily: FONTS.serif,
                         fontWeight: 300,
                         fontSize: 'clamp(20px, 2.2vw, 28px)',
                         cursor: 'pointer', letterSpacing: '-0.01em',
@@ -583,7 +543,7 @@ function Start() {
                       }}>
                       <span>{b}</span>
                       <span style={{
-                        fontFamily: '"JetBrains Mono", monospace',
+                        fontFamily: FONTS.mono,
                         fontSize: 11, letterSpacing: '0.08em',
                         color: on ? p.accent2 : `${p.bg}66`,
                       }}>{on ? '◉' : '○'}</span>
@@ -597,12 +557,12 @@ function Start() {
           {stage === 2 && (
             <div>
               <label style={{
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', color: `${p.bg}aa`,
               }}>EMAIL</label>
               <input style={inputStyle} placeholder="hello@studio.com" />
               <label style={{
-                fontFamily: '"JetBrains Mono", monospace',
+                fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', color: `${p.bg}aa`,
                 display: 'block', marginTop: 40,
               }}>A LINK OR ROUGH BRIEF</label>
@@ -620,13 +580,13 @@ function Start() {
               background: 'none', border: 'none', padding: 0,
               cursor: stage === 0 ? 'default' : 'pointer',
               color: stage === 0 ? `${p.bg}33` : p.bg,
-              fontFamily: '"JetBrains Mono", monospace',
+              fontFamily: FONTS.mono,
               fontSize: 12, letterSpacing: '0.08em',
             }}>← BACK</button>
             <button onClick={() => stage < 2 ? setStage(stage + 1) : null} style={{
               background: p.accent2, color: p.fg,
               padding: '16px 28px', borderRadius: 2,
-              fontFamily: '"JetBrains Mono", monospace',
+              fontFamily: FONTS.mono,
               fontSize: 12, letterSpacing: '0.08em',
               border: 'none', cursor: 'pointer',
             }}>
@@ -639,68 +599,6 @@ function Start() {
   );
 }
 
-function Footer() {
-  return (
-    <footer style={{ padding: '80px 32px 40px', borderTop: `1px solid ${p.rule}` }}>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-        <div style={{ gridColumn: 'span 6' }}>
-          <div style={{ fontSize: 'clamp(64px, 12vw, 180px)', lineHeight: 1 }}>
-            <PixelMark color={p.markColor} sessionKey="tfs-boot-foot" />
-          </div>
-          <div style={{
-            marginTop: 14,
-            fontFamily: '"Inter", system-ui, sans-serif',
-            fontSize: 14, color: p.fgDim,
-          }}>
-            twofivesix studio · Kampala, Uganda
-          </div>
-        </div>
-        <div style={{
-          gridColumn: 'span 6',
-          display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16,
-          fontFamily: '"JetBrains Mono", monospace',
-          fontSize: 12, letterSpacing: '0.06em', color: p.fgDim,
-        }}>
-          <div>
-            <div style={{ color: p.fg, marginBottom: 14 }}>/SITEMAP</div>
-            <div style={{ display: 'grid', gap: 6 }}>
-              {[['Work', '/work'], ['About', '/about'], ['Pricing', '/pricing'], ['Journal', '/journal'], ['Contact', '/contact']].map(([label, href]) => (
-                <a key={href} href={href} style={{ color: 'inherit', textDecoration: 'none' }}>{label}</a>
-              ))}
-            </div>
-          </div>
-          <div>
-            <div style={{ color: p.fg, marginBottom: 14 }}>/CONNECT</div>
-            <div style={{ display: 'grid', gap: 6 }}>
-              <a href="mailto:hello@twofivesix.online" style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
-              <a href="https://wa.me/256789062116" style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
-              <a href="https://instagram.com/twofivesix" style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a>
-              <a href="https://linkedin.com/in/obaya-dralega" style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
-            </div>
-          </div>
-          <div>
-            <div style={{ color: p.fg, marginBottom: 14 }}>/CONTACT</div>
-            <div style={{ display: 'grid', gap: 6 }}>
-              <span>hello@twofivesix.ug</span>
-              <span>+256 ··· ····</span>
-              <span>Plot 7, Kampala</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div style={{
-        marginTop: 56, paddingTop: 20, borderTop: `1px solid ${p.rule}`,
-        display: 'flex', justifyContent: 'space-between',
-        fontFamily: '"JetBrains Mono", monospace',
-        fontSize: 11, letterSpacing: '0.06em', color: p.fgDim,
-      }}>
-        <span>© 2026 twofivesix studio</span>
-        <span>Built in Kampala · Indexed for Earth</span>
-      </div>
-    </footer>
-  );
-}
-
 export default function HomePage() {
   useReveal();
   return (
@@ -709,17 +607,18 @@ export default function HomePage() {
       background: p.bg,
       color: p.fg,
       minHeight: '100vh',
-      fontFamily: '"Inter", system-ui, sans-serif',
+      fontFamily: FONTS.sans,
       backgroundImage: `radial-gradient(${p.grid} 1px, transparent 1px)`,
       backgroundSize: '8px 8px',
       backgroundPosition: '0 0',
       WebkitFontSmoothing: 'antialiased',
     }}>
+      <TFSNav />
       <Hero />
       <Work />
       <Studio />
       <Start />
-      <Footer />
+      <TFSFooter />
     </div>
   );
 }

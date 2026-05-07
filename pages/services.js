@@ -79,7 +79,7 @@ export default function Services() {
             <div style={{ gridColumn: 'span 2', fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, paddingTop: 12 }} data-reveal>/SERVICES</div>
             <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
               <h1 style={{
-                fontFamily: '"Fraunces", Georgia, serif', fontWeight: 300,
+                fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
                 fontSize: 'clamp(48px, 7vw, 104px)', lineHeight: 0.94,
                 letterSpacing: '-0.025em', margin: 0, color: p.fg,
               }}>
@@ -112,12 +112,12 @@ export default function Services() {
               <div style={{ gridColumn: 'span 1', fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, paddingTop: 6 }}>/{svc.n}</div>
               <div style={{ gridColumn: 'span 4' }}>
                 <h2 style={{
-                  fontFamily: '"Fraunces", Georgia, serif', fontWeight: 300,
+                  fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
                   fontSize: 'clamp(28px, 3vw, 42px)', lineHeight: 1.0,
                   letterSpacing: '-0.02em', margin: 0, color: p.fg,
                 }}>{svc.title}</h2>
                 <p style={{
-                  fontFamily: '"Fraunces", Georgia, serif', fontStyle: 'italic',
+                  fontFamily: '"Red Hat Display", sans-serif', fontStyle: 'italic',
                   fontWeight: 300, fontSize: 'clamp(15px, 1.3vw, 18px)',
                   lineHeight: 1.4, color: p.fgDim, margin: '8px 0 0',
                 }}>{svc.sub}</p>
@@ -150,7 +150,7 @@ export default function Services() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
             <div style={{ gridColumn: '3 / span 8', textAlign: 'center' }} data-reveal>
               <h2 style={{
-                fontFamily: '"Fraunces", Georgia, serif', fontWeight: 300,
+                fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
                 fontSize: 'clamp(36px, 5vw, 72px)', lineHeight: 1.0,
                 letterSpacing: '-0.025em', margin: '0 0 40px', color: p.bg,
               }}>

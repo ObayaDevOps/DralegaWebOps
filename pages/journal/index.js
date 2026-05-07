@@ -1,6 +1,6 @@
 import Head from 'next/head';
-import TFSShell, { useReveal } from '../../components/pageContent/shared/TFSShell';
-import { PALETTE } from '../../components/pageContent/home/data';
+import TFSShell, { useReveal, TFSMobileShell } from '../../components/pageContent/shared/TFSShell';
+import { PALETTE, FONTS } from '../../components/pageContent/home/data';
 
 const p = PALETTE;
 
@@ -88,14 +88,14 @@ export default function Journal() {
         <title>Journal — twofivesix studio</title>
         <meta name="description" content="Notes from twofivesix — on payments, engineering, design, and building for Uganda's internet." />
       </Head>
-      <TFSShell>
+      <div className="tfs-desktop-only"><TFSShell>
         {/* Header */}
         <section style={{ padding: '80px 32px 64px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
             <div style={{ gridColumn: 'span 2', fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, paddingTop: 12 }} data-reveal>/JOURNAL</div>
             <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
               <h1 style={{
-                fontFamily: '"Fraunces", Georgia, serif', fontWeight: 300,
+                fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
                 fontSize: 'clamp(48px, 7vw, 104px)', lineHeight: 0.94,
                 letterSpacing: '-0.025em', margin: 0, color: p.fg,
               }}>
@@ -138,7 +138,7 @@ export default function Journal() {
               <h2
                 className="tfs-tile-title"
                 style={{
-                  fontFamily: '"Fraunces", Georgia, serif', fontWeight: 300,
+                  fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
                   fontSize: 'clamp(28px, 3.2vw, 48px)', lineHeight: 1.05,
                   letterSpacing: '-0.02em', margin: 0,
                   display: 'inline-block',
@@ -190,7 +190,7 @@ export default function Journal() {
                 <h2
                   className="tfs-tile-title"
                   style={{
-                    fontFamily: '"Fraunces", Georgia, serif', fontWeight: 300,
+                    fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
                     fontSize: 'clamp(20px, 2.2vw, 30px)', lineHeight: 1.1,
                     letterSpacing: '-0.015em', margin: 0,
                     display: 'inline-block',
@@ -207,7 +207,65 @@ export default function Journal() {
             </a>
           ))}
         </section>
-      </TFSShell>
+      </TFSShell></div>
+
+      <div className="tfs-mobile-only">
+        <TFSMobileShell>
+          <section style={{ padding: '48px 20px 36px' }}>
+            <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/JOURNAL</div>
+            <h1 data-mreveal data-mreveal-delay="60" style={{
+              fontFamily: FONTS.serif, fontWeight: 400,
+              fontSize: 'clamp(36px, 11vw, 52px)', lineHeight: 0.96,
+              letterSpacing: '-0.025em', margin: 0, color: p.fg,
+            }}>
+              Notes from<br />
+              <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>the studio.</em>
+            </h1>
+            <p data-mreveal data-mreveal-delay="120" style={{ fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.6, color: p.fgDim, margin: '20px 0 0' }}>
+              On payments, engineering, design, and building for Uganda&rsquo;s internet.
+            </p>
+          </section>
+
+          <section style={{ padding: '0 20px 8px' }}>
+            <a href={`/journal/${POSTS[0].slug}`} data-mreveal style={{
+              display: 'block', textDecoration: 'none', color: 'inherit',
+              borderTop: `1px solid ${p.rule}`, paddingTop: 28,
+            }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 14 }}>
+                <span>/{POSTS[0].n} · {POSTS[0].date}</span>
+                <span>{POSTS[0].tags.map((t) => `/${t}`).join(' ')}</span>
+              </div>
+              <div style={{
+                width: '100%', aspectRatio: '16 / 9',
+                background: 'repeating-linear-gradient(135deg, rgba(26,26,26,0.045) 0 12px, rgba(26,26,26,0.015) 12px 24px)',
+                border: `1px solid ${p.rule}`, marginBottom: 16,
+              }} />
+              <h2 style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 28, lineHeight: 1.1, letterSpacing: '-0.015em', margin: '0 0 10px', color: p.fg }}>{POSTS[0].title}</h2>
+              <p style={{ fontFamily: FONTS.sans, fontSize: 14, lineHeight: 1.65, color: p.fgDim, margin: '0 0 20px' }}>{POSTS[0].blurb}</p>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', borderTop: `1px solid ${p.rule}`, borderBottom: `1px solid ${p.rule}`, fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em' }}>
+                <span style={{ color: p.fgDim }}>{POSTS[0].readTime} read</span>
+                <span style={{ color: p.accent }}>READ →</span>
+              </div>
+            </a>
+          </section>
+
+          <section style={{ padding: '8px 20px 64px' }}>
+            {POSTS.slice(1).map((post, i) => (
+              <a key={post.n} href={`/journal/${post.slug}`} data-mreveal data-mreveal-delay={i * 50} style={{
+                display: 'block', padding: '24px 0', borderBottom: `1px solid ${p.rule}`,
+                textDecoration: 'none', color: 'inherit',
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 10 }}>
+                  <span>{post.date}</span>
+                  <span>{post.tags.map((t) => `/${t}`).join(' ')}</span>
+                </div>
+                <h2 style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 22, lineHeight: 1.1, letterSpacing: '-0.012em', margin: '0 0 8px', color: p.fg }}>{post.title}</h2>
+                <p style={{ fontFamily: FONTS.sans, fontSize: 13, lineHeight: 1.55, color: p.fgDim, margin: 0 }}>{post.blurb}</p>
+              </a>
+            ))}
+          </section>
+        </TFSMobileShell>
+      </div>
     </>
   );
 }
