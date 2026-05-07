@@ -2,13 +2,9 @@ import Head from "next/head";
 import { NextStudio } from 'next-sanity/studio'
 import { NextStudioHead } from 'next-sanity/studio/head'
 import config from '../../sanity.config';
-import {
-    Box
-  } from '@chakra-ui/react';
-
 export default function Index() {
     return (
-        <Box minHeight={'100vh'}>
+        <div style={{ minHeight: '100vh' }}>
             <Head>
                 <title>Sanity Studio| MedOptics Ltd</title>
                   <meta name="description" content="MedOptics Ltd Webpage" />
@@ -18,6 +14,6 @@ export default function Index() {
 
             </Head>
             <NextStudio config={config} />
-        </Box>
+        </div>
     )
 }

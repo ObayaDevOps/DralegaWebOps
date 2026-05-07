@@ -1,25 +1,23 @@
-import Head from 'next/head'
-import {  Box, Icon } from '@chakra-ui/react'
-import LandingPage from '../components/pageContent/landingPage'
-import Image from 'next/image'
-import HeadImage from '../public/images/icon/africa.png'
-import { buildUrl } from 'cloudinary-build-url';
-
+import Head from 'next/head';
+import HomePage from '../components/pageContent/home/HomePage';
+import MobileHome from '../components/pageContent/home/MobileHome';
 
 export default function Home() {
   return (
-    <div >
+    <>
       <Head>
-        <title>Home | Dralega Web Ops SMC Ltd</title>
-        <meta name="description" content="Dralega Web Ops Webpage" />
-        {/* <link rel="shortcut icon" href="../public/favicon.ico"></link> */}
-        <link rel="shortcut icon" href="../../../images/icon/DWOLogo.png"></link>
+        <title>twofivesix — Websites for Uganda&rsquo;s most ambitious businesses</title>
+        <meta name="description" content="twofivesix is a studio building world-class websites for Uganda's most ambitious businesses. Bank-grade engineering meets working-artist sensibility." />
       </Head>
 
-      <Box>
-        <LandingPage />
-      </Box>
-
-    </div>
-  )
+      <div className="tfs-desktop-only">
+        <HomePage />
+      </div>
+      <div className="tfs-mobile-only">
+        <MobileHome />
+      </div>
+    </>
+  );
 }
+
+Home.noLayout = true;
