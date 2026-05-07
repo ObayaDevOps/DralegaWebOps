@@ -9,28 +9,20 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@fontsource/open-sans": "^4.5.8",
-    "@fontsource/raleway": "^4.5.5",
-    "@portabletext/react": "^2.0.1",
     "@sanity/client": "^4.0.1",
     "@sanity/icons": "^2.2.2",
     "@sanity/image-url": "^1.0.2",
     "@sanity/ui": "^1.2.0",
     "@vercel/analytics": "^0.1.11",
     "cloudinary-build-url": "^0.2.4",
-    "dotenv": "^16.0.3",
-    "formidable": "^2.0.1",
     "next": "12.1.4",
     "next-sanity": "^4.1.2",
     "nodemailer": "^6.9.4",
     "react": "18.0.0",
-    "react-calendly": "^4.1.0",
     "react-dom": "18.0.0",
     "react-icons": "^4.6.0",
     "react-is": "^18.2.0",
-    "react-responsive-carousel": "^3.2.23",
     "sanity": "^3.2.6",
-    "sanity-plugin-cloudinary": "^1.0.1",
     "styled-components": "^5.3.6"
   },
   "devDependencies": {

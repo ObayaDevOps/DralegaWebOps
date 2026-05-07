@@ -72,6 +72,7 @@ function MTopbar({ onMenu }) {
         <span style={{ fontSize: 22 }}>
           <PixelMark color={p.accent} sessionKey="tfs-mboot-top" />
         </span>
+        
       </div>
       <button onClick={onMenu} aria-label="Menu" style={{
         background: 'none', border: `1px solid ${p.rule}`,
