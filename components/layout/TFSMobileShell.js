@@ -69,10 +69,8 @@ export default function TFSMobileShell({ children }) {
         WebkitBackdropFilter: GLASS.blur.mobile,
         borderBottom: `1px solid ${p.rule}`,
       }}>
-        <Link href="/" passHref>
-          <a style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-            <PixelMark color={p.accent} sessionKey="tfs-mnav" />
-          </a>
+        <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
+          <PixelMark color={p.accent} sessionKey="tfs-mnav" />
         </Link>
         <button onClick={() => setOpen(true)} aria-label="Menu" style={{
           background: 'none', border: `1px solid ${p.rule}`,
@@ -98,7 +96,7 @@ export default function TFSMobileShell({ children }) {
             <div style={{ color: p.fg, marginBottom: 10 }}>/SITE</div>
             <div style={{ display: 'grid', gap: 8 }}>
               {NAV_LINKS.map((l) => (
-                <Link key={l.href} href={l.href} passHref><a style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</a></Link>
+                <Link key={l.href} href={l.href} style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</Link>
               ))}
             </div>
           </div>

@@ -29,9 +29,7 @@ export default function TFSFooter() {
             <div style={{ color: p.fg, marginBottom: 14 }}>/SITEMAP</div>
             <div style={{ display: 'grid', gap: 8 }}>
               {NAV_LINKS.map((l) => (
-                <Link key={l.href} href={l.href} passHref>
-                  <a style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</a>
-                </Link>
+                <Link key={l.href} href={l.href} style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</Link>
               ))}
             </div>
           </div>

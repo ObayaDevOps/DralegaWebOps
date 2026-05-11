@@ -1,4 +1,5 @@
 import Head from 'next/head';
+import Link from 'next/link';
 import PageLayout from '../../components/layout/PageLayout';
 import { PALETTE, FONTS } from '../../data/tokens';
 import SectionLabel from '../../components/primitives/SectionLabel';
@@ -288,7 +289,7 @@ export default function Pricing() {
                     ))}
                   </div>
                 )}
-                <a href="/contact" style={{
+                <Link href="/contact" style={{
                   display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   padding: '14px 18px', borderRadius: 2, marginTop: 8,
                   background: tier.featured ? p.accent2 : 'transparent',
@@ -297,7 +298,7 @@ export default function Pricing() {
                   fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none',
                 }}>
                   <span>START HERE</span><span aria-hidden>→</span>
-                </a>
+                </Link>
               </div>
             ))}
           </section>
@@ -328,14 +329,14 @@ export default function Pricing() {
             <p data-mreveal data-mreveal-delay="60" style={{ fontFamily: FONTS.sans, fontSize: 16, lineHeight: 1.6, color: `${p.bg}99`, margin: '0 0 32px' }}>
               Book a 20-minute call. We&rsquo;ll figure it out together.
             </p>
-            <a href="/contact" style={{
+            <Link href="/contact" style={{
               display: 'flex', justifyContent: 'space-between', alignItems: 'center',
               padding: '16px 18px', borderRadius: 2,
               background: p.accent2, color: p.fg,
               fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none',
             }}>
               <span>BOOK A FREE CALL</span><span aria-hidden>→</span>
-            </a>
+            </Link>
           </section>
       </>} />
     </>
