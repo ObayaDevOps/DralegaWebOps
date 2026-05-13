@@ -59,7 +59,7 @@ function DesktopStudio({ data }) {
               <div style={{
                 fontFamily: FONTS.mono,
                 fontSize: 12, letterSpacing: '0.1em',
-                color: p.accent,
+                color: p.accent3,
               }}>/{c.label}</div>
               <div style={{
                 fontFamily: FONTS.serif, fontWeight: 300,
@@ -119,7 +119,7 @@ function MobileStudio({ data }) {
           <div style={{
             fontFamily: FONTS.mono,
             fontSize: 11, letterSpacing: '0.1em',
-            color: p.accent, marginBottom: 6,
+            color: p.accent3, marginBottom: 6,
           }}>/{c.label}</div>
           <div style={{
             fontFamily: FONTS.serif, fontWeight: 300,

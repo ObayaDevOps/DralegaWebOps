@@ -24,7 +24,7 @@ function DesktopHero({ hero }) {
         display: 'grid',
         gridTemplateColumns: 'repeat(12, 1fr)',
         gap: 24,
-        padding: '64px 0 88px',
+        padding: '120px 0 88px',
         alignItems: 'start',
       }}>
         <div style={{
@@ -43,13 +43,13 @@ function DesktopHero({ hero }) {
         <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
           <h1 style={{
             fontFamily: FONTS.serif, fontWeight: 400,
-            fontSize: 'clamp(24px, 4vw, 66px)',
+            fontSize: 'clamp(17px, 2.8vw, 66px)',
             lineHeight: 0.94, letterSpacing: '-0.025em',
             margin: 0, color: p.fg,
           }}>
             {hero.heading}<br />
             {hero.headingLine2}<br />
-            <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent }}>{hero.headingEmphasis}</em>{' '}{hero.headingTail}
+            <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent3 }}>{hero.headingEmphasis}</em>{' '}{hero.headingTail}
           </h1>
           <p style={{
             fontFamily: FONTS.serif, fontWeight: 300, fontStyle: 'italic',
@@ -58,12 +58,12 @@ function DesktopHero({ hero }) {
             margin: '32px 0 0', maxWidth: '46ch',
           }}>
             {taglineLines.map((line, i) => (
-              <span key={i}>{line}{i < taglineLines.length - 1 && <br />}</span>
+              <span key={i} style={{ display: 'block' }}>{line}</span>
             ))}
           </p>
 
           <div style={{ display: 'flex', gap: 12, marginTop: 40 }}>
-            <Button href={hero.ctaPrimary?.href || '#work'} bg={p.accent} color="#FAFAF7" border={p.accent}>
+            <Button href={hero.ctaPrimary?.href || '#work'} bg={p.accent} color={p.fg} border={p.accent}>
               {hero.ctaPrimary?.label || 'SEE THE WORK'} <span aria-hidden>→</span>
             </Button>
             <Button href={hero.ctaSecondary?.href || '#start'} color={p.fg} border={`${p.fg}55`}>
@@ -125,7 +125,7 @@ function DesktopHero({ hero }) {
 function MobileHero({ hero }) {
   const taglineLines = splitLines(hero.tagline);
   return (
-    <section style={{ padding: '40px 20px 28px', position: 'relative', overflow: 'hidden' }}>
+    <section style={{ padding: '80px 20px 28px', position: 'relative', overflow: 'hidden' }}>
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.18 }}>
         <Iridescence color={[1, 1, 1]} mouseReact={false} amplitude={0.1} speed={0.3} />
       </div>
@@ -149,13 +149,13 @@ function MobileHero({ hero }) {
 
       <h1 data-mreveal data-mreveal-delay="80" style={{
         fontFamily: FONTS.serif, fontWeight: 400,
-        fontSize: 'clamp(44px, 13vw, 64px)',
+        fontSize: 'clamp(31px, 9.1vw, 45px)',
         lineHeight: 0.94, letterSpacing: '-0.025em',
         margin: 0, color: p.fg,
       }}>
         {hero.heading}<br />
         {hero.headingLine2}<br />
-        <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent }}>{hero.headingEmphasis}</em><br />
+        <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent3 }}>{hero.headingEmphasis}</em><br />
         {hero.headingTail}
       </h1>
 
@@ -171,7 +171,7 @@ function MobileHero({ hero }) {
 
       <div data-mreveal data-mreveal-delay="220" style={{ display: 'grid', gap: 8, marginTop: 28 }}>
         <a href={hero.ctaPrimary?.href || '#work'} style={{
-          background: p.accent, color: '#FAFAF7',
+          background: p.accent, color: p.accent3,
           padding: '16px 18px', borderRadius: 2,
           fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
           textDecoration: 'none',

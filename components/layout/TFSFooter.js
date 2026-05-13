@@ -21,16 +21,23 @@ export default function TFSFooter({ siteSettings, navLinks }) {
 
   return (
     <footer style={{ padding: '80px 32px 40px', borderTop: `1px solid ${p.rule}` }}>
-      <div style={grid12()}>
-        <div style={{ gridColumn: 'span 6' }}>
-          <PixelMark color={p.markColor} sessionKey="tfs-foot" size={3} />
+      <style>{`
+        @media (max-width: 960px) {
+          .tfs-footer-grid { grid-template-columns: 1fr !important; }
+          .tfs-footer-mark { grid-column: span 1 !important; order: 2; }
+          .tfs-footer-links { grid-column: span 1 !important; order: 1; }
+        }
+      `}</style>
+      <div style={grid12()} className="tfs-footer-grid">
+        <div style={{ gridColumn: 'span 6' }} className="tfs-footer-mark">
+          <PixelMark color={p.accent2} sessionKey="tfs-foot" size={10} />
           <div style={{
             marginTop: 14,
             fontFamily: FONTS.sans,
             fontSize: 14, color: p.fgDim,
           }}>{studioLabel}</div>
         </div>
-        <div style={{
+        <div className="tfs-footer-links" style={{
           gridColumn: 'span 6',
           display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16,
           fontFamily: FONTS.mono,

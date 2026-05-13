@@ -82,7 +82,7 @@ export default function TFSMobileShell({ children, siteSettings, navLinks }) {
         borderBottom: `1px solid ${p.rule}`,
       }}>
         <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-          <PixelMark color={p.accent} sessionKey="tfs-mnav" />
+          <PixelMark color={p.accent3} sessionKey="tfs-mnav" />
         </Link>
         <button onClick={() => setOpen(true)} aria-label="Menu" style={{
           background: 'none', border: `1px solid ${p.rule}`,

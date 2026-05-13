@@ -27,9 +27,18 @@ export const PALETTE = {
   fgDim: '#1A1A1A99',
   fgFaint: '#1A1A1A66',
   rule: '#000000',
-  accent: '#1E3A2F',
-  accent2: '#D9572B',
-  grid: 'rgba(26,26,26,0.035)',
+  // accent: '#1E3A2F',
+  accent: '#11ff1c',
+
+  // accent2: '#D9572B',
+  accent2: '#11ff1c',
+
+  // accent3: '#7C3AED',
+  accent3: '#1E3A2F',
+
+  
+
+  grid: 'rgba(26,26,26,0.045)',
   markColor: '#1E3A2F',
   invertHero: false,
 };

@@ -32,7 +32,7 @@ export default function Marquee({ variant = 'desktop', items }) {
             {w}
             <span style={{
               display: 'inline-block', width: 4, height: 4,
-              background: p.accent,
+              background: p.accent3,
               ...(variant === 'desktop' ? { borderRadius: 0 } : null),
             }} />
           </span>

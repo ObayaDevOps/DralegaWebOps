@@ -148,7 +148,7 @@ export default function WorkIndex({ workPage, projects, siteSettings, navLinks }
                   letterSpacing: '-0.025em', margin: 0, color: p.fg,
                 }}>
                   {workPage.heading}<br />
-                  <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{workPage.headingEmphasis}</em>
+                  <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>{workPage.headingEmphasis}</em>
                 </h1>
                 <p style={{
                   fontFamily: FONTS.sans,
