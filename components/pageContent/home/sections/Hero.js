@@ -2,6 +2,7 @@ import { FONTS, PALETTE } from '../../../../data/tokens';
 import { HOME } from '../../../../data/home';
 import Button from '../../../primitives/Button';
 import Marquee from './Marquee';
+import Iridescence from './Iridescence';
 
 const p = PALETTE;
 
@@ -14,8 +15,12 @@ function DesktopHero({ hero }) {
   const taglineLines = splitLines(hero.tagline);
   const nextLines = splitLines(hero.nextValue);
   return (
-    <section style={{ padding: '0 32px', position: 'relative', minHeight: '85vh' }}>
+    <section style={{ padding: '0 32px', position: 'relative', minHeight: '85vh', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.18 }}>
+        <Iridescence color={[1, 1, 1]} mouseReact={true} amplitude={0.1} speed={0.3} />
+      </div>
       <div style={{
+        position: 'relative', zIndex: 1,
         display: 'grid',
         gridTemplateColumns: 'repeat(12, 1fr)',
         gap: 24,
@@ -110,7 +115,7 @@ function DesktopHero({ hero }) {
         </div>
       </div>
 
-      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
+      <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, zIndex: 1 }}>
         <Marquee variant="desktop" items={hero.marqueeItems} />
       </div>
     </section>
@@ -120,7 +125,11 @@ function DesktopHero({ hero }) {
 function MobileHero({ hero }) {
   const taglineLines = splitLines(hero.tagline);
   return (
-    <section style={{ padding: '40px 20px 28px' }}>
+    <section style={{ padding: '40px 20px 28px', position: 'relative', overflow: 'hidden' }}>
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.18 }}>
+        <Iridescence color={[1, 1, 1]} mouseReact={false} amplitude={0.1} speed={0.3} />
+      </div>
+      <div style={{ position: 'relative', zIndex: 1 }}>
       <div data-mreveal style={{
         fontFamily: FONTS.mono,
         fontSize: 10, letterSpacing: '0.08em', color: p.fgDim,
@@ -196,6 +205,7 @@ function MobileHero({ hero }) {
         <span style={{ color: p.fg }}>{hero.credential1}</span>
         <span style={{ color: p.accent2 }}>›</span>
         <span>{hero.credential2}</span>
+      </div>
       </div>
     </section>
   );
