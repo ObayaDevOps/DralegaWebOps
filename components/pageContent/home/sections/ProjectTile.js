@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
+import Link from 'next/link';
 import { FONTS, PALETTE, MOTION } from '../../../../data/tokens';
 
 const p = PALETTE;
@@ -7,6 +8,7 @@ const STRIPES = `repeating-linear-gradient(135deg, rgba(26,26,26,0.045) 0 12px, 
 function ProjectVisual({ proj, variant, ratioOverride }) {
   const [hovered, setHovered] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
+  const [naturalRatio, setNaturalRatio] = useState(null);
   const timerRef = useRef(null);
 
   const rawImages = proj.tileImages && proj.tileImages.length
@@ -28,10 +30,13 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
     return () => clearInterval(timerRef.current);
   }, [hovered, hasMultiple, images.length]);
 
+  const isWide = proj.span === 'wide';
   const ratio =
     ratioOverride
       ? ratioOverride
-      : (proj.span === 'wide' ? '16 / 9' : proj.span === 'half' ? '4 / 3' : '3 / 4');
+      : isWide
+        ? (naturalRatio || '16 / 9')
+        : (proj.span === 'half' ? '4 / 3' : '3 / 4');
   const pad   = variant === 'mobile' ? '10px 12px' : '14px 16px';
   const fSize = variant === 'mobile' ? 10 : 11;
 
@@ -57,6 +62,9 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
           key={img.url}
           src={img.url}
           alt={img.alt || ''}
+          onLoad={isWide && i === 0 && !naturalRatio
+            ? (e) => setNaturalRatio(`${e.target.naturalWidth} / ${e.target.naturalHeight}`)
+            : undefined}
           style={{
             position: 'absolute',
             inset: 0,
@@ -99,9 +107,10 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
 }
 
 export default function ProjectTile({ proj, idx, variant = 'desktop' }) {
+  const href = proj.slug ? `/work/${proj.slug}` : '/work';
   if (variant === 'mobile') {
     return (
-      <a href="#" data-mreveal data-mreveal-delay={idx * 50}
+      <Link href={href} data-mreveal data-mreveal-delay={idx * 50}
         style={{ textDecoration: 'none', color: 'inherit', display: 'block' }}>
         <ProjectVisual proj={proj} variant="mobile" ratioOverride={idx % 3 === 0 ? '4 / 5' : '4 / 3'} />
         <div style={{ marginTop: 14 }}>
@@ -125,11 +134,11 @@ export default function ProjectTile({ proj, idx, variant = 'desktop' }) {
             color: p.fgDim, margin: '8px 0 0',
           }}>{proj.blurb}</p>
         </div>
-      </a>
+      </Link>
     );
   }
   return (
-    <a href="#" className="tfs-tile" data-reveal data-reveal-delay={idx * 60} style={{
+    <Link href={href} className="tfs-tile" data-reveal data-reveal-delay={idx * 60} style={{
       display: 'block', textDecoration: 'none', color: 'inherit',
       gridColumn: proj.span === 'wide' ? 'span 12'
         : proj.span === 'half' ? 'span 6'
@@ -175,6 +184,6 @@ export default function ProjectTile({ proj, idx, variant = 'desktop' }) {
           {proj.tags.map((t) => <span key={t}>/{t}</span>)}
         </div>
       </div>
-    </a>
+    </Link>
   );
 }

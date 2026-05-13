@@ -13,8 +13,10 @@ const SINGLETONS_SEED = [
     _id: 'homePage',
     _type: 'homePage',
     hero: {
-      heading: "Websites for Uganda's most ambitious businesses.",
+      heading: "Websites for",
+      headingLine2: "Uganda's most",
       headingEmphasis: 'ambitious',
+      headingTail: 'businesses.',
       tagline: 'Designed to compete globally. Built for how Uganda actually works.',
       credential1: 'Bank-grade engineering. Founding member of Afropocene.',
       credential2: 'Built by a former AVP Software Developer ($7T in assets) and a working artist.',
@@ -26,7 +28,9 @@ const SINGLETONS_SEED = [
       marqueeItems: ['PAYMENTS', 'WHATSAPP', 'DESIGN', 'NEXT.JS', 'SANITY', 'PESAPAL', 'SHOPIFY', 'MTN MOMO', 'AIRTEL MONEY', 'CRYPTO', 'HEADLESS CMS', 'TYPESCRIPT', 'POSTGRES', 'BRAND SYSTEMS', 'MOTION'],
     },
     workSection: {
-      heading: 'Eight projects. One studio. Built to last.',
+      heading: 'Eight projects.',
+      headingEmphasis: 'One studio.',
+      headingTail: 'Built to last.',
     },
     studioSection: {
       body: 'We are two people who care a lot. A bank engineer who left a $7T balance sheet, and a working artist with a studio practice. The combination is the point.',
