@@ -6,7 +6,9 @@ import { CONTACT } from '../../data/contact';
 
 const p = PALETTE;
 
-export default function TFSNav() {
+export default function TFSNav({ siteSettings, navLinks }) {
+  const links = navLinks && navLinks.length ? navLinks : NAV_LINKS;
+  const navLocation = siteSettings?.navLocation || CONTACT.navLocation;
   return (
     <header style={{
       display: 'flex', justifyContent: 'space-between', alignItems: 'center',
@@ -24,10 +26,10 @@ export default function TFSNav() {
           fontSize: 11, color: p.fgDim, letterSpacing: '0.08em',
           paddingLeft: 14, marginLeft: 6,
           borderLeft: `1px solid ${p.rule}`,
-        }}>{CONTACT.navLocation}</span>
+        }}>{navLocation}</span>
       </Link>
       <nav style={{ display: 'flex', gap: 28 }}>
-        {NAV_LINKS.map((l) => (
+        {links.map((l) => (
           <Link key={l.href} href={l.href} style={{
             fontFamily: FONTS.mono,
             fontSize: 12, letterSpacing: '0.08em',

@@ -5,7 +5,9 @@ export default defineType({
   title: 'Contact Page',
   type: 'document',
   fields: [
-    defineField({name: 'heading', type: 'string', title: 'Heading'}),
+    defineField({name: 'eyebrow', type: 'string', title: 'Eyebrow'}),
+    defineField({name: 'heading', type: 'string', title: 'Heading line 1'}),
+    defineField({name: 'headingEmphasis', type: 'string', title: 'Heading emphasis (italicised line 2)'}),
     defineField({name: 'subheading', type: 'string', title: 'Subheading'}),
     defineField({
       name: 'methods',
@@ -28,7 +30,12 @@ export default defineType({
       type: 'object',
       title: 'Brief form section',
       fields: [
-        defineField({name: 'heading', type: 'string', title: 'Heading'}),
+        defineField({name: 'eyebrow', type: 'string', title: 'Eyebrow'}),
+        defineField({name: 'heading', type: 'string', title: 'Heading line 1'}),
+        defineField({name: 'headingEmphasis', type: 'string', title: 'Heading emphasis (italicised)'}),
+        defineField({name: 'budgetOptions', type: 'array', title: 'Budget options', of: [{type: 'string'}]}),
+        defineField({name: 'submitLabel', type: 'string', title: 'Submit button label'}),
+        defineField({name: 'successMessage', type: 'text', title: 'Success message', rows: 2}),
       ],
     }),
   ],

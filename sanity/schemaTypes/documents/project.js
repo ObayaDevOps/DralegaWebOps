@@ -15,6 +15,7 @@ export default defineType({
     }),
     defineField({name: 'title', type: 'string', title: 'Title'}),
     defineField({name: 'blurb', type: 'text', title: 'Blurb', rows: 2}),
+    defineField({name: 'placeholder', type: 'string', title: 'Placeholder caption (used when no image present)'}),
     defineField({
       name: 'tags',
       type: 'array',
@@ -29,6 +30,13 @@ export default defineType({
       options: {list: ['wide', 'half', 'third']},
     }),
     defineField({name: 'heroImage', type: 'image', title: 'Hero image', options: {hotspot: true}}),
+    defineField({
+      name: 'tileImages',
+      type: 'array',
+      title: 'Tile images',
+      description: 'Images that cycle on hover in the work grid. First image shows by default.',
+      of: [{type: 'image', options: {hotspot: true}}],
+    }),
     defineField({name: 'brief', type: 'text', title: 'The Brief', rows: 4}),
     defineField({
       name: 'approach',

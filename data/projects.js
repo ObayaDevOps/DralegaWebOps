@@ -1,6 +1,7 @@
 export const PROJECTS = [
   {
     n: '01',
+    slug: 'little-kobe-japanese-market',
     title: 'Little Kobe Japanese Market',
     blurb: 'Custom e-commerce with a video-game soul.',
     tags: ['E-COMMERCE', 'PESAPAL', 'SHOPIFY'],
@@ -10,6 +11,7 @@ export const PROJECTS = [
   },
   {
     n: '02',
+    slug: 'yujo-izakaya',
     title: 'Yujo Izakaya',
     blurb: 'A Japanese kitchen and cocktail bar where every click counts.',
     tags: ['HOSPITALITY', 'MENU SYSTEM', 'BRAND'],
@@ -19,15 +21,18 @@ export const PROJECTS = [
   },
   {
     n: '03',
+    slug: 'afropocene-studiolab',
     title: 'Afropocene StudioLab',
     blurb: 'UNDP-funded arts and tech lab. Built in-house, by a founding member.',
     tags: ['WEB3', 'CMS', 'AWARD-WINNING'],
     span: 'half',
     placeholder: 'studio still · artwork',
     year: '2024',
+    images: ['/images/DWO/afropoceneScreenshot.png'],
   },
   {
     n: '04',
+    slug: 'great-outdoors-resort',
     title: 'Great Outdoors Resort',
     blurb: 'Luxury resort booking and payments, end to end.',
     tags: ['BOOKINGS', 'PESAPAL', 'CMS'],
@@ -37,6 +42,7 @@ export const PROJECTS = [
   },
   {
     n: '05',
+    slug: 'ashton-carrington',
     title: 'Ashton & Carrington',
     blurb: 'Expert financial and tax advisory. A professional rebrand optimised to display dense information clearly.',
     tags: ['FULLSTACK', 'CMS', 'FINANCE'],
@@ -46,6 +52,7 @@ export const PROJECTS = [
   },
   {
     n: '06',
+    slug: 'med-optics-vision-centre',
     title: 'Med-Optics Vision Centre',
     blurb: 'Top-100 Ugandan company. Google PageRank 95+.',
     tags: ['HEALTHCARE', 'CMS', 'SEO'],
@@ -55,6 +62,7 @@ export const PROJECTS = [
   },
   {
     n: '07',
+    slug: 'nekosero',
     title: 'Nekosero',
     blurb: 'Creative shopping, dining, brewing, and arts space.',
     tags: ['EVENTS', 'CMS', 'HOSPITALITY'],
@@ -64,6 +72,7 @@ export const PROJECTS = [
   },
   {
     n: '08',
+    slug: 'humble-beeing-honey',
     title: 'Humble Beeing Honey',
     blurb: 'Proudly Ugandan social enterprise specialising in beekeeping. Polished, professional, mission-driven.',
     tags: ['FULLSTACK', 'BRAND', 'SOCIAL ENTERPRISE'],

@@ -19,9 +19,21 @@ const SHELL_STYLE = {
   WebkitFontSmoothing: 'antialiased',
 };
 
-export default function TFSMobileShell({ children }) {
+export default function TFSMobileShell({ children, siteSettings, navLinks }) {
   const [open, setOpen] = useState(false);
   useReveal({ variant: 'mobile' });
+  const s = siteSettings || {};
+  const links = navLinks && navLinks.length ? navLinks : NAV_LINKS;
+  const studioLabel = s.studioLabel || CONTACT.studioLabel;
+  const emailHref = s.email ? `mailto:${s.email}` : CONTACT.emailHref;
+  const whatsappHref = s.whatsappLink || CONTACT.whatsappHref;
+  const instagramHref = s.instagramLink || CONTACT.instagramHref;
+  const linkedinHref = s.linkedinLink || CONTACT.linkedinHref;
+  const altEmail = s.altEmail || CONTACT.altEmail;
+  const email = s.email || CONTACT.email;
+  const location = s.location || CONTACT.location;
+  const coords = s.coords || CONTACT.coords;
+
   return (
     <div style={SHELL_STYLE}>
       <div onClick={() => setOpen(false)} style={{
@@ -44,7 +56,7 @@ export default function TFSMobileShell({ children }) {
           <button onClick={() => setOpen(false)} style={{ background: 'none', border: 'none', padding: 0, fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', color: p.fg, cursor: 'pointer' }}>CLOSE ✕</button>
         </div>
         <nav style={{ display: 'grid', gap: 4, flex: 1 }}>
-          {NAV_LINKS.map((l, i) => (
+          {links.map((l, i) => (
             <a key={l.href} href={l.href} onClick={() => setOpen(false)} style={{
               display: 'grid', gridTemplateColumns: '40px 1fr', alignItems: 'baseline', gap: 8,
               padding: '14px 0', borderBottom: `1px solid ${p.rule}`, textDecoration: 'none', color: p.fg,
@@ -56,8 +68,8 @@ export default function TFSMobileShell({ children }) {
         </nav>
         <div style={{ marginTop: 28, fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, lineHeight: 1.6 }}>
           <div style={{ color: p.fg, marginBottom: 8 }}>/CONTACT</div>
-          <div>{CONTACT.altEmail}</div>
-          <div style={{ marginTop: 14 }}>{CONTACT.coords}</div>
+          <div>{altEmail}</div>
+          <div style={{ marginTop: 14 }}>{coords}</div>
         </div>
       </aside>
       <header style={{
@@ -85,7 +97,7 @@ export default function TFSMobileShell({ children }) {
           <PixelMark color={p.accent} sessionKey="tfs-mfoot" />
         </div>
         <div style={{ fontFamily: FONTS.sans, fontSize: 13, color: p.fgDim, marginBottom: 32 }}>
-          {CONTACT.studioLabel}
+          {studioLabel}
         </div>
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24,
@@ -95,7 +107,7 @@ export default function TFSMobileShell({ children }) {
           <div>
             <div style={{ color: p.fg, marginBottom: 10 }}>/SITE</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              {NAV_LINKS.map((l) => (
+              {links.map((l) => (
                 <Link key={l.href} href={l.href} style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</Link>
               ))}
             </div>
@@ -103,18 +115,18 @@ export default function TFSMobileShell({ children }) {
           <div>
             <div style={{ color: p.fg, marginBottom: 10 }}>/CONNECT</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              <a href={CONTACT.emailHref} style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
-              <a href={CONTACT.whatsappHref} style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
-              <a href={CONTACT.instagramHref} style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a>
-              <a href={CONTACT.linkedinHref} style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
+              <a href={emailHref} style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
+              <a href={whatsappHref} style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
+              <a href={instagramHref} style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a>
+              <a href={linkedinHref} style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
             </div>
           </div>
           <div style={{ gridColumn: 'span 2' }}>
             <div style={{ color: p.fg, marginBottom: 10 }}>/CONTACT</div>
             <div style={{ display: 'grid', gap: 6 }}>
-              <span>{CONTACT.email}</span>
+              <span>{email}</span>
               <span>+256 789 062 116</span>
-              <span>{CONTACT.location}</span>
+              <span>{location}</span>
             </div>
           </div>
         </div>

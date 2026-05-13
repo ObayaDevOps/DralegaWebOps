@@ -1,0 +1,60 @@
+export const HOME = {
+  hero: {
+    indexLabel: '/INDEX 2026',
+    version: '/v 4.2',
+    coordsLat: '00°18′49″N',
+    coordsLon: '32°34′52″E',
+    heading: 'Websites for',
+    headingLine2: 'Uganda’s most',
+    headingEmphasis: 'ambitious',
+    headingTail: 'businesses.',
+    tagline: 'Designed to compete globally.\nBuilt for how Uganda actually works.',
+    credential1: 'Bank-grade engineering. Founding member of Afropocene.',
+    credential2: 'Built by a former AVP Software Developer ($7T in assets) and a working artist.',
+    nowLabel: 'NOW',
+    nowValue: 'Booking Q3 2026',
+    statusLabel: 'STATUS',
+    statusValue: '2 slots open',
+    nextLabel: 'NEXT',
+    nextValue: 'Yujo Izakaya\nships 14 May',
+    ctaPrimary: {label: 'SEE THE WORK', href: '#work'},
+    ctaSecondary: {label: 'START A PROJECT', href: '#start'},
+    marqueeItems: [
+      'PAYMENTS', 'WHATSAPP', 'DESIGN', 'NEXT.JS', 'SANITY',
+      'PESAPAL', 'SHOPIFY', 'MTN MOMO', 'AIRTEL MONEY', 'CRYPTO',
+      'HEADLESS CMS', 'TYPESCRIPT', 'POSTGRES', 'BRAND SYSTEMS', 'MOTION',
+    ],
+  },
+  workSection: {
+    eyebrow: '/SECTION 01 — WORK',
+    heading: 'Eight projects.',
+    headingEmphasis: 'One studio.',
+    headingTail: 'Built to last.',
+    indexLink: {label: 'VIEW THE FULL INDEX', href: '/work'},
+  },
+  studioSection: {
+    eyebrow: '/SECTION 02 — STUDIO',
+    body:
+      'We are two people who care a lot. A bank engineer who left a $7T balance sheet, ' +
+      'and a working artist with a studio practice. The combination is the point.',
+    bodyEmphasis: 'The combination is the point.',
+    stats: [
+      {label: 'SINCE', value: '2021'},
+      {label: 'SHIPPED', value: '40+ projects'},
+      {label: 'HEADCOUNT', value: '2 + collaborators'},
+    ],
+    capabilities: [
+      {label: 'BUILD', items: ['Next.js', 'TypeScript', 'Sanity', 'Shopify', 'Postgres', 'Headless CMS']},
+      {label: 'PAY', items: ['Pesapal', 'MTN MoMo', 'Airtel Money', 'Stripe', 'Crypto rails']},
+      {label: 'DESIGN', items: ['Brand systems', 'Editorial type', 'Motion', 'Art direction', 'UX research']},
+      {label: 'GROW', items: ['SEO (PR 95+)', 'Analytics', 'Email', 'WhatsApp', 'Performance']},
+    ],
+  },
+  startSection: {
+    eyebrow: '/SECTION 03 — START',
+    heading: 'Tell us what you’re',
+    headingEmphasis: 'building.',
+    scopeOptions: ['E-commerce', 'Brand site', 'Web app', 'Booking', 'CMS rebuild', 'Brand system', 'Other'],
+    budgetOptions: ['Under 10k', '10k — 25k', '25k — 60k', '60k +', "Let's discuss"],
+  },
+};

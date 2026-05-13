@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { FONTS, PALETTE, MOTION } from '../../../../data/tokens';
+import { HOME } from '../../../../data/home';
 
 const p = PALETTE;
 
-const SCOPE_OPTIONS_DESKTOP = ['E-commerce', 'Brand site', 'Web app', 'Booking', 'CMS rebuild', 'Brand system', 'Other'];
 const SCOPE_OPTIONS_MOBILE  = ['E-commerce', 'Brand site', 'Web app', 'Booking', 'CMS', 'Brand', 'Other'];
-const BUDGET_OPTIONS = ['Under 10k', '10k — 25k', '25k — 60k', '60k +', "Let's discuss"];
 
-function DesktopStart() {
+function DesktopStart({ startSection }) {
+  const SCOPE_OPTIONS_DESKTOP = startSection.scopeOptions;
+  const BUDGET_OPTIONS = startSection.budgetOptions;
   const [stage, setStage] = useState(0);
   const [data, setData] = useState({ scope: [], budget: '', when: '' });
   const stages = ['scope', 'budget', 'when'];
@@ -29,7 +30,7 @@ function DesktopStart() {
           fontFamily: FONTS.mono,
           fontSize: 11, letterSpacing: '0.08em',
           color: `${p.bg}aa`,
-        }} data-reveal>/SECTION 03 — START</div>
+        }} data-reveal>{startSection.eyebrow}</div>
         <div style={{ gridColumn: 'span 10' }} data-reveal data-reveal-delay="80">
           <h2 style={{
             fontFamily: FONTS.serif, fontWeight: 300,
@@ -37,8 +38,8 @@ function DesktopStart() {
             lineHeight: 0.96, letterSpacing: '-0.025em',
             margin: 0, color: p.bg,
           }}>
-            Tell us what you&rsquo;re<br />
-            <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>building.</em>
+            {startSection.heading}<br />
+            <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>{startSection.headingEmphasis}</em>
           </h2>
         </div>
       </div>
@@ -159,7 +160,8 @@ function DesktopStart() {
   );
 }
 
-function MobileStart() {
+function MobileStart({ startSection }) {
+  const BUDGET_OPTIONS = startSection.budgetOptions;
   const [stage, setStage] = useState(0);
   const [data, setData] = useState({ scope: [], budget: '' });
 
@@ -172,16 +174,15 @@ function MobileStart() {
         fontFamily: FONTS.mono,
         fontSize: 10, letterSpacing: '0.08em',
         color: `${p.bg}88`, marginBottom: 14,
-      }}>/SECTION 03 — START</div>
+      }}>{startSection.eyebrow}</div>
 
       <h2 style={{
         fontFamily: FONTS.serif, fontWeight: 300,
         fontSize: 42, lineHeight: 0.96, letterSpacing: '-0.025em',
         margin: '0 0 36px', color: p.bg,
       }}>
-        Tell us what<br />
-        you&rsquo;re<br />
-        <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>building.</em>
+        {startSection.heading}<br />
+        <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>{startSection.headingEmphasis}</em>
       </h2>
 
       <div style={{
@@ -298,6 +299,8 @@ function MobileStart() {
   );
 }
 
-export default function Start({ variant = 'desktop' }) {
-  return variant === 'mobile' ? <MobileStart /> : <DesktopStart />;
+export default function Start({ variant = 'desktop', startSection = HOME.startSection }) {
+  return variant === 'mobile'
+    ? <MobileStart startSection={startSection} />
+    : <DesktopStart startSection={startSection} />;
 }

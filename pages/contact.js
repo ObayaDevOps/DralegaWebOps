@@ -6,15 +6,57 @@ import SectionLabel from '../components/primitives/SectionLabel';
 import Button from '../components/primitives/Button';
 import Input from '../components/form/Input';
 import Label from '../components/form/Label';
+import { client } from '../lib/sanityClient';
+import { contactPageQuery } from '../lib/queries/contact';
+import { CONTACT_PAGE } from '../data/contact-page';
+import { mergeObj } from '../lib/cms/merge';
+import { mergeLayoutProps } from '../lib/cms/withLayoutProps';
 
 const p = PALETTE;
 
-const BUDGET_OPTIONS = ['Under $1,500', '$1,500 — $3,500', '$3,500 — $7,500', '$7,500+', "Let's discuss"];
-const SCOPE_OPTIONS = ['E-commerce', 'Brand site', 'Web app', 'Booking system', 'CMS rebuild', 'Brand system', 'Other'];
+export async function getStaticProps() {
+  let cms = null;
+  try {
+    cms = await client.fetch(contactPageQuery);
+  } catch (e) {
+    cms = null;
+  }
+  const data = mergeObj(cms, CONTACT_PAGE);
+  return mergeLayoutProps({props: {data}, revalidate: 300});
+}
 
-export default function Contact() {
+function CtaLink({ cta, variant = 'desktop' }) {
+  if (!cta?.href) return null;
+  const isMobile = variant === 'mobile';
+  if (cta.filled) {
+    return (
+      <Button
+        href={cta.href}
+        target={cta.href.startsWith('http') ? '_blank' : undefined}
+        rel={cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+        bg={p.accent}
+        color="#FAFAF7"
+        style={isMobile ? {fontSize: 12} : undefined}
+      >{cta.label} →</Button>
+    );
+  }
+  return (
+    <Button
+      href={cta.href}
+      target={cta.href.startsWith('http') ? '_blank' : undefined}
+      rel={cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      color={p.fg}
+      border={`${p.fg}44`}
+      style={isMobile ? {fontSize: 12} : undefined}
+    >{cta.label} →</Button>
+  );
+}
+
+export default function Contact({ data, siteSettings, navLinks }) {
   const [formData, setFormData] = useState({ name: '', business: '', building: '', budget: '', timeline: '' });
   const [sent, setSent] = useState(false);
+  const brief = data.briefSection;
+  const budgetOptions = brief.budgetOptions || CONTACT_PAGE.briefSection.budgetOptions;
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -32,140 +74,94 @@ export default function Contact() {
     <>
       <Head>
         <title>Contact — twofivesix studio</title>
-        <meta name="description" content="Start a project with twofivesix. Book a 20-minute call, message on WhatsApp, or send a brief." />
+        <meta name="description" content={data.subheading} />
       </Head>
-      <PageLayout desktop={<>
-        {/* Header */}
+      <PageLayout siteSettings={siteSettings} navLinks={navLinks} desktop={<>
         <section style={{ padding: '80px 32px 64px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-            <SectionLabel>/CONTACT</SectionLabel>
+            <SectionLabel>{data.eyebrow}</SectionLabel>
             <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
               <h1 style={{
-                fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
+                fontFamily: FONTS.serif, fontWeight: 300,
                 fontSize: 'clamp(48px, 7vw, 104px)', lineHeight: 0.94,
                 letterSpacing: '-0.025em', margin: 0, color: p.fg,
               }}>
-                Let&rsquo;s build<br />
-                <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>something.</em>
+                {data.heading}<br />
+                <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
               </h1>
               <p style={{
-                fontFamily: '"Inter", system-ui, sans-serif', fontSize: 'clamp(16px, 1.4vw, 19px)',
+                fontFamily: FONTS.sans, fontSize: 'clamp(16px, 1.4vw, 19px)',
                 lineHeight: 1.6, color: p.fgDim, margin: '28px 0 0', maxWidth: '52ch',
-              }}>
-                Three ways to start. Pick whichever feels natural.
-              </p>
+              }}>{data.subheading}</p>
             </div>
           </div>
         </section>
 
-        {/* Three contact methods */}
         <section style={{ padding: '0 32px 80px' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 1, border: `1px solid ${p.rule}` }}>
-            {/* Book a call */}
-            <div data-reveal style={{ padding: '40px 32px', borderRight: `1px solid ${p.rule}` }}>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/01 — CALL</div>
-              <h2 style={{ fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300, fontSize: 'clamp(24px, 2.4vw, 34px)', letterSpacing: '-0.02em', margin: '0 0 16px', color: p.fg }}>
-                Book a 20-minute call
-              </h2>
-              <p style={{ fontFamily: '"Inter", system-ui, sans-serif', fontSize: 15, lineHeight: 1.65, color: p.fgDim, margin: '0 0 32px' }}>
-                One call. We figure out what you&rsquo;re actually trying to do. No pitch, no deck, no pressure.
-                Book a slot that works for you.
-              </p>
-              <Button
-                href="https://calendly.com/twofivesix/20min"
-                target="_blank"
-                rel="noopener noreferrer"
-                bg={p.accent}
-                color="#FAFAF7"
-              >BOOK A SLOT →</Button>
-            </div>
-
-            {/* WhatsApp */}
-            <div data-reveal data-reveal-delay="80" style={{ padding: '40px 32px', borderRight: `1px solid ${p.rule}` }}>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/02 — WHATSAPP</div>
-              <h2 style={{ fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300, fontSize: 'clamp(24px, 2.4vw, 34px)', letterSpacing: '-0.02em', margin: '0 0 16px', color: p.fg }}>
-                Message on WhatsApp
-              </h2>
-              <p style={{ fontFamily: '"Inter", system-ui, sans-serif', fontSize: 15, lineHeight: 1.65, color: p.fgDim, margin: '0 0 32px' }}>
-                The fastest way to reach us. Drop a message and we&rsquo;ll respond within a few hours.
-                The conversation is already built into your workflow.
-              </p>
-              <Button
-                href="https://wa.me/256789062116?text=Hi+twofivesix%2C+I%27d+like+to+talk+about+a+project"
-                target="_blank"
-                rel="noopener noreferrer"
-                color={p.fg}
-                border={`${p.fg}44`}
-              >OPEN WHATSAPP →</Button>
-            </div>
-
-            {/* Email */}
-            <div data-reveal data-reveal-delay="160" style={{ padding: '40px 32px' }}>
-              <div style={{ fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/03 — EMAIL</div>
-              <h2 style={{ fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300, fontSize: 'clamp(24px, 2.4vw, 34px)', letterSpacing: '-0.02em', margin: '0 0 16px', color: p.fg }}>
-                Send an email
-              </h2>
-              <p style={{ fontFamily: '"Inter", system-ui, sans-serif', fontSize: 15, lineHeight: 1.65, color: p.fgDim, margin: '0 0 32px' }}>
-                Prefer email? We read everything. Response within 24 hours on working days.
-              </p>
-              <Button
-                href="mailto:hello@twofivesix.online"
-                color={p.fg}
-                border={`${p.fg}44`}
-              >SEND EMAIL →</Button>
-            </div>
+          <div style={{ display: 'grid', gridTemplateColumns: `repeat(${(data.methods || []).length || 1}, 1fr)`, gap: 1, border: `1px solid ${p.rule}` }}>
+            {(data.methods || []).map((m, i) => (
+              <div
+                key={m.label || m.number || i}
+                data-reveal
+                data-reveal-delay={i * 80}
+                style={{
+                  padding: '40px 32px',
+                  borderRight: i < (data.methods.length - 1) ? `1px solid ${p.rule}` : 'none',
+                }}
+              >
+                <div style={{ fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>{m.number}</div>
+                <h2 style={{
+                  fontFamily: FONTS.serif, fontWeight: 300,
+                  fontSize: 'clamp(24px, 2.4vw, 34px)', letterSpacing: '-0.02em',
+                  margin: '0 0 16px', color: p.fg,
+                }}>{m.title}</h2>
+                <p style={{ fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.65, color: p.fgDim, margin: '0 0 32px' }}>{m.body}</p>
+                <CtaLink cta={m.cta} />
+              </div>
+            ))}
           </div>
         </section>
 
-        {/* Brief form */}
         <section style={{ padding: '80px 32px 120px', background: p.fg }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-            <div style={{ gridColumn: 'span 2', fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.08em', color: `${p.bg}88`, paddingTop: 12 }} data-reveal>
-              /SEND A BRIEF
+            <div style={{ gridColumn: 'span 2', fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: `${p.bg}88`, paddingTop: 12 }} data-reveal>
+              {brief.eyebrow}
             </div>
             <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
               <h2 style={{
-                fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
+                fontFamily: FONTS.serif, fontWeight: 300,
                 fontSize: 'clamp(36px, 5vw, 72px)', lineHeight: 0.96,
                 letterSpacing: '-0.025em', margin: '0 0 56px', color: p.bg,
               }}>
-                Tell us what you&rsquo;re<br />
-                <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>building.</em>
+                {brief.heading}<br />
+                <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>{brief.headingEmphasis}</em>
               </h2>
 
               {sent ? (
                 <div style={{
                   padding: '40px 0', borderTop: `1px solid ${p.bg}22`,
-                  fontFamily: '"Red Hat Display", sans-serif', fontWeight: 300,
+                  fontFamily: FONTS.serif, fontWeight: 300,
                   fontSize: 'clamp(24px, 2.4vw, 32px)', color: p.bg, letterSpacing: '-0.012em',
-                }}>
-                  Brief received. We&rsquo;ll be in touch within 24 hours.
-                </div>
+                }}>{brief.successMessage}</div>
               ) : (
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 40 }}>
                   <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32 }}>
                     <div>
                       <Label inverted>YOUR NAME</Label>
-                      <Input
-                        required inverted placeholder="Amara Nakato"
-                        value={formData.name} onChange={(e) => setFormData((d) => ({ ...d, name: e.target.value }))}
-                      />
+                      <Input required inverted placeholder="Amara Nakato"
+                        value={formData.name} onChange={(e) => setFormData((d) => ({ ...d, name: e.target.value }))} />
                     </div>
                     <div>
                       <Label inverted>BUSINESS NAME</Label>
-                      <Input
-                        inverted placeholder="Nakato & Co."
-                        value={formData.business} onChange={(e) => setFormData((d) => ({ ...d, business: e.target.value }))}
-                      />
+                      <Input inverted placeholder="Nakato & Co."
+                        value={formData.business} onChange={(e) => setFormData((d) => ({ ...d, business: e.target.value }))} />
                     </div>
                   </div>
 
                   <div>
                     <Label inverted>WHAT ARE YOU BUILDING?</Label>
                     <Input
-                      as="textarea"
-                      required
-                      inverted
+                      as="textarea" required inverted
                       style={{ resize: 'none', minHeight: 80 }}
                       placeholder="A restaurant booking site. An online store. A rebrand. A URL and a rough idea is fine."
                       value={formData.building}
@@ -176,7 +172,7 @@ export default function Contact() {
                   <div>
                     <Label inverted>BUDGET RANGE (USD)</Label>
                     <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginTop: 12 }}>
-                      {BUDGET_OPTIONS.map((b) => {
+                      {budgetOptions.map((b) => {
                         const on = formData.budget === b;
                         return (
                           <button key={b} type="button"
@@ -186,7 +182,7 @@ export default function Contact() {
                               border: `1px solid ${on ? p.accent2 : p.bg + '33'}`,
                               background: on ? p.accent2 : 'transparent',
                               color: on ? p.fg : p.bg,
-                              fontFamily: '"JetBrains Mono", monospace', fontSize: 11, letterSpacing: '0.06em',
+                              fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.06em',
                               transition: 'all 200ms cubic-bezier(0.16, 1, 0.3, 1)',
                             }}>{b}</button>
                         );
@@ -196,14 +192,12 @@ export default function Contact() {
 
                   <div>
                     <Label inverted>WHEN DO YOU WANT TO LAUNCH?</Label>
-                    <Input
-                      inverted placeholder="e.g. Before end of Q3 2026"
-                      value={formData.timeline} onChange={(e) => setFormData((d) => ({ ...d, timeline: e.target.value }))}
-                    />
+                    <Input inverted placeholder="e.g. Before end of Q3 2026"
+                      value={formData.timeline} onChange={(e) => setFormData((d) => ({ ...d, timeline: e.target.value }))} />
                   </div>
 
                   <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                    <Button as="button" type="submit" bg={p.accent2} color={p.fg} padding="16px 28px">SEND BRIEF →</Button>
+                    <Button as="button" type="submit" bg={p.accent2} color={p.fg} padding="16px 28px">{brief.submitLabel} →</Button>
                   </div>
                 </form>
               )}
@@ -212,57 +206,56 @@ export default function Contact() {
         </section>
       </>} mobile={<>
           <section style={{ padding: '48px 20px 36px' }}>
-            <SectionLabel variant="mobile">/CONTACT</SectionLabel>
+            <SectionLabel variant="mobile">{data.eyebrow}</SectionLabel>
             <h1 data-mreveal data-mreveal-delay="60" style={{
               fontFamily: FONTS.serif, fontWeight: 400,
               fontSize: 'clamp(40px, 12vw, 56px)', lineHeight: 0.96,
               letterSpacing: '-0.025em', margin: 0, color: p.fg,
             }}>
-              Let&rsquo;s build<br />
-              <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>something.</em>
+              {data.heading}<br />
+              <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
             </h1>
             <p data-mreveal data-mreveal-delay="120" style={{
               fontFamily: FONTS.serif, fontStyle: 'italic', fontWeight: 300,
               fontSize: 17, lineHeight: 1.4, color: p.fgDim, margin: '20px 0 0',
-            }}>
-              Three ways to start. Pick whichever feels natural.
-            </p>
+            }}>{data.subheading}</p>
           </section>
 
           <section style={{ padding: '0 20px 48px' }}>
-            {[
-              { n: '/01 — CALL', title: 'Book a 20-minute call', body: "One call. We figure out what you're actually trying to do. No pitch, no deck, no pressure.", cta: 'BOOK A SLOT', href: 'https://calendly.com/twofivesix/20min', filled: true },
-              { n: '/02 — WHATSAPP', title: 'Message on WhatsApp', body: "The fastest way to reach us. Drop a message and we'll respond within a few hours.", cta: 'OPEN WHATSAPP', href: 'https://wa.me/256789062116?text=Hi+twofivesix%2C+I%27d+like+to+talk+about+a+project', filled: false },
-              { n: '/03 — EMAIL', title: 'Send an email', body: "Prefer email? We read everything. Response within 24 hours on working days.", cta: 'SEND EMAIL', href: 'mailto:hello@twofivesix.online', filled: false },
-            ].map((method, i) => (
-              <div key={method.n} data-mreveal data-mreveal-delay={i * 60} style={{ padding: '28px 0', borderBottom: `1px solid ${p.rule}` }}>
-                <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 12 }}>{method.n}</div>
+            {(data.methods || []).map((method, i) => (
+              <div key={method.number || i} data-mreveal data-mreveal-delay={i * 60} style={{ padding: '28px 0', borderBottom: `1px solid ${p.rule}` }}>
+                <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 12 }}>{method.number}</div>
                 <h2 style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 28, lineHeight: 1.1, letterSpacing: '-0.015em', margin: '0 0 12px', color: p.fg }}>{method.title}</h2>
                 <p style={{ fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.65, color: p.fgDim, margin: '0 0 20px' }}>{method.body}</p>
-                <a href={method.href} target={method.href.startsWith('http') ? '_blank' : undefined} rel={method.href.startsWith('http') ? 'noopener noreferrer' : undefined} style={{
-                  display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-                  padding: '14px 18px', borderRadius: 2,
-                  background: method.filled ? p.accent : 'transparent',
-                  color: method.filled ? '#FAFAF7' : p.fg,
-                  border: `1px solid ${method.filled ? p.accent : p.fg + '44'}`,
-                  fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none',
-                }}>
-                  <span>{method.cta}</span><span aria-hidden>→</span>
-                </a>
+                {method.cta?.href && (
+                  <a
+                    href={method.cta.href}
+                    target={method.cta.href.startsWith('http') ? '_blank' : undefined}
+                    rel={method.cta.href.startsWith('http') ? 'noopener noreferrer' : undefined}
+                    style={{
+                      display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+                      padding: '14px 18px', borderRadius: 2,
+                      background: method.cta.filled ? p.accent : 'transparent',
+                      color: method.cta.filled ? '#FAFAF7' : p.fg,
+                      border: `1px solid ${method.cta.filled ? p.accent : p.fg + '44'}`,
+                      fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none',
+                    }}
+                  >
+                    <span>{method.cta.label}</span><span aria-hidden>→</span>
+                  </a>
+                )}
               </div>
             ))}
           </section>
 
           <section style={{ padding: '56px 20px 72px', background: p.fg }}>
-            <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: `${p.bg}88`, marginBottom: 14 }}>/SEND A BRIEF</div>
+            <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: `${p.bg}88`, marginBottom: 14 }}>{brief.eyebrow}</div>
             <h2 style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 40, lineHeight: 0.96, letterSpacing: '-0.025em', margin: '0 0 40px', color: p.bg }}>
-              Tell us what you&rsquo;re<br />
-              <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>building.</em>
+              {brief.heading}<br />
+              <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>{brief.headingEmphasis}</em>
             </h2>
             {sent ? (
-              <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 22, color: p.bg, letterSpacing: '-0.012em' }}>
-                Brief received. We&rsquo;ll be in touch within 24 hours.
-              </div>
+              <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 22, color: p.bg, letterSpacing: '-0.012em' }}>{brief.successMessage}</div>
             ) : (
               <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 32 }}>
                 <div>
@@ -280,7 +273,7 @@ export default function Contact() {
                 <div>
                   <Label variant="mobile" style={{ marginBottom: 10 }}>BUDGET RANGE (USD)</Label>
                   <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6 }}>
-                    {BUDGET_OPTIONS.map((b) => {
+                    {budgetOptions.map((b) => {
                       const on = formData.budget === b;
                       return (
                         <button key={b} type="button" onClick={() => setFormData((d) => ({ ...d, budget: b }))} style={{
@@ -299,7 +292,7 @@ export default function Contact() {
                   <Input variant="mobile" placeholder="e.g. Before end of Q3 2026" value={formData.timeline} onChange={(e) => setFormData((d) => ({ ...d, timeline: e.target.value }))} />
                 </div>
                 <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-                  <Button as="button" type="submit" bg={p.accent2} color={p.fg} style={{ fontSize: 11 }}>SEND BRIEF →</Button>
+                  <Button as="button" type="submit" bg={p.accent2} color={p.fg} style={{ fontSize: 11 }}>{brief.submitLabel} →</Button>
                 </div>
               </form>
             )}
