@@ -15,12 +15,12 @@ const SHELL_STYLE = {
   WebkitFontSmoothing: 'antialiased',
 };
 
-export default function TFSShell({ children }) {
+export default function TFSShell({ children, siteSettings, navLinks }) {
   return (
     <div style={SHELL_STYLE}>
-      <TFSNav />
+      <TFSNav siteSettings={siteSettings} navLinks={navLinks} />
       <main>{children}</main>
-      <TFSFooter />
+      <TFSFooter siteSettings={siteSettings} navLinks={navLinks} />
     </div>
   );
 }

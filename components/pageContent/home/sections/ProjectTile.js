@@ -1,33 +1,84 @@
+import { useState, useEffect, useRef } from 'react';
 import { FONTS, PALETTE, MOTION } from '../../../../data/tokens';
 
 const p = PALETTE;
 const STRIPES = `repeating-linear-gradient(135deg, rgba(26,26,26,0.045) 0 12px, rgba(26,26,26,0.015) 12px 24px)`;
 
 function ProjectVisual({ proj, variant, ratioOverride }) {
+  const [hovered, setHovered] = useState(false);
+  const [activeIdx, setActiveIdx] = useState(0);
+  const timerRef = useRef(null);
+
+  const rawImages = proj.tileImages && proj.tileImages.length
+    ? proj.tileImages
+    : (proj.images || []);
+  const images = rawImages.map((img) => (typeof img === 'string' ? {url: img} : img))
+    .filter((img) => img && img.url);
+  const hasMultiple = images.length > 1;
+
+  useEffect(() => {
+    if (hovered && hasMultiple) {
+      timerRef.current = setInterval(() => {
+        setActiveIdx(i => (i + 1) % images.length);
+      }, 1600);
+    } else {
+      clearInterval(timerRef.current);
+      if (!hovered) setActiveIdx(0);
+    }
+    return () => clearInterval(timerRef.current);
+  }, [hovered, hasMultiple, images.length]);
+
   const ratio =
     ratioOverride
       ? ratioOverride
       : (proj.span === 'wide' ? '16 / 9' : proj.span === 'half' ? '4 / 3' : '3 / 4');
   const pad   = variant === 'mobile' ? '10px 12px' : '14px 16px';
   const fSize = variant === 'mobile' ? 10 : 11;
+
   return (
-    <div className="tfs-visual" style={{
-      position: 'relative',
-      aspectRatio: ratio,
-      width: '100%',
-      background: STRIPES,
-      border: `1px solid ${p.rule}`,
-      overflow: 'hidden',
-      transition: variant === 'desktop'
-        ? `transform 600ms ${MOTION.ease}, filter 600ms ${MOTION.ease}`
-        : undefined,
-    }}>
+    <div
+      className="tfs-visual"
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        position: 'relative',
+        aspectRatio: ratio,
+        width: '100%',
+        background: images.length === 0 ? STRIPES : p.bg,
+        border: `1px solid ${p.rule}`,
+        overflow: 'hidden',
+        transition: variant === 'desktop'
+          ? `transform 600ms ${MOTION.ease}, filter 600ms ${MOTION.ease}`
+          : undefined,
+      }}
+    >
+      {images.map((img, i) => (
+        <img
+          key={img.url}
+          src={img.url}
+          alt={img.alt || ''}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            opacity: i === activeIdx ? 1 : 0,
+            transition: 'opacity 900ms ease',
+            pointerEvents: 'none',
+            ...(img.lqip ? {backgroundImage: `url(${img.lqip})`, backgroundSize: 'cover'} : null),
+          }}
+        />
+      ))}
+
       <div style={{
         position: 'absolute', inset: 0,
         display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
         padding: pad,
         fontFamily: FONTS.mono,
-        fontSize: fSize, color: p.fgDim, letterSpacing: '0.04em',
+        fontSize: fSize, color: images.length > 0 ? p.bg : p.fgDim, letterSpacing: '0.04em',
+        zIndex: 1,
+        textShadow: images.length > 0 ? '0 1px 3px rgba(0,0,0,0.6)' : 'none',
       }}>
         <span>/{proj.n}</span>
         <span>{proj.placeholder}</span>
@@ -37,7 +88,9 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
         top: variant === 'mobile' ? 10 : 14,
         right: variant === 'mobile' ? 12 : 16,
         fontFamily: FONTS.mono,
-        fontSize: fSize, color: p.fgDim, letterSpacing: '0.04em',
+        fontSize: fSize, color: images.length > 0 ? p.bg : p.fgDim, letterSpacing: '0.04em',
+        zIndex: 1,
+        textShadow: images.length > 0 ? '0 1px 3px rgba(0,0,0,0.6)' : 'none',
       }}>
         {proj.year}
       </div>

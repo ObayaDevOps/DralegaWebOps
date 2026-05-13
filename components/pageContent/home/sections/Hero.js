@@ -1,10 +1,18 @@
 import { FONTS, PALETTE } from '../../../../data/tokens';
+import { HOME } from '../../../../data/home';
 import Button from '../../../primitives/Button';
 import Marquee from './Marquee';
 
 const p = PALETTE;
 
-function DesktopHero() {
+function splitLines(text) {
+  if (!text) return [];
+  return text.split(/\r?\n/);
+}
+
+function DesktopHero({ hero }) {
+  const taglineLines = splitLines(hero.tagline);
+  const nextLines = splitLines(hero.nextValue);
   return (
     <section style={{ padding: '0 32px', position: 'relative', minHeight: '85vh' }}>
       <div style={{
@@ -20,11 +28,11 @@ function DesktopHero() {
           fontSize: 11, letterSpacing: '0.08em',
           color: p.fgDim, paddingTop: 8,
         }} data-reveal>
-          <div>/INDEX 2026</div>
-          <div style={{ marginTop: 6 }}>/v 4.2</div>
+          <div>{hero.indexLabel}</div>
+          <div style={{ marginTop: 6 }}>{hero.version}</div>
           <div style={{ marginTop: 24, height: 1, background: p.rule, width: 32 }} />
-          <div style={{ marginTop: 16 }}>00°18′49″N</div>
-          <div>32°34′52″E</div>
+          <div style={{ marginTop: 16 }}>{hero.coordsLat}</div>
+          <div>{hero.coordsLon}</div>
         </div>
 
         <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
@@ -34,9 +42,9 @@ function DesktopHero() {
             lineHeight: 0.94, letterSpacing: '-0.025em',
             margin: 0, color: p.fg,
           }}>
-            Websites for<br />
-            Uganda&rsquo;s most<br />
-            <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent }}>ambitious</em> businesses.
+            {hero.heading}<br />
+            {hero.headingLine2}<br />
+            <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent }}>{hero.headingEmphasis}</em>{' '}{hero.headingTail}
           </h1>
           <p style={{
             fontFamily: FONTS.serif, fontWeight: 300, fontStyle: 'italic',
@@ -44,16 +52,17 @@ function DesktopHero() {
             lineHeight: 1.4, color: p.fgDim,
             margin: '32px 0 0', maxWidth: '46ch',
           }}>
-            Designed to compete globally.<br />
-            Built for how Uganda actually works.
+            {taglineLines.map((line, i) => (
+              <span key={i}>{line}{i < taglineLines.length - 1 && <br />}</span>
+            ))}
           </p>
 
           <div style={{ display: 'flex', gap: 12, marginTop: 40 }}>
-            <Button href="#work" bg={p.accent} color="#FAFAF7" border={p.accent}>
-              SEE THE WORK <span aria-hidden>→</span>
+            <Button href={hero.ctaPrimary?.href || '#work'} bg={p.accent} color="#FAFAF7" border={p.accent}>
+              {hero.ctaPrimary?.label || 'SEE THE WORK'} <span aria-hidden>→</span>
             </Button>
-            <Button href="#start" color={p.fg} border={`${p.fg}55`}>
-              START A PROJECT <span aria-hidden>→</span>
+            <Button href={hero.ctaSecondary?.href || '#start'} color={p.fg} border={`${p.fg}55`}>
+              {hero.ctaSecondary?.label || 'START A PROJECT'} <span aria-hidden>→</span>
             </Button>
           </div>
 
@@ -69,9 +78,9 @@ function DesktopHero() {
             color: p.fgDim, lineHeight: 1.55,
           }}>
             <span style={{ color: p.accent2 }}>›</span>
-            <span style={{ color: p.fg }}>Bank-grade engineering. Founding member of Afropocene.</span>
+            <span style={{ color: p.fg }}>{hero.credential1}</span>
             <span style={{ color: p.accent2 }}>›</span>
-            <span>Built by a former AVP Software Developer ($7T in assets) and a working artist.</span>
+            <span>{hero.credential2}</span>
           </div>
         </div>
 
@@ -81,30 +90,35 @@ function DesktopHero() {
           fontSize: 11, letterSpacing: '0.06em',
           color: p.fgDim, paddingTop: 8, textAlign: 'right',
         }} data-reveal data-reveal-delay="160">
-          <div style={{ color: p.fg }}>NOW</div>
-          <div style={{ marginTop: 4 }}>Booking Q3 2026</div>
-          <div style={{ marginTop: 18, color: p.fg }}>STATUS</div>
+          <div style={{ color: p.fg }}>{hero.nowLabel}</div>
+          <div style={{ marginTop: 4 }}>{hero.nowValue}</div>
+          <div style={{ marginTop: 18, color: p.fg }}>{hero.statusLabel}</div>
           <div style={{ marginTop: 4, display: 'inline-flex', alignItems: 'center', gap: 6 }}>
             <span style={{
               width: 6, height: 6, background: p.accent2,
               display: 'inline-block', borderRadius: '50%',
               boxShadow: `0 0 0 3px ${p.accent2}33`,
             }} />
-            <span>2 slots open</span>
+            <span>{hero.statusValue}</span>
           </div>
-          <div style={{ marginTop: 18, color: p.fg }}>NEXT</div>
-          <div style={{ marginTop: 4 }}>Yujo Izakaya<br />ships 14 May</div>
+          <div style={{ marginTop: 18, color: p.fg }}>{hero.nextLabel}</div>
+          <div style={{ marginTop: 4 }}>
+            {nextLines.map((line, i) => (
+              <span key={i}>{line}{i < nextLines.length - 1 && <br />}</span>
+            ))}
+          </div>
         </div>
       </div>
 
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0 }}>
-        <Marquee variant="desktop" />
+        <Marquee variant="desktop" items={hero.marqueeItems} />
       </div>
     </section>
   );
 }
 
-function MobileHero() {
+function MobileHero({ hero }) {
+  const taglineLines = splitLines(hero.tagline);
   return (
     <section style={{ padding: '40px 20px 28px' }}>
       <div data-mreveal style={{
@@ -113,14 +127,14 @@ function MobileHero() {
         display: 'flex', justifyContent: 'space-between',
         marginBottom: 28,
       }}>
-        <span>/INDEX 2026 · v 4.2</span>
+        <span>{hero.indexLabel} · {hero.version?.replace(/^\//, '')}</span>
         <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6 }}>
           <span style={{
             width: 5, height: 5, background: p.accent2,
             display: 'inline-block', borderRadius: '50%',
             boxShadow: `0 0 0 3px ${p.accent2}33`,
           }} />
-          <span>2 SLOTS OPEN</span>
+          <span>{hero.statusValue?.toUpperCase()}</span>
         </span>
       </div>
 
@@ -130,10 +144,10 @@ function MobileHero() {
         lineHeight: 0.94, letterSpacing: '-0.025em',
         margin: 0, color: p.fg,
       }}>
-        Websites for<br />
-        Uganda&rsquo;s most<br />
-        <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent }}>ambitious</em><br />
-        businesses.
+        {hero.heading}<br />
+        {hero.headingLine2}<br />
+        <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent }}>{hero.headingEmphasis}</em><br />
+        {hero.headingTail}
       </h1>
 
       <p data-mreveal data-mreveal-delay="160" style={{
@@ -141,12 +155,13 @@ function MobileHero() {
         fontSize: 17, lineHeight: 1.4,
         color: p.fgDim, margin: '24px 0 0',
       }}>
-        Designed to compete globally.<br />
-        Built for how Uganda actually works.
+        {taglineLines.map((line, i) => (
+          <span key={i}>{line}{i < taglineLines.length - 1 && <br />}</span>
+        ))}
       </p>
 
       <div data-mreveal data-mreveal-delay="220" style={{ display: 'grid', gap: 8, marginTop: 28 }}>
-        <a href="#work" style={{
+        <a href={hero.ctaPrimary?.href || '#work'} style={{
           background: p.accent, color: '#FAFAF7',
           padding: '16px 18px', borderRadius: 2,
           fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
@@ -154,9 +169,9 @@ function MobileHero() {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           border: `1px solid ${p.accent}`,
         }}>
-          <span>SEE THE WORK</span><span aria-hidden>→</span>
+          <span>{hero.ctaPrimary?.label || 'SEE THE WORK'}</span><span aria-hidden>→</span>
         </a>
-        <a href="#mstart" style={{
+        <a href={hero.ctaSecondary?.href || '#mstart'} style={{
           background: 'transparent', color: p.fg,
           padding: '16px 18px', borderRadius: 2,
           fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
@@ -164,7 +179,7 @@ function MobileHero() {
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           border: `1px solid ${p.fg}55`,
         }}>
-          <span>START A PROJECT</span><span aria-hidden>→</span>
+          <span>{hero.ctaSecondary?.label || 'START A PROJECT'}</span><span aria-hidden>→</span>
         </a>
       </div>
 
@@ -178,14 +193,14 @@ function MobileHero() {
         columnGap: 12, rowGap: 6,
       }}>
         <span style={{ color: p.accent2 }}>›</span>
-        <span style={{ color: p.fg }}>Bank-grade engineering. Founding member of Afropocene.</span>
+        <span style={{ color: p.fg }}>{hero.credential1}</span>
         <span style={{ color: p.accent2 }}>›</span>
-        <span>Built by a former AVP Software Developer ($7T in assets) and a working artist.</span>
+        <span>{hero.credential2}</span>
       </div>
     </section>
   );
 }
 
-export default function Hero({ variant = 'desktop' }) {
-  return variant === 'mobile' ? <MobileHero /> : <DesktopHero />;
+export default function Hero({ variant = 'desktop', hero = HOME.hero }) {
+  return variant === 'mobile' ? <MobileHero hero={hero} /> : <DesktopHero hero={hero} />;
 }

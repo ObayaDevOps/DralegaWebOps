@@ -7,7 +7,18 @@ import { grid12 } from '../../lib/styles/layout';
 
 const p = PALETTE;
 
-export default function TFSFooter() {
+export default function TFSFooter({ siteSettings, navLinks }) {
+  const s = siteSettings || {};
+  const links = navLinks && navLinks.length ? navLinks : NAV_LINKS;
+  const studioLabel = s.studioLabel || CONTACT.studioLabel;
+  const emailHref = s.email ? `mailto:${s.email}` : CONTACT.emailHref;
+  const whatsappHref = s.whatsappLink || CONTACT.whatsappHref;
+  const instagramHref = s.instagramLink || CONTACT.instagramHref;
+  const linkedinHref = s.linkedinLink || CONTACT.linkedinHref;
+  const altEmail = s.altEmail || CONTACT.altEmail;
+  const location = s.location || CONTACT.location;
+  const copyright = s.copyright || CONTACT.copyright;
+
   return (
     <footer style={{ padding: '80px 32px 40px', borderTop: `1px solid ${p.rule}` }}>
       <div style={grid12()}>
@@ -17,7 +28,7 @@ export default function TFSFooter() {
             marginTop: 14,
             fontFamily: FONTS.sans,
             fontSize: 14, color: p.fgDim,
-          }}>{CONTACT.studioLabel}</div>
+          }}>{studioLabel}</div>
         </div>
         <div style={{
           gridColumn: 'span 6',
@@ -28,7 +39,7 @@ export default function TFSFooter() {
           <div>
             <div style={{ color: p.fg, marginBottom: 14 }}>/SITEMAP</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              {NAV_LINKS.map((l) => (
+              {links.map((l) => (
                 <Link key={l.href} href={l.href} style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</Link>
               ))}
             </div>
@@ -36,18 +47,18 @@ export default function TFSFooter() {
           <div>
             <div style={{ color: p.fg, marginBottom: 14 }}>/CONNECT</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              <a href={CONTACT.emailHref} style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
-              <a href={CONTACT.whatsappHref} style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
-              <a href={CONTACT.instagramHref} style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a>
-              <a href={CONTACT.linkedinHref} style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
+              <a href={emailHref} style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
+              <a href={whatsappHref} style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
+              <a href={instagramHref} style={{ color: 'inherit', textDecoration: 'none' }}>Instagram</a>
+              <a href={linkedinHref} style={{ color: 'inherit', textDecoration: 'none' }}>LinkedIn</a>
             </div>
           </div>
           <div>
             <div style={{ color: p.fg, marginBottom: 14 }}>/CONTACT</div>
             <div style={{ display: 'grid', gap: 8 }}>
-              <span>{CONTACT.altEmail}</span>
+              <span>{altEmail}</span>
               <span>+256 789 062 116 (WhatsApp Only)</span>
-              <span>{CONTACT.location}</span>
+              <span>{location}</span>
             </div>
           </div>
         </div>
@@ -58,7 +69,7 @@ export default function TFSFooter() {
         fontFamily: FONTS.mono,
         fontSize: 11, letterSpacing: '0.06em', color: p.fgDim,
       }}>
-        <span>{CONTACT.copyright}</span>
+        <span>{copyright}</span>
         <span>Indexed for Earth</span>
       </div>
     </footer>
