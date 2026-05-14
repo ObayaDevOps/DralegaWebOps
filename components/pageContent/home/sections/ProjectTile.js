@@ -52,6 +52,9 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
           width: variant === 'desktop' ? '90%' : '100%',
           margin: variant === 'desktop' ? '0 auto' : undefined,
           background: images.length === 0 ? STRIPES : 'transparent',
+          transition: variant === 'desktop'
+            ? `transform 700ms ${MOTION.ease}, filter 700ms ${MOTION.ease}`
+            : undefined,
         }}
       >
         {images.map((img, i) => (
