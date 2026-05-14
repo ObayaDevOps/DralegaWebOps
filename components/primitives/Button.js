@@ -3,7 +3,7 @@ import { FONTS } from '../../data/tokens';
 const BASE = {
   borderRadius: 2,
   fontFamily: FONTS.mono,
-  fontSize: 12,
+  fontSize: 10,
   letterSpacing: '0.08em',
   textDecoration: 'none',
   display: 'inline-flex',
@@ -16,7 +16,7 @@ export default function Button({
   bg = 'transparent',
   color,
   border,
-  padding = '14px 22px',
+  padding = '11px 18px',
   className,
   style,
   children,

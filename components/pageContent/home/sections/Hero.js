@@ -149,7 +149,7 @@ function MobileHero({ hero }) {
 
       <h1 data-mreveal data-mreveal-delay="80" style={{
         fontFamily: FONTS.serif, fontWeight: 400,
-        fontSize: 'clamp(31px, 9.1vw, 45px)',
+        fontSize: 'clamp(46px, 13.6vw, 68px)',
         lineHeight: 0.94, letterSpacing: '-0.025em',
         margin: 0, color: p.fg,
       }}>
@@ -160,7 +160,7 @@ function MobileHero({ hero }) {
       </h1>
 
       <p data-mreveal data-mreveal-delay="160" style={{
-        fontFamily: FONTS.serif, fontWeight: 300, fontStyle: 'italic',
+        fontFamily: FONTS.sans2, fontWeight: 300, fontStyle: 'normal',
         fontSize: 17, lineHeight: 1.4,
         color: p.fgDim, margin: '24px 0 0',
       }}>
@@ -172,8 +172,8 @@ function MobileHero({ hero }) {
       <div data-mreveal data-mreveal-delay="220" style={{ display: 'grid', gap: 8, marginTop: 28 }}>
         <a href={hero.ctaPrimary?.href || '#work'} style={{
           background: p.accent, color: p.accent3,
-          padding: '16px 18px', borderRadius: 2,
-          fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
+          padding: '13px 14px', borderRadius: 2,
+          fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em',
           textDecoration: 'none',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           border: `1px solid ${p.accent}`,
@@ -182,8 +182,8 @@ function MobileHero({ hero }) {
         </a>
         <a href={hero.ctaSecondary?.href || '#mstart'} style={{
           background: 'transparent', color: p.accent3,
-          padding: '16px 18px', borderRadius: 2,
-          fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
+          padding: '13px 14px', borderRadius: 2,
+          fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em',
           textDecoration: 'none',
           display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           border: `1px solid ${p.fg}55`,

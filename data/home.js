@@ -30,7 +30,7 @@ export const HOME = {
     heading: 'Eight projects.',
     headingEmphasis: 'One studio.',
     headingTail: 'Built to last.',
-    indexLink: {label: 'VIEW THE FULL INDEX', href: '/work'},
+    indexLink: {label: 'VIEW ALL PROJECTS', href: '/work'},
   },
   studioSection: {
     eyebrow: '/SECTION 02 — STUDIO',

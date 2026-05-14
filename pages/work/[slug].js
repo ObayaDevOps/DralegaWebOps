@@ -87,7 +87,7 @@ function Section({ label, children }) {
 }
 
 function BuildGrid({ details, variant }) {
-  const fontSize = variant === 'mobile' ? 11 : 12;
+  const fontSize = variant === 'mobile' ? 14 : 12;
   const pad = variant === 'mobile' ? '14px 16px' : '16px 20px';
   return (
     <div style={{
@@ -226,19 +226,19 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                         border: `1px solid ${p.rule}`, padding: '5px 10px',
                       }}>/{t}</span>
                     ))}
-                    {proj.liveUrl && (
-                      <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" style={{
-                        display: 'inline-flex', alignItems: 'center', gap: 6,
-                        fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.1em',
-                        color: p.accent, textDecoration: 'none', marginLeft: 4,
-                      }}>
-                        SEE THE LIVE WORK
-                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
-                          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                        </svg>
-                      </a>
-                    )}
                   </div>
+                  {proj.liveUrl && (
+                    <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 24,
+                      fontFamily: FONTS.mono, fontSize: 13, letterSpacing: '0.1em',
+                      color: '#000000', textDecoration: 'underline',
+                    }}>
+                      VISIT SITE
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
+                        <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </a>
+                  )}
                 </div>
               </div>
             </section>
@@ -262,7 +262,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                   <Section label="/01 — THE BRIEF">
                     <p style={{
                       fontFamily: FONTS.serif, fontWeight: 300,
-                      fontSize: 'clamp(27px, 2.4vw, 36px)', lineHeight: 1.4,
+                      fontSize: 'clamp(37px, 3.3vw, 50px)', lineHeight: 1.4,
                       margin: 0, color: p.fg, letterSpacing: '-0.012em',
                     }}>{briefText}</p>
                   </Section>
@@ -273,7 +273,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                       style={{
                         fontFamily: FONTS.sans,
                         fontSize: 'clamp(15px, 1.3vw, 17px)', lineHeight: 1.7,
-                        color: p.fgDim, display: 'flex', flexDirection: 'column', gap: 20,
+                        color: '#000000', display: 'flex', flexDirection: 'column', gap: 4,
                       }}
                     />
                   </Section>
@@ -295,11 +295,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
 
             <div style={{ padding: '0 32px 80px' }}>
               <div style={{ borderTop: `1px solid ${p.rule}`, paddingTop: 40, display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
-                <Link href="/work" style={{
-                  fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
-                  color: p.fgDim, textDecoration: 'none',
-                }}>← ALL WORK</Link>
-                <Button as={Link} href="/work" bg={p.accent} color={p.accent3}>NEXT PROJECT →</Button>
+                <Button as={Link} href="/work" bg={p.accent} color={p.accent3}>← ALL WORK</Button>
               </div>
             </div>
           </article>
@@ -310,7 +306,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
             </div>
             <h1 data-mreveal data-mreveal-delay="60" style={{
               fontFamily: FONTS.serif, fontWeight: 300,
-              fontSize: 'clamp(32px, 9vw, 48px)', lineHeight: 0.96,
+              fontSize: 'clamp(42px, 11.7vw, 62px)', lineHeight: 0.96,
               letterSpacing: '-0.025em', margin: '0 0 16px', color: p.fg,
             }}>{proj.title}</h1>
             <p data-mreveal data-mreveal-delay="100" style={{
@@ -324,19 +320,19 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                   border: `1px solid ${p.rule}`, padding: '5px 10px',
                 }}>/{t}</span>
               ))}
-              {proj.liveUrl && (
-                <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 5,
-                  fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.1em',
-                  color: p.accent, textDecoration: 'none', marginLeft: 4,
-                }}>
-                  SEE THE LIVE WORK
-                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
-                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
-                  </svg>
-                </a>
-              )}
             </div>
+            {proj.liveUrl && (
+              <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 5, marginTop: 24,
+                fontFamily: FONTS.mono, fontSize: 13, letterSpacing: '0.1em',
+                color: '#000000', textDecoration: 'underline',
+              }}>
+                VISIT SITE
+                <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
+                  <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                </svg>
+              </a>
+            )}
           </section>
 
           <div style={{ margin: '0 20px 40px' }}>
@@ -354,7 +350,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
               <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/01 — THE BRIEF</div>
               <p style={{
                 fontFamily: FONTS.serif, fontWeight: 300,
-                fontSize: 20, lineHeight: 1.4,
+                fontSize: 33, lineHeight: 1.4,
                 margin: 0, color: p.fg, letterSpacing: '-0.012em',
               }}>{briefText}</p>
             </div>
@@ -364,8 +360,8 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
               <RichText
                 value={approach}
                 style={{
-                  fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.7,
-                  color: p.fgDim, display: 'flex', flexDirection: 'column', gap: 16,
+                  fontFamily: FONTS.sans, fontSize: 20, lineHeight: 1.7,
+                  color: '#000000', display: 'flex', flexDirection: 'column', gap: 4,
                 }}
               />
             </div>
@@ -389,14 +385,10 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
           <div style={{ padding: '24px 20px 64px', borderTop: `1px solid ${p.rule}` }}>
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
               <Link href="/work" style={{
-                fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em',
-                color: p.fgDim, textDecoration: 'none',
-              }}>← ALL WORK</Link>
-              <Link href="/work" style={{
                 background: p.accent, color: p.accent3, padding: '12px 18px',
                 borderRadius: 2, fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', textDecoration: 'none',
-              }}>NEXT PROJECT →</Link>
+              }}>← ALL WORK</Link>
             </div>
           </div>
       </>} />

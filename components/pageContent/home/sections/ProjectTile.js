@@ -36,7 +36,9 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
       ? ratioOverride
       : isWide
         ? (naturalRatio || '16 / 9')
-        : (proj.span === 'half' ? '4 / 3' : '3 / 4');
+        : proj.span === 'twoThirds'
+          ? '16 / 9'
+          : (proj.span === 'half' ? '4 / 3' : '3 / 4');
   const pad   = variant === 'mobile' ? '10px 12px' : '14px 16px';
   const fSize = variant === 'mobile' ? 10 : 11;
 
@@ -48,8 +50,8 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
       style={{
         position: 'relative',
         aspectRatio: ratio,
-        width: isWide && variant === 'desktop' ? '90%' : '100%',
-        margin: isWide && variant === 'desktop' ? '0 auto' : undefined,
+        width: (isWide || proj.span === 'twoThirds') && variant === 'desktop' ? '90%' : '100%',
+        margin: (isWide || proj.span === 'twoThirds') && variant === 'desktop' ? '0 auto' : undefined,
         background: images.length === 0 ? STRIPES : p.bg,
         overflow: 'hidden',
         transition: variant === 'desktop'
@@ -130,14 +132,15 @@ export default function ProjectTile({ proj, idx, variant = 'desktop' }) {
     <Link href={href} className="tfs-tile" data-reveal data-reveal-delay={idx * 60} style={{
       display: 'block', textDecoration: 'none', color: 'inherit',
       gridColumn: proj.span === 'wide' ? 'span 12'
-        : proj.span === 'half' ? 'span 6'
-          : 'span 4',
+        : proj.span === 'twoThirds' ? 'span 8'
+          : proj.span === 'half' ? 'span 6'
+            : 'span 4',
     }}>
       <ProjectVisual proj={proj} variant="desktop" />
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
         gap: 24, marginTop: 18,
-        ...(proj.span === 'wide' ? { width: '90%', margin: '18px auto 0' } : {}),
+        ...(proj.span === 'wide' || proj.span === 'twoThirds' ? { width: '90%', margin: '18px auto 0' } : {}),
       }}>
         <div style={{ flex: '1 1 auto', minWidth: 0 }}>
           <div style={{
