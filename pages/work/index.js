@@ -50,7 +50,7 @@ function tileImage(proj) {
 }
 
 function WorkCard({ proj, idx }) {
-  const ratio = proj.span === 'wide' ? '16 / 9' : proj.span === 'half' ? '4 / 3' : '3 / 4';
+  const ratio = '4 / 3';
   const number = proj.number || proj.n;
 
   return (
@@ -61,7 +61,7 @@ function WorkCard({ proj, idx }) {
       data-reveal-delay={idx * 60}
       style={{
         display: 'block', textDecoration: 'none', color: 'inherit',
-        gridColumn: proj.span === 'wide' ? 'span 12' : proj.span === 'half' ? 'span 6' : 'span 4',
+        gridColumn: 'span 6',
       }}
     >
       <div style={{

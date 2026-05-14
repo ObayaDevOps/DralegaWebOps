@@ -44,7 +44,7 @@ export default function Pricing({ data, siteSettings, navLinks }) {
                 letterSpacing: '-0.025em', margin: 0, color: p.fg,
               }}>
                 {data.heading}<br />
-                <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
+                <em style={{ fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
               </h1>
               <p style={{
                 fontFamily: FONTS.sans, fontSize: 'clamp(16px, 1.4vw, 19px)',
@@ -64,7 +64,9 @@ export default function Pricing({ data, siteSettings, navLinks }) {
                   padding: '40px 36px',
                   borderRight: i % 2 === 0 ? `1px solid ${p.rule}` : 'none',
                   borderBottom: i < 2 ? `1px solid ${p.rule}` : 'none',
-                  background: tier.featured ? p.fg : 'transparent',
+                  background: tier.featured ? p.fg : `${p.fg}06`,
+                  backdropFilter: tier.featured ? 'none' : 'blur(16px)',
+                  WebkitBackdropFilter: tier.featured ? 'none' : 'blur(16px)',
                   position: 'relative',
                 }}
               >
@@ -79,7 +81,7 @@ export default function Pricing({ data, siteSettings, navLinks }) {
                 <div style={{ fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: tier.featured ? `${p.bg}88` : p.fgDim, marginBottom: 16 }}>/{tier.number}</div>
                 <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 'clamp(28px, 3vw, 42px)', letterSpacing: '-0.02em', color: tier.featured ? p.bg : p.fg, marginBottom: 4 }}>{tier.name}</div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 12 }}>
-                  <span style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 'clamp(36px, 4vw, 56px)', letterSpacing: '-0.03em', color: tier.featured ? p.accent2 : p.accent }}>{tier.price}</span>
+                  <span style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 'clamp(36px, 4vw, 56px)', letterSpacing: '-0.03em', color: tier.featured ? p.bg : p.fg }}>{tier.price}</span>
                   <span style={{ fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.06em', color: tier.featured ? `${p.bg}88` : p.fgDim }}>{tier.priceSuffix}</span>
                 </div>
                 <div style={{ fontFamily: FONTS.sans, fontSize: 14, lineHeight: 1.5, color: tier.featured ? `${p.bg}99` : p.fgDim, marginBottom: 32 }}>{tier.bestFor}</div>
@@ -180,7 +182,7 @@ export default function Pricing({ data, siteSettings, navLinks }) {
               letterSpacing: '-0.025em', margin: 0, color: p.fg,
             }}>
               {data.heading}<br />
-              <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
+              <em style={{ fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
             </h1>
             <p data-mreveal data-mreveal-delay="120" style={{ fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.6, color: p.fgDim, margin: '20px 0 0' }}>
               {data.subheading}
@@ -193,7 +195,9 @@ export default function Pricing({ data, siteSettings, navLinks }) {
                 padding: '36px 24px',
                 border: `1px solid ${tier.featured ? p.fg : p.rule}`,
                 marginBottom: 1,
-                background: tier.featured ? p.fg : 'transparent',
+                background: tier.featured ? p.fg : `${p.fg}06`,
+                backdropFilter: tier.featured ? 'none' : 'blur(16px)',
+                WebkitBackdropFilter: tier.featured ? 'none' : 'blur(16px)',
                 position: 'relative',
               }}>
                 {tier.featured && (
@@ -202,7 +206,7 @@ export default function Pricing({ data, siteSettings, navLinks }) {
                 <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: tier.featured ? `${p.bg}88` : p.fgDim, marginBottom: 12 }}>/{tier.number}</div>
                 <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 32, letterSpacing: '-0.02em', color: tier.featured ? p.bg : p.fg, marginBottom: 4 }}>{tier.name}</div>
                 <div style={{ display: 'flex', alignItems: 'baseline', gap: 8, marginBottom: 10 }}>
-                  <span style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 44, letterSpacing: '-0.03em', color: tier.featured ? p.accent2 : p.accent }}>{tier.price}</span>
+                  <span style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 44, letterSpacing: '-0.03em', color: tier.featured ? p.bg : p.fg }}>{tier.price}</span>
                   <span style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.06em', color: tier.featured ? `${p.bg}88` : p.fgDim }}>{tier.priceSuffix}</span>
                 </div>
                 <div style={{ fontFamily: FONTS.sans, fontSize: 13, lineHeight: 1.5, color: tier.featured ? `${p.bg}99` : p.fgDim, marginBottom: 24 }}>{tier.bestFor}</div>

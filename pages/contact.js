@@ -87,7 +87,7 @@ export default function Contact({ data, siteSettings, navLinks }) {
                 letterSpacing: '-0.025em', margin: 0, color: p.fg,
               }}>
                 {data.heading}<br />
-                <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
+                <em style={{ fontStyle: 'normal', fontWeight: 300 }}>{data.headingEmphasis}</em>
               </h1>
               <p style={{
                 fontFamily: FONTS.sans, fontSize: 'clamp(16px, 1.4vw, 19px)',
@@ -213,7 +213,7 @@ export default function Contact({ data, siteSettings, navLinks }) {
               letterSpacing: '-0.025em', margin: 0, color: p.fg,
             }}>
               {data.heading}<br />
-              <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{data.headingEmphasis}</em>
+              <em style={{ fontStyle: 'normal', fontWeight: 300 }}>{data.headingEmphasis}</em>
             </h1>
             <p data-mreveal data-mreveal-delay="120" style={{
               fontFamily: FONTS.serif, fontStyle: 'italic', fontWeight: 300,
