@@ -15,6 +15,7 @@ export default defineType({
     }),
     defineField({name: 'title', type: 'string', title: 'Title'}),
     defineField({name: 'blurb', type: 'text', title: 'Blurb', rows: 2}),
+    defineField({name: 'liveUrl', type: 'url', title: 'Live URL', description: 'Public URL of the deployed project'}),
     defineField({name: 'placeholder', type: 'string', title: 'Placeholder caption (used when no image present)'}),
     defineField({
       name: 'tags',

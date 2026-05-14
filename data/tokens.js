@@ -1,6 +1,7 @@
 export const FONTS = {
   sans:  '"Inter", system-ui, sans-serif',
-  serif: '"Red Hat Display", sans-serif',
+  sans2: '"Red Hat Display", serif',
+  serif: '"Instrument Serif", serif',
   mono:  '"JetBrains Mono", monospace',
 };
 

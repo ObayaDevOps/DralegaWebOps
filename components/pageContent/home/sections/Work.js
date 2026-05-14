@@ -33,7 +33,7 @@ function DesktopWork({ workSection, projects }) {
       <div style={{
         display: 'grid',
         gridTemplateColumns: 'repeat(12, 1fr)',
-        columnGap: 24, rowGap: 88,
+        columnGap: 24, rowGap: 180,
       }}>
         {projects.map((proj, i) => (
           <ProjectTile key={proj._id || proj.n} proj={proj} idx={i} variant="desktop" />

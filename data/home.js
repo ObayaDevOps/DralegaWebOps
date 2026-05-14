@@ -55,6 +55,6 @@ export const HOME = {
     heading: 'Tell us what you’re',
     headingEmphasis: 'building.',
     scopeOptions: ['E-commerce', 'Brand site', 'Web app', 'Booking', 'CMS rebuild', 'Brand system', 'Other'],
-    budgetOptions: ['Under 10k', '10k — 25k', '25k — 60k', '60k +', "Let's discuss"],
+    budgetOptions: ['Foundation — from $1,500', 'Commerce — from $3,500', 'Bespoke — from $7,500', 'Retainer — $800/mo', "Not sure yet"],
   },
 };

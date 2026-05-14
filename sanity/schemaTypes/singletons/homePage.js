@@ -84,6 +84,19 @@ export default defineType({
         defineField({name: 'budgetOptions', type: 'array', title: 'Budget options', of: [{type: 'string'}]}),
       ],
     }),
+    defineField({
+      name: 'featuredProjects',
+      title: 'Featured Projects',
+      type: 'array',
+      description: 'Drag to reorder. These projects appear on the homepage work grid.',
+      of: [
+        {
+          type: 'reference',
+          to: [{type: 'project'}],
+        },
+      ],
+      validation: (Rule) => Rule.unique(),
+    }),
   ],
   preview: {prepare: () => ({title: 'Home Page'})},
 })

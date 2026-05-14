@@ -16,8 +16,8 @@ function DesktopHero({ hero }) {
   const nextLines = splitLines(hero.nextValue);
   return (
     <section style={{ padding: '0 32px', position: 'relative', minHeight: '85vh', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.18 }}>
-        <Iridescence color={[1, 1, 1]} mouseReact={true} amplitude={0.1} speed={0.3} />
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.55 }}>
+        <Iridescence color={[1, 1, 1]} mouseReact={true} amplitude={0.9} speed={0.6} />
       </div>
       <div style={{
         position: 'relative', zIndex: 1,
@@ -43,7 +43,7 @@ function DesktopHero({ hero }) {
         <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
           <h1 style={{
             fontFamily: FONTS.serif, fontWeight: 400,
-            fontSize: 'clamp(17px, 2.8vw, 66px)',
+            fontSize: 'clamp(17px, 4.8vw, 100px)',
             lineHeight: 0.94, letterSpacing: '-0.025em',
             margin: 0, color: p.fg,
           }}>
@@ -52,7 +52,7 @@ function DesktopHero({ hero }) {
             <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent3 }}>{hero.headingEmphasis}</em>{' '}{hero.headingTail}
           </h1>
           <p style={{
-            fontFamily: FONTS.serif, fontWeight: 300, fontStyle: 'italic',
+            fontFamily: FONTS.sans2, fontWeight: 300, fontStyle: 'normal',
             fontSize: 'clamp(18px, 1.6vw, 22px)',
             lineHeight: 1.4, color: p.fgDim,
             margin: '32px 0 0', maxWidth: '46ch',
@@ -66,7 +66,7 @@ function DesktopHero({ hero }) {
             <Button href={hero.ctaPrimary?.href || '#work'} bg={p.accent} color={p.fg} border={p.accent}>
               {hero.ctaPrimary?.label || 'SEE THE WORK'} <span aria-hidden>→</span>
             </Button>
-            <Button href={hero.ctaSecondary?.href || '#start'} color={p.fg} border={`${p.fg}55`}>
+            <Button href={hero.ctaSecondary?.href || '#start'} color={p.accent3} border={`${p.fg}55`}>
               {hero.ctaSecondary?.label || 'START A PROJECT'} <span aria-hidden>→</span>
             </Button>
           </div>
@@ -126,8 +126,8 @@ function MobileHero({ hero }) {
   const taglineLines = splitLines(hero.tagline);
   return (
     <section style={{ padding: '80px 20px 28px', position: 'relative', overflow: 'hidden' }}>
-      <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.18 }}>
-        <Iridescence color={[1, 1, 1]} mouseReact={false} amplitude={0.1} speed={0.3} />
+      <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.55 }}>
+        <Iridescence color={[1, 1, 1]} mouseReact={false} amplitude={0.9} speed={0.6} />
       </div>
       <div style={{ position: 'relative', zIndex: 1 }}>
       <div data-mreveal style={{
@@ -181,7 +181,7 @@ function MobileHero({ hero }) {
           <span>{hero.ctaPrimary?.label || 'SEE THE WORK'}</span><span aria-hidden>→</span>
         </a>
         <a href={hero.ctaSecondary?.href || '#mstart'} style={{
-          background: 'transparent', color: p.fg,
+          background: 'transparent', color: p.accent3,
           padding: '16px 18px', borderRadius: 2,
           fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
           textDecoration: 'none',

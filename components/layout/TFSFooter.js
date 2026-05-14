@@ -20,7 +20,7 @@ export default function TFSFooter({ siteSettings, navLinks }) {
   const copyright = s.copyright || CONTACT.copyright;
 
   return (
-    <footer style={{ padding: '80px 32px 40px', borderTop: `1px solid ${p.rule}` }}>
+    <footer style={{ padding: '200px 32px 80px', background: '#1a1a1a', backgroundImage: 'none', borderTop: '1px solid #000' }}>
       <style>{`
         @media (max-width: 960px) {
           .tfs-footer-grid { grid-template-columns: 1fr !important; }
@@ -34,17 +34,17 @@ export default function TFSFooter({ siteSettings, navLinks }) {
           <div style={{
             marginTop: 14,
             fontFamily: FONTS.sans,
-            fontSize: 14, color: p.fgDim,
+            fontSize: 14, color: p.accent2,
           }}>{studioLabel}</div>
         </div>
         <div className="tfs-footer-links" style={{
           gridColumn: 'span 6',
           display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16,
           fontFamily: FONTS.mono,
-          fontSize: 12, letterSpacing: '0.06em', color: p.fgDim,
+          fontSize: 12, letterSpacing: '0.06em', color: p.accent2,
         }}>
           <div>
-            <div style={{ color: p.fg, marginBottom: 14 }}>/SITEMAP</div>
+            <div style={{ color: p.accent2, marginBottom: 14 }}>/SITEMAP</div>
             <div style={{ display: 'grid', gap: 8 }}>
               {links.map((l) => (
                 <Link key={l.href} href={l.href} style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</Link>
@@ -52,7 +52,7 @@ export default function TFSFooter({ siteSettings, navLinks }) {
             </div>
           </div>
           <div>
-            <div style={{ color: p.fg, marginBottom: 14 }}>/CONNECT</div>
+            <div style={{ color: p.accent2, marginBottom: 14 }}>/CONNECT</div>
             <div style={{ display: 'grid', gap: 8 }}>
               <a href={emailHref} style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
               <a href={whatsappHref} style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
@@ -61,7 +61,7 @@ export default function TFSFooter({ siteSettings, navLinks }) {
             </div>
           </div>
           <div>
-            <div style={{ color: p.fg, marginBottom: 14 }}>/CONTACT</div>
+            <div style={{ color: p.accent2, marginBottom: 14 }}>/CONTACT</div>
             <div style={{ display: 'grid', gap: 8 }}>
               <span>{altEmail}</span>
               <span>+256 789 062 116 (WhatsApp Only)</span>
@@ -71,10 +71,10 @@ export default function TFSFooter({ siteSettings, navLinks }) {
         </div>
       </div>
       <div style={{
-        marginTop: 56, paddingTop: 20, borderTop: `1px solid ${p.rule}`,
+        marginTop: 56, paddingTop: 20, borderTop: `1px solid ${p.accent2}`,
         display: 'flex', justifyContent: 'space-between',
         fontFamily: FONTS.mono,
-        fontSize: 11, letterSpacing: '0.06em', color: p.fgDim,
+        fontSize: 11, letterSpacing: '0.06em', color: p.accent2,
       }}>
         <span>{copyright}</span>
         <span>Indexed for Earth</span>

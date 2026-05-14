@@ -101,7 +101,7 @@ export default function JournalPost({ post, siteSettings, navLinks }) {
               color: p.fgDim, textDecoration: 'none',
             }}>← ALL JOURNAL</Link>
             <Link href="/contact" style={{
-              background: p.accent, color: '#FAFAF7', padding: '12px 18px',
+              background: p.accent, color: p.accent3, padding: '12px 18px',
               borderRadius: 2, fontFamily: FONTS.mono,
               fontSize: 12, letterSpacing: '0.08em', textDecoration: 'none',
             }}>START A PROJECT →</Link>
@@ -142,7 +142,7 @@ export default function JournalPost({ post, siteSettings, navLinks }) {
                 color: p.fgDim, textDecoration: 'none',
               }}>← ALL JOURNAL</Link>
               <Link href="/contact" style={{
-                background: p.accent, color: '#FAFAF7', padding: '10px 16px',
+                background: p.accent, color: p.accent3, padding: '10px 16px',
                 borderRadius: 2, fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', textDecoration: 'none',
               }}>START A PROJECT →</Link>

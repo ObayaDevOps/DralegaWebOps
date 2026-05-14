@@ -92,20 +92,20 @@ export default function TFSMobileShell({ children, siteSettings, navLinks }) {
         }}>MENU</button>
       </header>
       <main>{children}</main>
-      <footer style={{ padding: '48px 20px 28px', borderTop: `1px solid ${p.rule}` }}>
+      <footer style={{ padding: '48px 20px 28px', background: '#1a1a1a', borderTop: '1px solid #000' }}>
         <div style={{ fontSize: 80, lineHeight: 1, marginBottom: 14 }}>
-          <PixelMark color={p.accent} sessionKey="tfs-mfoot" />
+          <PixelMark color={p.accent2} sessionKey="tfs-mfoot" />
         </div>
-        <div style={{ fontFamily: FONTS.sans, fontSize: 13, color: p.fgDim, marginBottom: 32 }}>
+        <div style={{ fontFamily: FONTS.sans, fontSize: 13, color: p.accent2, marginBottom: 32 }}>
           {studioLabel}
         </div>
         <div style={{
           display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24,
-          fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.06em', color: p.fgDim,
-          paddingTop: 24, borderTop: `1px solid ${p.rule}`,
+          fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.06em', color: p.accent2,
+          paddingTop: 24, borderTop: `1px solid ${p.accent2}`,
         }}>
           <div>
-            <div style={{ color: p.fg, marginBottom: 10 }}>/SITE</div>
+            <div style={{ color: p.accent2, marginBottom: 10 }}>/SITE</div>
             <div style={{ display: 'grid', gap: 8 }}>
               {links.map((l) => (
                 <Link key={l.href} href={l.href} style={{ color: 'inherit', textDecoration: 'none' }}>{l.name}</Link>
@@ -113,7 +113,7 @@ export default function TFSMobileShell({ children, siteSettings, navLinks }) {
             </div>
           </div>
           <div>
-            <div style={{ color: p.fg, marginBottom: 10 }}>/CONNECT</div>
+            <div style={{ color: p.accent2, marginBottom: 10 }}>/CONNECT</div>
             <div style={{ display: 'grid', gap: 8 }}>
               <a href={emailHref} style={{ color: 'inherit', textDecoration: 'none' }}>Email</a>
               <a href={whatsappHref} style={{ color: 'inherit', textDecoration: 'none' }}>WhatsApp</a>
@@ -122,7 +122,7 @@ export default function TFSMobileShell({ children, siteSettings, navLinks }) {
             </div>
           </div>
           <div style={{ gridColumn: 'span 2' }}>
-            <div style={{ color: p.fg, marginBottom: 10 }}>/CONTACT</div>
+            <div style={{ color: p.accent2, marginBottom: 10 }}>/CONTACT</div>
             <div style={{ display: 'grid', gap: 6 }}>
               <span>{email}</span>
               <span>+256 789 062 116</span>
@@ -131,8 +131,8 @@ export default function TFSMobileShell({ children, siteSettings, navLinks }) {
           </div>
         </div>
         <div style={{
-          marginTop: 32, paddingTop: 16, borderTop: `1px solid ${p.rule}`,
-          fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.06em', color: p.fgDim,
+          marginTop: 32, paddingTop: 16, borderTop: `1px solid ${p.accent2}`,
+          fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.06em', color: p.accent2,
           display: 'flex', justifyContent: 'space-between',
         }}>
           <span>© 2026</span>

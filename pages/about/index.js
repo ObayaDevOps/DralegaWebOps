@@ -56,7 +56,7 @@ export default function About({ data, siteSettings, navLinks }) {
 
         <section style={{ padding: '0 32px 120px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-            <div style={{ gridColumn: 'span 4' }} data-reveal>
+            <div style={{ gridColumn: '2 / span 4' }} data-reveal>
               <SanityImage
                 source={data.photo}
                 ratio="3 / 4"

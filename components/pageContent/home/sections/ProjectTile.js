@@ -48,9 +48,9 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
       style={{
         position: 'relative',
         aspectRatio: ratio,
-        width: '100%',
+        width: isWide && variant === 'desktop' ? '90%' : '100%',
+        margin: isWide && variant === 'desktop' ? '0 auto' : undefined,
         background: images.length === 0 ? STRIPES : p.bg,
-        border: `1px solid ${p.rule}`,
         overflow: 'hidden',
         transition: variant === 'desktop'
           ? `transform 600ms ${MOTION.ease}, filter 600ms ${MOTION.ease}`
@@ -90,17 +90,6 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
       }}>
         <span>/{proj.n}</span>
         <span>{proj.placeholder}</span>
-      </div>
-      <div style={{
-        position: 'absolute',
-        top: variant === 'mobile' ? 10 : 14,
-        right: variant === 'mobile' ? 12 : 16,
-        fontFamily: FONTS.mono,
-        fontSize: fSize, color: images.length > 0 ? p.bg : p.fgDim, letterSpacing: '0.04em',
-        zIndex: 1,
-        textShadow: images.length > 0 ? '0 1px 3px rgba(0,0,0,0.6)' : 'none',
-      }}>
-        {proj.year}
       </div>
     </div>
   );
@@ -148,6 +137,7 @@ export default function ProjectTile({ proj, idx, variant = 'desktop' }) {
       <div style={{
         display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start',
         gap: 24, marginTop: 18,
+        ...(proj.span === 'wide' ? { width: '90%', margin: '18px auto 0' } : {}),
       }}>
         <div style={{ flex: '1 1 auto', minWidth: 0 }}>
           <div style={{

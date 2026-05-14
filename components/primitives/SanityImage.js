@@ -37,7 +37,6 @@ export default function SanityImage({
       width: '100%',
       aspectRatio: ratio,
       background: isPlaceholder ? STRIPES : p.bg,
-      border: `1px solid ${p.rule}`,
       overflow: 'hidden',
       ...style,
     }}>

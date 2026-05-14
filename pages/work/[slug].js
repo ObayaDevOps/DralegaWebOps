@@ -52,6 +52,7 @@ export async function getStaticProps({params}) {
         span: staticMatch.span,
         placeholder: staticMatch.placeholder,
         slug: staticMatch.slug,
+        liveUrl: staticMatch.liveUrl || null,
         heroImage: staticMatch.images?.[0] ? {url: staticMatch.images[0]} : null,
         tileImages: (staticMatch.images || []).map((url) => ({url})),
         brief: PROJECT_DEFAULTS.brief,
@@ -155,6 +156,7 @@ function Gallery({ gallery, variant }) {
             ratio={i === 0 ? '16 / 9' : '4 / 3'}
             placeholderLabel={g.caption}
             caption={g.caption}
+            style={{ border: 'none' }}
           />
         ))}
       </div>
@@ -171,6 +173,7 @@ function Gallery({ gallery, variant }) {
             ratio={g.span === 'wide' || i === 0 ? '16 / 9' : '4 / 3'}
             placeholderLabel={g.caption}
             caption={g.caption}
+            style={{ border: 'none' }}
           />
         </div>
       ))}
@@ -211,11 +214,11 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                     letterSpacing: '-0.025em', margin: 0, color: p.fg,
                   }}>{proj.title}</h1>
                   <p style={{
-                    fontFamily: FONTS.serif, fontStyle: 'italic',
+                    fontFamily: FONTS.sans2, fontStyle: 'italic',
                     fontWeight: 300, fontSize: 'clamp(18px, 1.8vw, 24px)',
                     lineHeight: 1.4, color: p.fgDim, margin: '24px 0 0', maxWidth: '52ch',
                   }}>{proj.blurb}</p>
-                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 28 }}>
+                  <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginTop: 28, alignItems: 'center' }}>
                     {(proj.tags || []).map((t) => (
                       <span key={t} style={{
                         fontFamily: FONTS.mono,
@@ -223,6 +226,18 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                         border: `1px solid ${p.rule}`, padding: '5px 10px',
                       }}>/{t}</span>
                     ))}
+                    {proj.liveUrl && (
+                      <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" style={{
+                        display: 'inline-flex', alignItems: 'center', gap: 6,
+                        fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.1em',
+                        color: p.accent, textDecoration: 'none', marginLeft: 4,
+                      }}>
+                        SEE THE LIVE WORK
+                        <svg width="12" height="12" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
+                          <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -234,6 +249,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                 ratio="16 / 9"
                 placeholderLabel={proj.placeholder}
                 alt={proj.title}
+                style={{ border: 'none' }}
               />
             </div>
 
@@ -242,35 +258,37 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
               display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24,
             }}>
               <div style={{ gridColumn: '3 / span 8', display: 'flex', flexDirection: 'column', gap: 64 }}>
-                <Section label="/01 — THE BRIEF">
-                  <p style={{
-                    fontFamily: FONTS.serif, fontWeight: 300,
-                    fontSize: 'clamp(20px, 2vw, 28px)', lineHeight: 1.4,
-                    margin: 0, color: p.fg, letterSpacing: '-0.012em',
-                  }}>{briefText}</p>
+                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>
+                  <Section label="/01 — THE BRIEF">
+                    <p style={{
+                      fontFamily: FONTS.serif, fontWeight: 300,
+                      fontSize: 'clamp(27px, 2.4vw, 36px)', lineHeight: 1.4,
+                      margin: 0, color: p.fg, letterSpacing: '-0.012em',
+                    }}>{briefText}</p>
+                  </Section>
+
+                  <Section label="/02 — THE APPROACH">
+                    <RichText
+                      value={approach}
+                      style={{
+                        fontFamily: FONTS.sans,
+                        fontSize: 'clamp(15px, 1.3vw, 17px)', lineHeight: 1.7,
+                        color: p.fgDim, display: 'flex', flexDirection: 'column', gap: 20,
+                      }}
+                    />
+                  </Section>
+                </div>
+
+                <Section label="/03 — GALLERY">
+                  <Gallery gallery={gallery} variant="desktop" />
                 </Section>
 
-                <Section label="/02 — THE APPROACH">
-                  <RichText
-                    value={approach}
-                    style={{
-                      fontFamily: FONTS.sans,
-                      fontSize: 'clamp(15px, 1.3vw, 17px)', lineHeight: 1.7,
-                      color: p.fgDim, display: 'flex', flexDirection: 'column', gap: 20,
-                    }}
-                  />
-                </Section>
-
-                <Section label="/03 — THE BUILD">
+                <Section label="/04 — THE BUILD">
                   <BuildGrid details={buildDetails} variant="desktop" />
                 </Section>
 
-                <Section label="/04 — THE OUTCOME">
+                <Section label="/05 — THE OUTCOME">
                   <Metrics metrics={metrics} variant="desktop" />
-                </Section>
-
-                <Section label="/05 — GALLERY">
-                  <Gallery gallery={gallery} variant="desktop" />
                 </Section>
               </div>
             </div>
@@ -281,7 +299,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                   fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.08em',
                   color: p.fgDim, textDecoration: 'none',
                 }}>← ALL WORK</Link>
-                <Button as={Link} href="/work" bg={p.accent} color="#FAFAF7">NEXT PROJECT →</Button>
+                <Button as={Link} href="/work" bg={p.accent} color={p.accent3}>NEXT PROJECT →</Button>
               </div>
             </div>
           </article>
@@ -296,16 +314,28 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
               letterSpacing: '-0.025em', margin: '0 0 16px', color: p.fg,
             }}>{proj.title}</h1>
             <p data-mreveal data-mreveal-delay="100" style={{
-              fontFamily: FONTS.serif, fontStyle: 'italic', fontWeight: 300,
+              fontFamily: FONTS.sans2, fontStyle: 'italic', fontWeight: 300,
               fontSize: 17, lineHeight: 1.5, color: p.fgDim, margin: '0 0 20px',
             }}>{proj.blurb}</p>
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', alignItems: 'center' }}>
               {(proj.tags || []).map((t) => (
                 <span key={t} style={{
                   fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.1em', color: p.fgDim,
                   border: `1px solid ${p.rule}`, padding: '5px 10px',
                 }}>/{t}</span>
               ))}
+              {proj.liveUrl && (
+                <a href={proj.liveUrl} target="_blank" rel="noopener noreferrer" style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 5,
+                  fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.1em',
+                  color: p.accent, textDecoration: 'none', marginLeft: 4,
+                }}>
+                  SEE THE LIVE WORK
+                  <svg width="11" height="11" viewBox="0 0 12 12" fill="none" style={{ flexShrink: 0 }}>
+                    <path d="M2 10L10 2M10 2H4M10 2V8" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </a>
+              )}
             </div>
           </section>
 
@@ -315,6 +345,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
               ratio="16 / 9"
               placeholderLabel={proj.placeholder}
               alt={proj.title}
+              style={{ border: 'none' }}
             />
           </div>
 
@@ -362,7 +393,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                 color: p.fgDim, textDecoration: 'none',
               }}>← ALL WORK</Link>
               <Link href="/work" style={{
-                background: p.accent, color: '#FAFAF7', padding: '12px 18px',
+                background: p.accent, color: p.accent3, padding: '12px 18px',
                 borderRadius: 2, fontFamily: FONTS.mono,
                 fontSize: 11, letterSpacing: '0.08em', textDecoration: 'none',
               }}>NEXT PROJECT →</Link>
