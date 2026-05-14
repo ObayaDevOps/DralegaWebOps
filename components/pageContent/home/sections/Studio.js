@@ -28,7 +28,7 @@ function DesktopStudio({ data }) {
           }}>{data.eyebrow}</div>
           <p style={{
             fontFamily: FONTS.serif, fontWeight: 300,
-            fontSize: 'clamp(24px, 2.6vw, 36px)',
+            fontSize: 'clamp(31.2px, 3.38vw, 46.8px)',
             lineHeight: 1.2, margin: 0, color: p.fg,
             letterSpacing: '-0.012em',
           }}>
@@ -63,7 +63,7 @@ function DesktopStudio({ data }) {
               }}>/{c.label}</div>
               <div style={{
                 fontFamily: FONTS.serif, fontWeight: 300,
-                fontSize: 'clamp(18px, 1.5vw, 22px)',
+                fontSize: 'clamp(23.4px, 1.95vw, 28.6px)',
                 color: p.fg, lineHeight: 1.4,
                 letterSpacing: '-0.005em',
               }}>{(c.items || []).join(' · ')}</div>
@@ -88,7 +88,7 @@ function MobileStudio({ data }) {
 
       <p data-mreveal data-mreveal-delay="60" style={{
         fontFamily: FONTS.serif, fontWeight: 300,
-        fontSize: 22, lineHeight: 1.3, letterSpacing: '-0.012em',
+        fontSize: 28.6, lineHeight: 1.3, letterSpacing: '-0.012em',
         margin: '0 0 36px', color: p.fg,
       }}>
         {renderBodyWithEmphasis(data.body, data.bodyEmphasis)}
@@ -123,7 +123,7 @@ function MobileStudio({ data }) {
           }}>/{c.label}</div>
           <div style={{
             fontFamily: FONTS.serif, fontWeight: 300,
-            fontSize: 17, lineHeight: 1.4, letterSpacing: '-0.005em',
+            fontSize: 22.1, lineHeight: 1.4, letterSpacing: '-0.005em',
             color: p.fg,
           }}>{(c.items || []).join(' · ')}</div>
         </div>

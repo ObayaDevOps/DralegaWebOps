@@ -1,3 +1,4 @@
+import { useState, useCallback } from 'react';
 import Head from 'next/head';
 import Link from 'next/link';
 import PageLayout from '../../components/layout/PageLayout';
@@ -7,6 +8,7 @@ import { PROJECT_DEFAULTS, buildDetailsForTags } from '../../data/project-defaul
 import Button from '../../components/primitives/Button';
 import RichText from '../../components/primitives/RichText';
 import SanityImage from '../../components/primitives/SanityImage';
+import Lightbox from '../../components/primitives/Lightbox';
 import { client } from '../../lib/sanityClient';
 import { projectBySlugQuery, projectSlugsQuery } from '../../lib/queries/project';
 import { mergeObj } from '../../lib/cms/merge';
@@ -145,19 +147,19 @@ function Metrics({ metrics, variant }) {
   );
 }
 
-function Gallery({ gallery, variant }) {
+function Gallery({ gallery, variant, onOpen }) {
   if (variant === 'mobile') {
     return (
       <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
         {gallery.map((g, i) => (
-          <SanityImage
-            key={i}
-            source={g}
-            ratio={i === 0 ? '16 / 9' : '4 / 3'}
-            placeholderLabel={g.caption}
-            caption={g.caption}
-            style={{ border: 'none' }}
-          />
+          <div key={i} onClick={() => onOpen(i)} style={{ cursor: 'pointer' }}>
+            <SanityImage
+              source={g}
+              placeholderLabel={g.caption}
+              caption={g.caption}
+              style={{ border: 'none' }}
+            />
+          </div>
         ))}
       </div>
     );
@@ -165,12 +167,12 @@ function Gallery({ gallery, variant }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
       {gallery.map((g, i) => (
-        <div key={i} style={{
+        <div key={i} onClick={() => onOpen(i)} style={{
           gridColumn: g.span === 'wide' || i === 0 ? 'span 2' : 'span 1',
+          cursor: 'pointer',
         }}>
           <SanityImage
             source={g}
-            ratio={g.span === 'wide' || i === 0 ? '16 / 9' : '4 / 3'}
             placeholderLabel={g.caption}
             caption={g.caption}
             style={{ border: 'none' }}
@@ -188,6 +190,12 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
   const gallery = proj.gallery && proj.gallery.length ? proj.gallery : PROJECT_DEFAULTS.gallery;
   const approach = proj.approach && proj.approach.length ? proj.approach : PROJECT_DEFAULTS.approach;
   const briefText = proj.brief || PROJECT_DEFAULTS.brief;
+
+  const [lightboxIndex, setLightboxIndex] = useState(null);
+  const openLightbox  = useCallback((i) => setLightboxIndex(i), []);
+  const closeLightbox = useCallback(() => setLightboxIndex(null), []);
+  const prevImage     = useCallback(() => setLightboxIndex((i) => Math.max(0, i - 1)), []);
+  const nextImage     = useCallback((len) => setLightboxIndex((i) => Math.min(len - 1, i + 1)), []);
 
   return (
     <>
@@ -246,7 +254,6 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
             <div style={{ margin: '0 32px', marginBottom: 80 }}>
               <SanityImage
                 source={proj.heroImage}
-                ratio="16 / 9"
                 placeholderLabel={proj.placeholder}
                 alt={proj.title}
                 style={{ border: 'none' }}
@@ -280,7 +287,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                 </div>
 
                 <Section label="/03 — GALLERY">
-                  <Gallery gallery={gallery} variant="desktop" />
+                  <Gallery gallery={gallery} variant="desktop" onOpen={openLightbox} />
                 </Section>
 
                 <Section label="/04 — THE BUILD">
@@ -338,7 +345,6 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
           <div style={{ margin: '0 20px 40px' }}>
             <SanityImage
               source={proj.heroImage}
-              ratio="16 / 9"
               placeholderLabel={proj.placeholder}
               alt={proj.title}
               style={{ border: 'none' }}
@@ -378,7 +384,7 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
 
             <div data-mreveal style={{ paddingTop: 40, borderTop: `1px solid ${p.rule}` }}>
               <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/05 — GALLERY</div>
-              <Gallery gallery={gallery} variant="mobile" />
+              <Gallery gallery={gallery} variant="mobile" onOpen={openLightbox} />
             </div>
           </div>
 
@@ -392,6 +398,13 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
             </div>
           </div>
       </>} />
+      <Lightbox
+        items={gallery}
+        index={lightboxIndex}
+        onClose={closeLightbox}
+        onPrev={prevImage}
+        onNext={() => nextImage(gallery.length)}
+      />
     </>
   );
 }

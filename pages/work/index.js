@@ -148,7 +148,7 @@ export default function WorkIndex({ workPage, projects, siteSettings, navLinks }
                   letterSpacing: '-0.025em', margin: 0, color: p.fg,
                 }}>
                   {workPage.heading}<br />
-                  <em style={{ color: p.accent2, fontStyle: 'italic', fontWeight: 300 }}>{workPage.headingEmphasis}</em>
+                  <em style={{ color: p.fg, fontStyle: 'italic', fontWeight: 300 }}>{workPage.headingEmphasis}</em>
                 </h1>
                 <p style={{
                   fontFamily: FONTS.sans,
@@ -177,7 +177,7 @@ export default function WorkIndex({ workPage, projects, siteSettings, navLinks }
               letterSpacing: '-0.025em', margin: 0, color: p.fg,
             }}>
               {workPage.heading}<br />
-              <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{workPage.headingEmphasis}</em>
+              <em style={{ color: p.fg, fontStyle: 'italic', fontWeight: 300 }}>{workPage.headingEmphasis}</em>
             </h1>
             <p data-mreveal data-mreveal-delay="120" style={{ fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.6, color: p.fgDim, margin: '20px 0 0' }}>
               {workPage.subheading}

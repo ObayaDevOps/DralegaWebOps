@@ -2,7 +2,7 @@ export const FONTS = {
   sans:  '"Inter", system-ui, sans-serif',
   sans2: '"Red Hat Display", serif',
   serif: '"Instrument Serif", serif',
-  mono:  '"JetBrains Mono", monospace',
+  mono:  '"IBM Plex Mono", monospace',
 };
 
 export const MOTION = {

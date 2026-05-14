@@ -8,7 +8,6 @@ const STRIPES = `repeating-linear-gradient(135deg, rgba(26,26,26,0.045) 0 12px, 
 function ProjectVisual({ proj, variant, ratioOverride }) {
   const [hovered, setHovered] = useState(false);
   const [activeIdx, setActiveIdx] = useState(0);
-  const [naturalRatio, setNaturalRatio] = useState(null);
   const timerRef = useRef(null);
 
   const rawImages = proj.tileImages && proj.tileImages.length
@@ -31,16 +30,65 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
   }, [hovered, hasMultiple, images.length]);
 
   const isWide = proj.span === 'wide';
-  const ratio =
-    ratioOverride
-      ? ratioOverride
-      : isWide
-        ? (naturalRatio || '16 / 9')
-        : proj.span === 'twoThirds'
-          ? '16 / 9'
-          : (proj.span === 'half' ? '4 / 3' : '3 / 4');
+  const ratio = ratioOverride
+    ? ratioOverride
+    : isWide
+      ? null
+      : proj.span === 'twoThirds'
+        ? '16 / 9'
+        : (proj.span === 'half' ? '4 / 3' : '3 / 4');
   const pad   = variant === 'mobile' ? '10px 12px' : '14px 16px';
   const fSize = variant === 'mobile' ? 10 : 11;
+
+  // Wide tiles: natural sizing — no fixed aspect ratio, no cropping
+  if (isWide) {
+    return (
+      <div
+        className="tfs-visual"
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
+        style={{
+          position: 'relative',
+          width: variant === 'desktop' ? '90%' : '100%',
+          margin: variant === 'desktop' ? '0 auto' : undefined,
+          background: images.length === 0 ? STRIPES : 'transparent',
+        }}
+      >
+        {images.map((img, i) => (
+          <img
+            key={img.url}
+            src={img.url}
+            alt={img.alt || ''}
+            style={{
+              display: i === 0 ? 'block' : undefined,
+              position: i === 0 ? 'relative' : 'absolute',
+              inset: i === 0 ? undefined : 0,
+              width: '100%',
+              height: i === 0 ? 'auto' : '100%',
+              objectFit: i === 0 ? undefined : 'cover',
+              opacity: i === activeIdx ? 1 : 0,
+              transition: 'opacity 900ms ease',
+              pointerEvents: 'none',
+              ...(img.lqip ? {backgroundImage: `url(${img.lqip})`, backgroundSize: 'cover'} : null),
+            }}
+          />
+        ))}
+
+        <div style={{
+          position: 'absolute', inset: 0,
+          display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between',
+          padding: pad,
+          fontFamily: FONTS.mono,
+          fontSize: fSize, color: images.length > 0 ? p.bg : p.fgDim, letterSpacing: '0.04em',
+          zIndex: 1,
+          textShadow: images.length > 0 ? '0 1px 3px rgba(0,0,0,0.6)' : 'none',
+        }}>
+          <span>/{proj.n}</span>
+          <span>{proj.placeholder}</span>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -50,8 +98,8 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
       style={{
         position: 'relative',
         aspectRatio: ratio,
-        width: (isWide || proj.span === 'twoThirds') && variant === 'desktop' ? '90%' : '100%',
-        margin: (isWide || proj.span === 'twoThirds') && variant === 'desktop' ? '0 auto' : undefined,
+        width: proj.span === 'twoThirds' && variant === 'desktop' ? '90%' : '100%',
+        margin: proj.span === 'twoThirds' && variant === 'desktop' ? '0 auto' : undefined,
         background: images.length === 0 ? STRIPES : p.bg,
         overflow: 'hidden',
         transition: variant === 'desktop'
@@ -64,9 +112,6 @@ function ProjectVisual({ proj, variant, ratioOverride }) {
           key={img.url}
           src={img.url}
           alt={img.alt || ''}
-          onLoad={isWide && i === 0 && !naturalRatio
-            ? (e) => setNaturalRatio(`${e.target.naturalWidth} / ${e.target.naturalHeight}`)
-            : undefined}
           style={{
             position: 'absolute',
             inset: 0,

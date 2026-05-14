@@ -31,6 +31,39 @@ export default function SanityImage({
   }
   const lqip = isObj && source.lqip ? source.lqip : null;
 
+  if (!ratio) {
+    return (
+      <div style={{ position: 'relative', width: '100%', background: isPlaceholder ? STRIPES : 'transparent', ...style }}>
+        {url && (
+          <img
+            src={url}
+            alt={alt}
+            loading="lazy"
+            style={{
+              display: 'block', width: '100%', height: 'auto',
+              ...(lqip ? {backgroundImage: `url(${lqip})`, backgroundSize: 'cover'} : null),
+              ...imgStyle,
+            }}
+          />
+        )}
+        {!url && (placeholderLabel || caption) && (
+          <div style={{
+            padding: '40px 0',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            fontFamily: FONTS.mono, fontSize: 11, color: p.fgDim, letterSpacing: '0.06em',
+          }}>
+            {placeholderLabel || caption}
+          </div>
+        )}
+        {caption && url && (
+          <div style={{ fontFamily: FONTS.mono, fontSize: 10, color: p.fgDim, letterSpacing: '0.06em', marginTop: 8 }}>
+            {caption}
+          </div>
+        )}
+      </div>
+    );
+  }
+
   return (
     <div style={{
       position: 'relative',
