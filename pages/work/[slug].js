@@ -277,10 +277,17 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
                   <Section label="/02 — THE APPROACH">
                     <RichText
                       value={approach}
+                      components={{
+                        block: {
+                          normal: ({ children }) => (
+                            <p style={{ margin: '0.5em 0' }}>{children}</p>
+                          ),
+                        },
+                      }}
                       style={{
                         fontFamily: FONTS.sans,
                         fontSize: 'clamp(15px, 1.3vw, 17px)', lineHeight: 1.7,
-                        color: '#000000', display: 'flex', flexDirection: 'column', gap: 4,
+                        color: '#000000', display: 'flex', flexDirection: 'column', gap: 0,
                       }}
                     />
                   </Section>
@@ -365,26 +372,33 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
               <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/02 — THE APPROACH</div>
               <RichText
                 value={approach}
+                components={{
+                  block: {
+                    normal: ({ children }) => (
+                      <p style={{ margin: '0.25em 0' }}>{children}</p>
+                    ),
+                  },
+                }}
                 style={{
-                  fontFamily: FONTS.sans, fontSize: 20, lineHeight: 1.7,
-                  color: '#000000', display: 'flex', flexDirection: 'column', gap: 4,
+                  fontFamily: FONTS.sans, fontSize: 16, lineHeight: 1.7,
+                  color: '#000000', display: 'flex', flexDirection: 'column', gap: 0,
                 }}
               />
             </div>
 
             <div data-mreveal style={{ paddingTop: 40, borderTop: `1px solid ${p.rule}`, marginBottom: 40 }}>
-              <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/03 — THE BUILD</div>
-              <BuildGrid details={buildDetails} variant="mobile" />
+              <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/03 — GALLERY</div>
+              <Gallery gallery={gallery} variant="mobile" onOpen={openLightbox} />
             </div>
 
             <div data-mreveal style={{ paddingTop: 40, borderTop: `1px solid ${p.rule}`, marginBottom: 40 }}>
-              <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/04 — THE OUTCOME</div>
-              <Metrics metrics={metrics} variant="mobile" />
+              <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/04 — THE BUILD</div>
+              <BuildGrid details={buildDetails} variant="mobile" />
             </div>
 
             <div data-mreveal style={{ paddingTop: 40, borderTop: `1px solid ${p.rule}` }}>
-              <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/05 — GALLERY</div>
-              <Gallery gallery={gallery} variant="mobile" onOpen={openLightbox} />
+              <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/05 — THE OUTCOME</div>
+              <Metrics metrics={metrics} variant="mobile" />
             </div>
           </div>
 

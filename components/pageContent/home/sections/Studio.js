@@ -89,14 +89,11 @@ function MobileStudio({ data }) {
   const stats = data.stats || [];
   const capabilities = data.capabilities || [];
   return (
-    <div style={{ height: '200vh' }}>
+    <div>
       <section style={{
-        position: 'sticky', top: 0,
-        height: '100vh',
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
         background: p.fg,
-        padding: '0 20px', boxSizing: 'border-box',
-        overflowY: 'auto',
+        padding: '60px 20px', boxSizing: 'border-box',
       }}>
         <div style={{
           fontFamily: FONTS.mono,

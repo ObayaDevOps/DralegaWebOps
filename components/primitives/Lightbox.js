@@ -1,15 +1,25 @@
-import { useState, useEffect, useCallback } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { FONTS, MOTION } from '../../data/tokens';
 
 const EASE = MOTION.ease;
 const DUR_OVERLAY = MOTION.drawerOverlay;   // 240ms
 const DUR_PANEL   = MOTION.drawerPanel;     // 360ms
+const SWIPE_THRESHOLD = 50;
 
 export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
-  const [mounted, setMounted] = useState(false);
-  const [show,    setShow]    = useState(false);
-  const [opaque,  setOpaque]  = useState(false);
+  const [mounted,  setMounted]  = useState(false);
+  const [show,     setShow]     = useState(false);
+  const [opaque,   setOpaque]   = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const touchStartX = useRef(null);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => setMounted(true), []);
 
@@ -49,24 +59,36 @@ export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
 
   if (!mounted || !show) return null;
 
-  const item     = items[index] || {};
-  const imgSrc   = item.url ? `${item.url}?w=2400&fit=max&auto=format` : '';
-  const lqip     = item.lqip || null;
-  const caption  = item.caption || item.alt || null;
-  const hasPrev  = index > 0;
-  const hasNext  = index < items.length - 1;
+  const item    = items[index] || {};
+  const imgSrc  = item.url ? `${item.url}?w=2400&fit=max&auto=format` : '';
+  const lqip    = item.lqip || null;
+  const caption = item.caption || item.alt || null;
+  const hasPrev = index > 0;
+  const hasNext = index < items.length - 1;
 
   const stopProp = (e) => e.stopPropagation();
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchEnd = (e) => {
+    if (touchStartX.current === null) return;
+    const dx = e.changedTouches[0].clientX - touchStartX.current;
+    touchStartX.current = null;
+    if (dx > SWIPE_THRESHOLD && hasPrev) onPrev();
+    if (dx < -SWIPE_THRESHOLD && hasNext) onNext();
+  };
 
   const btnBase = {
     position: 'absolute',
     top: '50%',
     transform: 'translateY(-50%)',
-    background: 'rgba(255,255,255,0.12)',
-    border: '1px solid rgba(255,255,255,0.6)',
-    padding: '16px 22px',
+    background: isMobile ? 'rgba(255,255,255,0.25)' : 'rgba(255,255,255,0.12)',
+    border: isMobile ? '1.5px solid rgba(255,255,255,0.9)' : '1px solid rgba(255,255,255,0.6)',
+    padding: isMobile ? '10px 14px' : '16px 22px',
     fontFamily: FONTS.mono,
-    fontSize: 18,
+    fontSize: isMobile ? 20 : 18,
     letterSpacing: '0.08em',
     color: '#FFFFFF',
     cursor: 'pointer',
@@ -92,6 +114,8 @@ export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
       {/* panel */}
       <div
         onClick={onClose}
+        onTouchStart={handleTouchStart}
+        onTouchEnd={handleTouchEnd}
         style={{
           position: 'fixed',
           inset: 0,
@@ -142,7 +166,7 @@ export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
 
         {/* prev */}
         {hasPrev && (
-          <button onClick={(e) => { stopProp(e); onPrev(); }} style={{ ...btnBase, left: 24 }}>←</button>
+          <button onClick={(e) => { stopProp(e); onPrev(); }} style={{ ...btnBase, left: isMobile ? 12 : 24 }}>←</button>
         )}
 
         {/* image + caption */}
@@ -172,7 +196,7 @@ export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
           {caption && (
             <div style={{
               fontFamily: FONTS.mono,
-              fontSize: 18,
+              fontSize: isMobile ? 16 : 18,
               letterSpacing: '0.06em',
               color: 'rgba(255,255,255,0.5)',
               textAlign: 'center',
@@ -182,7 +206,7 @@ export default function Lightbox({ items, index, onClose, onPrev, onNext }) {
 
         {/* next */}
         {hasNext && (
-          <button onClick={(e) => { stopProp(e); onNext(); }} style={{ ...btnBase, right: 24 }}>→</button>
+          <button onClick={(e) => { stopProp(e); onNext(); }} style={{ ...btnBase, right: isMobile ? 12 : 24 }}>→</button>
         )}
       </div>
     </>,

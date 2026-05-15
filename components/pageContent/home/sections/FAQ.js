@@ -59,9 +59,9 @@ function DesktopFAQ({ data }) {
                 {isOpen && (
                   <div style={{
                     paddingBottom: 24,
-                    fontFamily: FONTS.serif, fontWeight: 300,
-                    fontSize: 'clamp(16px, 1.3vw, 19px)',
-                    color: p.fgDim, lineHeight: 1.65,
+                    fontFamily: FONTS.sans, fontWeight: 300,
+                    fontSize: 'clamp(12.8px, 1.04vw, 15.2px)',
+                    color: '#000000', lineHeight: 1.65,
                     letterSpacing: '-0.005em',
                   }}>{item.a}</div>
                 )}
@@ -123,8 +123,8 @@ function MobileFAQ({ data }) {
             {isOpen && (
               <div style={{
                 paddingBottom: 18,
-                fontFamily: FONTS.serif, fontWeight: 300,
-                fontSize: 16, color: p.fgDim, lineHeight: 1.65,
+                fontFamily: FONTS.sans, fontWeight: 300,
+                fontSize: 14.08, color: '#000000', lineHeight: 1.65,
                 letterSpacing: '-0.005em',
               }}>{item.a}</div>
             )}

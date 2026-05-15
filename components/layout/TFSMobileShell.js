@@ -93,7 +93,7 @@ export default function TFSMobileShell({ children, siteSettings, navLinks }) {
       </header>
       <main>{children}</main>
       <footer style={{ padding: '48px 20px 28px', background: '#1a1a1a', borderTop: '1px solid #000' }}>
-        <div style={{ fontSize: 80, lineHeight: 1, marginBottom: 14 }}>
+        <div style={{ fontSize: 70, lineHeight: 1, marginBottom: 14 }}>
           <PixelMark color={p.accent2} sessionKey="tfs-mfoot" />
         </div>
         <div style={{ fontFamily: FONTS.sans, fontSize: 13, color: p.accent2, marginBottom: 32 }}>

@@ -39,6 +39,18 @@ function DesktopWork({ workSection, projects }) {
           <ProjectTile key={proj._id || proj.n} proj={proj} idx={i} variant="desktop" />
         ))}
       </div>
+
+      <a href="/work" style={{
+        marginTop: 80, display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        padding: '20px 0',
+        borderTop: `1px solid ${p.rule}`,
+        borderBottom: `1px solid ${p.rule}`,
+        fontFamily: FONTS.mono,
+        fontSize: 12, letterSpacing: '0.08em',
+        color: p.fg, textDecoration: 'none',
+      }}>
+        <span>SEE MORE WORK</span><span aria-hidden>→</span>
+      </a>
     </section>
   );
 }
