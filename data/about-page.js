@@ -13,7 +13,7 @@ export const ABOUT_PAGE = {
   heading: 'One studio.',
   headingEmphasis: 'Two practices.',
   photoCaption: 'Obaya Dralega · Kampala',
-  intro: 'twofivesix is a one-person studio in Kampala, run by Obaya Dralega.',
+  intro: 'twofivesix is a studio in Kampala, run by Obaya Dralega.',
   body: [
     block(
       'The studio sits at an unusual intersection. Obaya is a founding member of Afropocene StudioLab, Uganda’s leading ' +

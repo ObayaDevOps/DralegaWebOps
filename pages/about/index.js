@@ -66,28 +66,30 @@ export default function About({ data, siteSettings, navLinks }) {
             </div>
 
             <div style={{ gridColumn: '6 / span 7', display: 'flex', flexDirection: 'column', gap: 32 }} data-reveal data-reveal-delay="100">
-              <p style={{
-                fontFamily: FONTS.serif, fontWeight: 300,
-                fontSize: 'clamp(20px, 2vw, 27px)', lineHeight: 1.4,
-                margin: 0, color: p.fg, letterSpacing: '-0.012em',
-              }}>{data.intro}</p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                <p style={{
+                  fontFamily: FONTS.serif, fontWeight: 300,
+                  fontSize: 'clamp(24px, 2.4vw, 32px)', lineHeight: 1.4,
+                  margin: 0, color: p.fg, letterSpacing: '-0.012em',
+                }}>{data.intro}</p>
+
+                {data.closer && (
+                  <p style={{
+                    fontFamily: FONTS.serif, fontStyle: 'italic', fontWeight: 300,
+                    fontSize: 'clamp(22px, 2.2vw, 28px)', lineHeight: 1.4,
+                    margin: 0, color: p.fg, letterSpacing: '-0.01em',
+                  }}>{data.closer}</p>
+                )}
+              </div>
 
               <RichText
                 value={data.body}
                 style={{
                   fontFamily: FONTS.sans,
                   fontSize: 'clamp(15px, 1.3vw, 17px)', lineHeight: 1.7,
-                  color: p.fgDim, display: 'flex', flexDirection: 'column', gap: 24,
+                  color: p.fg, display: 'flex', flexDirection: 'column', gap: 4,
                 }}
               />
-
-              {data.closer && (
-                <p style={{
-                  fontFamily: FONTS.serif, fontStyle: 'italic', fontWeight: 300,
-                  fontSize: 'clamp(18px, 1.8vw, 23px)', lineHeight: 1.4,
-                  margin: 0, color: p.fg, letterSpacing: '-0.01em',
-                }}>{data.closer}</p>
-              )}
             </div>
           </div>
         </section>
@@ -95,7 +97,7 @@ export default function About({ data, siteSettings, navLinks }) {
         {credentials.length > 0 && (
           <section style={{ padding: '80px 32px', borderTop: `1px solid ${p.rule}` }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24, marginBottom: 48 }}>
-              <div style={{ gridColumn: 'span 2', fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: p.fgDim }} data-reveal>/CREDENTIALS</div>
+              <div style={{ gridColumn: 'span 2', fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: p.fg }} data-reveal>/CREDENTIALS</div>
               <div style={{ gridColumn: 'span 10' }}>
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 24 }}>
                   {credentials.map((c, i) => (
@@ -108,7 +110,7 @@ export default function About({ data, siteSettings, navLinks }) {
                       }}>/{c.label?.toUpperCase()}</div>
                       <p style={{
                         fontFamily: FONTS.sans,
-                        fontSize: 15, lineHeight: 1.65, color: p.fgDim, margin: 0,
+                        fontSize: 15, lineHeight: 1.65, color: p.fg, margin: 0,
                       }}>{c.body}</p>
                     </div>
                   ))}
@@ -121,7 +123,7 @@ export default function About({ data, siteSettings, navLinks }) {
         {stack.length > 0 && (
           <section style={{ padding: '80px 32px', borderTop: `1px solid ${p.rule}` }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-              <div style={{ gridColumn: 'span 2', fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: p.fgDim }} data-reveal>/STACK</div>
+              <div style={{ gridColumn: 'span 2', fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: p.fg }} data-reveal>/STACK</div>
               <div style={{ gridColumn: 'span 10' }}>
                 {stack.map((s, i) => (
                   <div key={s.label} data-reveal data-reveal-delay={i * 60} style={{
@@ -132,7 +134,7 @@ export default function About({ data, siteSettings, navLinks }) {
                     alignItems: 'baseline',
                   }}>
                     <div style={{ fontFamily: FONTS.mono, fontSize: 12, letterSpacing: '0.1em', color: p.accent }}>/{s.label}</div>
-                    <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 'clamp(18px, 1.5vw, 22px)', color: p.fg, lineHeight: 1.4, letterSpacing: '-0.005em' }}>
+                    <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 'clamp(21px, 1.8vw, 26px)', color: p.fg, lineHeight: 1.4, letterSpacing: '-0.005em' }}>
                       {(s.items || []).join(' · ')}
                     </div>
                   </div>
@@ -145,13 +147,13 @@ export default function About({ data, siteSettings, navLinks }) {
         {clients.length > 0 && (
           <section style={{ padding: '80px 32px', borderTop: `1px solid ${p.rule}` }}>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(12, 1fr)', gap: 24 }}>
-              <div style={{ gridColumn: 'span 2', fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: p.fgDim }} data-reveal>/CLIENTS</div>
+              <div style={{ gridColumn: 'span 2', fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.08em', color: p.fg }} data-reveal>/CLIENTS</div>
               <div style={{ gridColumn: 'span 10' }} data-reveal data-reveal-delay="80">
                 <div style={{ display: 'flex', flexWrap: 'wrap', gap: '20px 40px' }}>
                   {clients.map((c, i) => (
                     <span key={c} style={{
                       fontFamily: FONTS.serif, fontWeight: 300,
-                      fontSize: 'clamp(16px, 1.4vw, 20px)', color: i % 3 === 0 ? p.fg : p.fgDim,
+                      fontSize: 'clamp(19px, 1.6vw, 24px)', color: p.fg,
                       letterSpacing: '-0.01em',
                     }}>{c}</span>
                   ))}
@@ -207,14 +209,21 @@ export default function About({ data, siteSettings, navLinks }) {
               />
             </div>
             <div data-mreveal data-mreveal-delay="60" style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-              <p style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 20, lineHeight: 1.4, margin: 0, color: p.fg, letterSpacing: '-0.012em' }}>
-                {data.intro}
-              </p>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                <p style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 24, lineHeight: 1.4, margin: 0, color: p.fg, letterSpacing: '-0.012em' }}>
+                  {data.intro}
+                </p>
+                {data.closer && (
+                  <p style={{ fontFamily: FONTS.serif, fontStyle: 'italic', fontWeight: 300, fontSize: 20, lineHeight: 1.4, margin: 0, color: p.fg, letterSpacing: '-0.01em' }}>
+                    {data.closer}
+                  </p>
+                )}
+              </div>
               <RichText
                 value={data.body}
                 style={{
-                  fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.7, color: p.fgDim,
-                  display: 'flex', flexDirection: 'column', gap: 16,
+                  fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.7, color: p.fg,
+                  display: 'flex', flexDirection: 'column', gap: 4,
                 }}
               />
             </div>
@@ -222,11 +231,11 @@ export default function About({ data, siteSettings, navLinks }) {
 
           {credentials.length > 0 && (
             <section style={{ padding: '40px 20px', borderTop: `1px solid ${p.rule}` }}>
-              <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/CREDENTIALS</div>
+              <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fg, marginBottom: 20 }}>/CREDENTIALS</div>
               {credentials.map((c, i) => (
                 <div key={c.label} data-mreveal data-mreveal-delay={i * 50} style={{ padding: '16px 0', borderBottom: `1px solid ${p.rule}` }}>
                   <div style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.1em', color: p.accent, marginBottom: 8 }}>/{c.label?.toUpperCase()}</div>
-                  <p style={{ fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.65, color: p.fgDim, margin: 0 }}>{c.body}</p>
+                  <p style={{ fontFamily: FONTS.sans, fontSize: 15, lineHeight: 1.65, color: p.fg, margin: 0 }}>{c.body}</p>
                 </div>
               ))}
             </section>
@@ -234,14 +243,14 @@ export default function About({ data, siteSettings, navLinks }) {
 
           {stack.length > 0 && (
             <section style={{ padding: '40px 20px', borderTop: `1px solid ${p.rule}` }}>
-              <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 20 }}>/STACK</div>
+              <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fg, marginBottom: 20 }}>/STACK</div>
               {stack.map((s, i) => (
                 <div key={s.label} data-mreveal data-mreveal-delay={i * 50} style={{
                   display: 'grid', gridTemplateColumns: '80px 1fr', gap: 16,
                   padding: '16px 0', borderBottom: `1px solid ${p.rule}`, alignItems: 'baseline',
                 }}>
                   <div style={{ fontFamily: FONTS.mono, fontSize: 11, letterSpacing: '0.1em', color: p.accent }}>/{s.label}</div>
-                  <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 17, lineHeight: 1.4, letterSpacing: '-0.005em', color: p.fg }}>{(s.items || []).join(' · ')}</div>
+                  <div style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 20, lineHeight: 1.4, letterSpacing: '-0.005em', color: p.fg }}>{(s.items || []).join(' · ')}</div>
                 </div>
               ))}
             </section>
@@ -249,10 +258,10 @@ export default function About({ data, siteSettings, navLinks }) {
 
           {clients.length > 0 && (
             <section style={{ padding: '40px 20px', borderTop: `1px solid ${p.rule}` }}>
-              <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fgDim, marginBottom: 16 }}>/CLIENTS</div>
+              <div data-mreveal style={{ fontFamily: FONTS.mono, fontSize: 10, letterSpacing: '0.08em', color: p.fg, marginBottom: 16 }}>/CLIENTS</div>
               <div data-mreveal data-mreveal-delay="60" style={{ display: 'flex', flexWrap: 'wrap', gap: '14px 24px' }}>
                 {clients.map((c, i) => (
-                  <span key={c} style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 17, color: i % 3 === 0 ? p.fg : p.fgDim, letterSpacing: '-0.01em' }}>{c}</span>
+                  <span key={c} style={{ fontFamily: FONTS.serif, fontWeight: 300, fontSize: 20, color: p.fg, letterSpacing: '-0.01em' }}>{c}</span>
                 ))}
               </div>
             </section>

@@ -54,7 +54,7 @@ const SINGLETONS_SEED = [
     headingEmphasis: 'Two practices.',
     photoCaption: 'Obaya Dralega · Kampala',
     body: [
-      {_type: 'block', _key: 'p1', style: 'normal', children: [{_type: 'span', _key: 's1', text: 'twofivesix is a one-person studio in Kampala, run by Obaya Dralega.', marks: []}]},
+      {_type: 'block', _key: 'p1', style: 'normal', children: [{_type: 'span', _key: 's1', text: 'twofivesix is a studio in Kampala, run by Obaya Dralega.', marks: []}]},
       {_type: 'block', _key: 'p2', style: 'normal', children: [
         {_type: 'span', _key: 's1', text: 'The studio sits at an unusual intersection. Obaya is a founding member of ', marks: []},
         {_type: 'span', _key: 's2', text: 'Afropocene StudioLab', marks: ['strong']},
