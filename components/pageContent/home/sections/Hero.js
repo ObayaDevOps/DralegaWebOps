@@ -16,6 +16,12 @@ function DesktopHero({ hero }) {
   const nextLines = splitLines(hero.nextValue);
   return (
     <section style={{ padding: '0 32px', position: 'relative', minHeight: '85vh', overflow: 'hidden' }}>
+      <style>{`
+        @media (min-width: 768px) and (max-width: 1024px) {
+          .tfs-hero-h1 { font-size: clamp(22px, 6.24vw, 130px) !important; }
+          .tfs-hero-tagline { font-size: clamp(23px, 2.08vw, 29px) !important; }
+        }
+      `}</style>
       <div style={{ position: 'absolute', inset: 0, zIndex: 0, opacity: 0.55 }}>
         <Iridescence color={[1, 1, 1]} mouseReact={true} amplitude={0.9} speed={0.6} />
       </div>
@@ -41,7 +47,7 @@ function DesktopHero({ hero }) {
         </div>
 
         <div style={{ gridColumn: 'span 8' }} data-reveal data-reveal-delay="80">
-          <h1 style={{
+          <h1 className="tfs-hero-h1" style={{
             fontFamily: FONTS.serif, fontWeight: 400,
             fontSize: 'clamp(17px, 4.8vw, 100px)',
             lineHeight: 0.94, letterSpacing: '-0.025em',
@@ -51,7 +57,7 @@ function DesktopHero({ hero }) {
             {hero.headingLine2}<br />
             <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent3 }}>{hero.headingEmphasis}</em>{' '}{hero.headingTail}
           </h1>
-          <p style={{
+          <p className="tfs-hero-tagline" style={{
             fontFamily: FONTS.sans2, fontWeight: 300, fontStyle: 'normal',
             fontSize: 'clamp(18px, 1.6vw, 22px)',
             lineHeight: 1.4, color: p.fgDim,

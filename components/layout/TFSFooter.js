@@ -27,6 +27,9 @@ export default function TFSFooter({ siteSettings, navLinks }) {
           .tfs-footer-mark { grid-column: span 1 !important; order: 2; }
           .tfs-footer-links { grid-column: span 1 !important; order: 1; }
         }
+        @media (min-width: 601px) and (max-width: 960px) {
+          .tfs-footer-mark span[aria-label="twofivesix"] { font-size: 8em !important; }
+        }
       `}</style>
       <div style={grid12()} className="tfs-footer-grid">
         <div style={{ gridColumn: 'span 6' }} className="tfs-footer-mark">
