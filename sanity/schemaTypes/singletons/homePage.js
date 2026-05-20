@@ -85,6 +85,45 @@ export default defineType({
       ],
     }),
     defineField({
+      name: 'featuresSection',
+      type: 'object',
+      title: 'Features Section',
+      fields: [
+        defineField({name: 'eyebrow', type: 'string', title: 'Eyebrow label'}),
+        defineField({
+          name: 'layers',
+          type: 'array',
+          title: 'Feature layers',
+          description: 'First layer: image left, text right. Second layer: text left, image right.',
+          of: [{
+            type: 'object',
+            title: 'Feature layer',
+            fields: [
+              defineField({name: 'label', type: 'string', title: 'Label (e.g. META API)'}),
+              defineField({name: 'heading', type: 'string', title: 'Heading'}),
+              defineField({name: 'subheading', type: 'string', title: 'Subheading'}),
+              defineField({
+                name: 'bullets',
+                type: 'array',
+                title: 'Bullet points',
+                of: [{type: 'string'}],
+              }),
+              defineField({
+                name: 'image',
+                type: 'image',
+                title: 'Screenshot (mobile)',
+                options: {hotspot: true},
+              }),
+              defineField({name: 'imageAlt', type: 'string', title: 'Image alt text'}),
+              defineField({name: 'imageCaption', type: 'string', title: 'Image caption (displayed below)'}),
+            ],
+            preview: {select: {title: 'label', subtitle: 'heading'}},
+          }],
+          validation: (Rule) => Rule.max(4),
+        }),
+      ],
+    }),
+    defineField({
       name: 'featuredProjects',
       title: 'Featured Projects',
       type: 'array',

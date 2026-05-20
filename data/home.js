@@ -51,6 +51,27 @@ export const HOME = {
       {label: 'GROW', items: ['SEO (PR 95+)', 'Analytics', 'Email', 'WhatsApp', 'Performance']},
     ],
   },
+  featuresSection: {
+    eyebrow: '/BUILT-IN INTEGRATIONS',
+    layers: [
+      {
+        label: 'META API',
+        heading: 'WhatsApp Integration',
+        subheading: 'Run your online business from your phone',
+        bullets: ['Get and respond to orders on the go with integrated alerts'],
+        imageCaption: 'WHATSAPP · MOBILE',
+        reversed: false,
+      },
+      {
+        label: 'SANITY CMS',
+        heading: 'Edit Content anywhere, anytime',
+        subheading: 'Content Operating System for the AI-era',
+        bullets: ["Also used by 'Nike', 'Samsung', 'Eurostar'"],
+        imageCaption: 'SANITY · MOBILE BACKEND',
+        reversed: true,
+      },
+    ],
+  },
   faqSection: {
     eyebrow: '/SECTION 03 — FAQ',
     heading: 'Questions we\nget asked.',

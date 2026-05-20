@@ -15,7 +15,13 @@ export async function getStaticProps() {
     cms = null;
   }
   const data = mergeObj(
-    cms ? {hero: cms.hero, workSection: cms.workSection, studioSection: cms.studioSection, startSection: cms.startSection} : null,
+    cms ? {
+      hero: cms.hero,
+      workSection: cms.workSection,
+      studioSection: cms.studioSection,
+      startSection: cms.startSection,
+      featuresSection: cms.featuresSection,
+    } : null,
     HOME,
   );
   const projects = cms && cms.featuredProjects && cms.featuredProjects.length

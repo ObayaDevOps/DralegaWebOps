@@ -18,7 +18,7 @@ function DesktopStudio({ data }) {
   const stats = data.stats || [];
   const capabilities = data.capabilities || [];
   return (
-    <div style={{ height: '200vh' }}>
+    <div style={{ height: '150vh' }}>
       <section style={{
         position: 'sticky', top: 0,
         height: '100vh',
