@@ -8,6 +8,7 @@ export const HOME = {
     headingLine2: 'Uganda’s most',
     headingEmphasis: 'ambitious',
     headingTail: 'businesses.',
+    headingWords: ['restaurants.', 'hotels.', 'artists.', 'brands.'],
     tagline: 'Designed to compete globally.\nBuilt for how Uganda actually works.',
     credential1: 'Bank-grade engineering. Founding member of Afropocene.',
     credential2: 'Built by a former AVP Software Developer ($7T in assets) and a working artist.',

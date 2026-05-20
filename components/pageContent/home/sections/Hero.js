@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { FONTS, PALETTE } from '../../../../data/tokens';
 import { HOME } from '../../../../data/home';
 import Button from '../../../primitives/Button';
@@ -5,6 +6,52 @@ import Marquee from './Marquee';
 import Iridescence from './Iridescence';
 
 const p = PALETTE;
+
+function TypewriterWord({ words, fallback }) {
+  const [mounted, setMounted] = useState(false);
+  const [displayText, setDisplayText] = useState('');
+  const [wordIndex, setWordIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+
+  useEffect(() => { setMounted(true); }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+    const current = words[wordIndex];
+    let delay;
+    if (isPaused) {
+      delay = setTimeout(() => { setIsPaused(false); setIsDeleting(true); }, 2200);
+    } else if (isDeleting) {
+      if (displayText === '') {
+        setIsDeleting(false);
+        setWordIndex(i => (i + 1) % words.length);
+      } else {
+        delay = setTimeout(() => setDisplayText(t => t.slice(0, -1)), 38);
+      }
+    } else {
+      if (displayText === current) {
+        setIsPaused(true);
+      } else {
+        delay = setTimeout(() => setDisplayText(current.slice(0, displayText.length + 1)), 75);
+      }
+    }
+    return () => clearTimeout(delay);
+  }, [mounted, displayText, isDeleting, isPaused, wordIndex, words]);
+
+  if (!mounted) return <span>{fallback}</span>;
+
+  return (
+    <>
+      <style>{`
+        @keyframes tfs-blink { 0%,100%{opacity:1} 50%{opacity:0} }
+        .tfs-cursor { animation: tfs-blink 1s step-end infinite; }
+      `}</style>
+      <span>{displayText}</span>
+      <span className="tfs-cursor" aria-hidden style={{ color: p.accent2, opacity: 0.7 }}>|</span>
+    </>
+  );
+}
 
 function splitLines(text) {
   if (!text) return [];
@@ -55,7 +102,8 @@ function DesktopHero({ hero }) {
           }}>
             {hero.heading}<br />
             {hero.headingLine2}<br />
-            <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent3 }}>{hero.headingEmphasis}</em>{' '}{hero.headingTail}
+            <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent3 }}>{hero.headingEmphasis}</em>{' '}
+            <TypewriterWord words={hero.headingWords} fallback={hero.headingTail} />
           </h1>
           <p className="tfs-hero-tagline" style={{
             fontFamily: FONTS.sans2, fontWeight: 300, fontStyle: 'normal',
@@ -162,7 +210,7 @@ function MobileHero({ hero }) {
         {hero.heading}<br />
         {hero.headingLine2}<br />
         <em style={{ fontStyle: 'italic', fontWeight: 300, color: p.accent3 }}>{hero.headingEmphasis}</em><br />
-        {hero.headingTail}
+        <TypewriterWord words={hero.headingWords} fallback={hero.headingTail} />
       </h1>
 
       <p data-mreveal data-mreveal-delay="160" style={{
