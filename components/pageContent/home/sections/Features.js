@@ -5,10 +5,28 @@ import SanityImage from '../../../primitives/SanityImage';
 const p = PALETTE;
 
 const imageRevealCSS = `
-  .tfs-feat-img[data-reveal]                   { transform: translateY(52px); }
-  .tfs-feat-img[data-reveal][data-revealed="1"] { transform: translateY(0);   }
-  .tfs-feat-img[data-mreveal]                   { transform: translateY(40px); }
-  .tfs-feat-img[data-mreveal][data-revealed="1"]{ transform: translateY(0);   }
+  .tfs-feat-img[data-reveal] {
+    opacity: 0;
+    transform: translateY(52px);
+    transition: opacity 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.75s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  .tfs-feat-img[data-reveal][data-revealed="1"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  .tfs-feat-img[data-mreveal] {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                transform 0.65s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    will-change: opacity, transform;
+  }
+  .tfs-feat-img[data-mreveal][data-revealed="1"] {
+    opacity: 1;
+    transform: translateY(0);
+  }
 `;
 
 function PhonePlaceholder({ caption, size = 220 }) {
@@ -128,7 +146,7 @@ function DesktopLayer({ layer, i }) {
         <h3 data-reveal data-reveal-delay={baseDelay + 160} style={{
           fontFamily: FONTS.serif,
           fontWeight: 300,
-          fontSize: 'clamp(28.6px, 2.6vw, 39px)',
+          fontSize: 'clamp(42.9px, 3.9vw, 58.5px)',
           lineHeight: 1.2,
           letterSpacing: '-0.012em',
           color: p.bg,
@@ -142,14 +160,14 @@ function DesktopLayer({ layer, i }) {
           lineHeight: 1.5,
           letterSpacing: '-0.005em',
           color: `${p.bg}bb`,
-          margin: '0 0 28px',
+          margin: '0 0 4px',
         }}>{layer.subheading}</p>
 
         {(layer.bullets || []).map((b, j) => (
           <div key={j} data-reveal data-reveal-delay={baseDelay + 320 + j * 60} style={{
-            fontFamily: FONTS.mono,
-            fontSize: 11,
-            letterSpacing: '0.06em',
+            fontFamily: FONTS.serif,
+            fontSize: 20,
+            letterSpacing: '0.005em',
             color: `${p.bg}66`,
             lineHeight: 1.6,
           }}>{b}</div>
@@ -179,7 +197,7 @@ function MobileLayer({ layer, i }) {
       <h3 data-mreveal data-mreveal-delay={baseDelay + 80} style={{
         fontFamily: FONTS.serif,
         fontWeight: 300,
-        fontSize: 26,
+        fontSize: 33.8,
         lineHeight: 1.2,
         letterSpacing: '-0.012em',
         color: p.bg,
@@ -189,19 +207,19 @@ function MobileLayer({ layer, i }) {
       <p data-mreveal data-mreveal-delay={baseDelay + 160} style={{
         fontFamily: FONTS.serif,
         fontWeight: 300,
-        fontSize: 18,
+        fontSize: 22,
         lineHeight: 1.5,
         letterSpacing: '-0.005em',
         color: `${p.bg}bb`,
-        margin: '0 0 20px',
+        margin: '0 0 2px',
       }}>{layer.subheading}</p>
 
       {(layer.bullets || []).map((b, j) => (
         <div key={j} data-mreveal data-mreveal-delay={baseDelay + 240 + j * 50} style={{
-          fontFamily: FONTS.mono,
-          fontSize: 10,
-          letterSpacing: '0.06em',
-          color: `${p.bg}66`,
+          fontFamily: FONTS.serif,
+          fontSize: 18,
+          letterSpacing: '0.005em',
+          color: `${p.bg}bb`,
           lineHeight: 1.6,
           marginBottom: 8,
         }}>{b}</div>
@@ -231,7 +249,7 @@ function DesktopFeatures({ data }) {
 
       <div style={{
         fontFamily: FONTS.mono,
-        fontSize: 11,
+        fontSize: 14,
         letterSpacing: '0.08em',
         color: `${p.bg}55`,
         paddingTop: 48,
@@ -257,7 +275,7 @@ function MobileFeatures({ data }) {
 
       <div style={{
         fontFamily: FONTS.mono,
-        fontSize: 10,
+        fontSize: 13,
         letterSpacing: '0.08em',
         color: `${p.bg}55`,
         paddingTop: 32,

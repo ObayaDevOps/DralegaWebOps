@@ -26,7 +26,7 @@ function DesktopWork({ workSection, projects }) {
           margin: 0, color: p.fg,
         }} data-reveal data-reveal-delay="80">
           {workSection.heading}<br />
-          <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{workSection.headingEmphasis}</em>
+          <em style={{ color: p.fg, fontStyle: 'italic', fontWeight: 300 }}>{workSection.headingEmphasis}</em>
           <span style={{ color: p.fgDim }}>&nbsp;&nbsp;{workSection.headingTail}</span>
         </h2>
       </div>
@@ -69,7 +69,7 @@ function MobileWork({ workSection, projects }) {
         margin: '0 0 40px', color: p.fg,
       }}>
         {workSection.heading}<br />
-        <em style={{ color: p.accent, fontStyle: 'italic', fontWeight: 300 }}>{workSection.headingEmphasis}</em><br />
+        <em style={{ color: p.fg, fontStyle: 'italic', fontWeight: 300 }}>{workSection.headingEmphasis}</em><br />
         <span style={{ color: p.fgDim }}>{workSection.headingTail}</span>
       </h2>
 
