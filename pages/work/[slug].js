@@ -10,6 +10,7 @@ import RichText from '../../components/primitives/RichText';
 import SanityImage from '../../components/primitives/SanityImage';
 import Lightbox from '../../components/primitives/Lightbox';
 import { client } from '../../lib/sanityClient';
+import { urlForImage } from '../../lib/sanityImage';
 import { projectBySlugQuery, projectSlugsQuery } from '../../lib/queries/project';
 import { mergeObj } from '../../lib/cms/merge';
 import { mergeLayoutProps } from '../../lib/cms/withLayoutProps';
@@ -202,6 +203,12 @@ export default function CaseStudy({ proj, siteSettings, navLinks }) {
       <Head>
         <title>{`${proj.title} — twofivesix studio`}</title>
         <meta name="description" content={proj.blurb} />
+        <meta property="og:site_name" content="twofivesix" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content={`${proj.title} — twofivesix studio`} />
+        <meta property="og:description" content={proj.blurb} />
+        <meta property="og:url" content={`https://twofivesix.online/work/${proj.slug}`} />
+        <meta property="og:image" content={urlForImage(proj.heroImage, {width: 1200}) || 'https://twofivesix.online/og-image.png'} />
       </Head>
       <PageLayout siteSettings={siteSettings} navLinks={navLinks} desktop={<>
           <article>

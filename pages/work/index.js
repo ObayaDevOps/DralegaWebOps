@@ -136,6 +136,12 @@ export default function WorkIndex({ workPage, projects, siteSettings, navLinks }
       <Head>
         <title>Work — twofivesix studio</title>
         <meta name="description" content={workPage.subheading} />
+        <meta property="og:site_name" content="twofivesix" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Work — twofivesix studio" />
+        <meta property="og:description" content={workPage.subheading} />
+        <meta property="og:url" content="https://twofivesix.online/work" />
+        <meta property="og:image" content="https://twofivesix.online/og-image.png" />
       </Head>
       <PageLayout siteSettings={siteSettings} navLinks={navLinks} desktop={<>
           <section style={{ padding: '80px 32px 40px' }}>

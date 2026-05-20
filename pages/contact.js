@@ -75,6 +75,12 @@ export default function Contact({ data, siteSettings, navLinks }) {
       <Head>
         <title>Contact — twofivesix studio</title>
         <meta name="description" content={data.subheading} />
+        <meta property="og:site_name" content="twofivesix" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Contact — twofivesix studio" />
+        <meta property="og:description" content={data.subheading} />
+        <meta property="og:url" content="https://twofivesix.online/contact" />
+        <meta property="og:image" content="https://twofivesix.online/og-image.png" />
       </Head>
       <PageLayout siteSettings={siteSettings} navLinks={navLinks} desktop={<>
         <section style={{ padding: '80px 32px 64px' }}>

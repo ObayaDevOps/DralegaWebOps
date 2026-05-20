@@ -8,7 +8,7 @@ export default class Document extends NextDocument {
       <Html lang='en'>
         <Head>
         <meta name="description" content="twofivesix Web Agency Webpage" />
-        <link rel="shortcut icon" href="../../../images/icon/DWOLogo.png"></link>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link

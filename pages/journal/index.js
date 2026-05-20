@@ -38,6 +38,12 @@ export default function Journal({ page, posts, siteSettings, navLinks }) {
       <Head>
         <title>Journal — twofivesix studio</title>
         <meta name="description" content={page.subheading} />
+        <meta property="og:site_name" content="twofivesix" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Journal — twofivesix studio" />
+        <meta property="og:description" content={page.subheading} />
+        <meta property="og:url" content="https://twofivesix.online/journal" />
+        <meta property="og:image" content="https://twofivesix.online/og-image.png" />
       </Head>
       <PageLayout siteSettings={siteSettings} navLinks={navLinks} desktop={<>
         <section style={{ padding: '80px 32px 64px' }}>

@@ -35,6 +35,12 @@ export default function About({ data, siteSettings, navLinks }) {
       <Head>
         <title>About — twofivesix studio</title>
         <meta name="description" content={data.intro} />
+        <meta property="og:site_name" content="twofivesix" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="About — twofivesix studio" />
+        <meta property="og:description" content={data.intro} />
+        <meta property="og:url" content="https://twofivesix.online/about" />
+        <meta property="og:image" content="https://twofivesix.online/og-image.png" />
       </Head>
       <PageLayout siteSettings={siteSettings} navLinks={navLinks} desktop={<>
         <section style={{ padding: '80px 32px 0' }}>

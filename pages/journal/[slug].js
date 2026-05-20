@@ -8,6 +8,7 @@ import { journalPostBySlugQuery, journalPostSlugsQuery } from '../../lib/queries
 import { JOURNAL_POSTS, formatReadTime } from '../../data/journal';
 import { mergeObj } from '../../lib/cms/merge';
 import { mergeLayoutProps } from '../../lib/cms/withLayoutProps';
+import { urlForImage } from '../../lib/sanityImage';
 
 const p = PALETTE;
 
@@ -47,6 +48,12 @@ export default function JournalPost({ post, siteSettings, navLinks }) {
       <Head>
         <title>{`${post.title} — twofivesix journal`}</title>
         <meta name="description" content={post.blurb} />
+        <meta property="og:site_name" content="twofivesix" />
+        <meta property="og:type" content="article" />
+        <meta property="og:title" content={`${post.title} — twofivesix journal`} />
+        <meta property="og:description" content={post.blurb} />
+        <meta property="og:url" content={`https://twofivesix.online/journal/${post.slug?.current || post.slug}`} />
+        <meta property="og:image" content={urlForImage(post.coverImage || post.image, {width: 1200}) || 'https://twofivesix.online/og-image.png'} />
       </Head>
       <PageLayout siteSettings={siteSettings} navLinks={navLinks} desktop={<>
         <article style={{ padding: '80px 32px 120px' }}>
